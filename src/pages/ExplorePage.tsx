@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search, Users, MapPin, Calendar, ArrowUpRight } from "lucide-react";
+import { ActivityType } from "@/components/ActivityCard";
 
 const ExplorePage = () => {
   // Sample events data
@@ -16,7 +17,7 @@ const ExplorePage = () => {
       location: "Central Park",
       attendees: 14,
       distance: "5 km",
-      type: "canicross"
+      type: "canicross" as ActivityType
     },
     {
       id: "2",
@@ -25,7 +26,7 @@ const ExplorePage = () => {
       location: "Blue Ridge Mountains",
       attendees: 27,
       distance: "12 km",
-      type: "cani-hiking"
+      type: "cani-hiking" as ActivityType
     },
     {
       id: "3",
@@ -34,7 +35,7 @@ const ExplorePage = () => {
       location: "Riverside Path",
       attendees: 8,
       distance: "15 km",
-      type: "cani-MTB"
+      type: "cani-MTB" as ActivityType
     }
   ];
 
@@ -46,7 +47,7 @@ const ExplorePage = () => {
       distance: "3.8 km",
       difficulty: "easy",
       terrain: "flat",
-      type: "canicross"
+      type: "canicross" as ActivityType
     },
     {
       id: "2",
@@ -54,7 +55,7 @@ const ExplorePage = () => {
       distance: "7.2 km",
       difficulty: "moderate",
       terrain: "hilly",
-      type: "cani-hiking"
+      type: "cani-hiking" as ActivityType
     },
     {
       id: "3",
@@ -62,7 +63,7 @@ const ExplorePage = () => {
       distance: "12.5 km",
       difficulty: "challenging",
       terrain: "mixed",
-      type: "cani-MTB"
+      type: "cani-MTB" as ActivityType
     }
   ];
 
@@ -86,7 +87,6 @@ const ExplorePage = () => {
         <Input 
           placeholder="Search events, trails, or users" 
           className="border-gray-300" 
-          prefix={<Search className="h-4 w-4 text-gray-400" />}
         />
         <Button size="icon" className="bg-forest text-white">
           <Search className="h-4 w-4" />
@@ -108,7 +108,7 @@ const ExplorePage = () => {
                 <CardContent className="p-4">
                   <div className="flex justify-between">
                     <h3 className="text-lg font-semibold">{event.title}</h3>
-                    <Badge className={typeColors[event.type as keyof typeof typeColors]}>
+                    <Badge className={typeColors[event.type]}>
                       {event.type}
                     </Badge>
                   </div>
@@ -168,7 +168,7 @@ const ExplorePage = () => {
                     {trail.difficulty}
                   </Badge>
                   <Badge variant="outline">{trail.terrain}</Badge>
-                  <Badge className={typeColors[trail.type as keyof typeof typeColors]}>
+                  <Badge className={typeColors[trail.type]}>
                     {trail.type}
                   </Badge>
                 </div>
@@ -182,3 +182,4 @@ const ExplorePage = () => {
 };
 
 export default ExplorePage;
+

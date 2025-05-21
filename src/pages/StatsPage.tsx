@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import StatsPanel from "@/components/StatsPanel";
 import DogAvatar from "@/components/DogAvatar";
+import { ActivityType } from "@/components/ActivityCard";
 
 const StatsPage = () => {
   // Sample data for stats
@@ -25,9 +26,9 @@ const StatsPage = () => {
   ];
 
   const activityTypes = [
-    { type: "canicross", count: 12 },
-    { type: "cani-hiking", count: 8 },
-    { type: "cani-MTB", count: 5 }
+    { type: "canicross" as ActivityType, count: 12 },
+    { type: "cani-hiking" as ActivityType, count: 8 },
+    { type: "cani-MTB" as ActivityType, count: 5 }
   ];
 
   const dogs = [
@@ -126,3 +127,4 @@ const StatsPage = () => {
 };
 
 export default StatsPage;
+
