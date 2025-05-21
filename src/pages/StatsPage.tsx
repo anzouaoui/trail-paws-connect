@@ -244,7 +244,7 @@ const StatsPage = () => {
                 transition={{ duration: 0.3 }}
                 className="flex flex-col items-center mb-6"
               >
-                <DogAvatar name={dog.name} size="xl" showBadge breed={dog.breed} />
+                <DogAvatar name={dog.name} size="lg" showBadge breed={dog.breed} />
                 <h2 className="text-xl font-bold mt-3">{dog.name}</h2>
                 <p className="text-muted-foreground">{dog.breed}</p>
                 <div className="flex gap-2 mt-2">
