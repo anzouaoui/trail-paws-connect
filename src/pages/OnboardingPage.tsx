@@ -36,13 +36,13 @@ const OnboardingPage = () => {
   };
 
   const handleSkip = () => {
-    navigate("/home");
+    navigate("/login");
   };
 
   const handleComplete = () => {
     // In a real app, you might want to store that the user has completed onboarding
-    // localStorage.setItem("onboardingCompleted", "true");
-    navigate("/home");
+    localStorage.setItem("onboardingCompleted", "true");
+    navigate("/signup");
   };
 
   return (
