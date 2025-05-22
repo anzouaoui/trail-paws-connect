@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, MapPin, Award, Heart } from "lucide-react";
@@ -22,6 +23,7 @@ interface ActivityCardProps {
 }
 
 const ActivityCard = ({
+  id,
   title,
   type,
   date,
@@ -33,6 +35,7 @@ const ActivityCard = ({
   likes,
   onClick
 }: ActivityCardProps) => {
+  const navigate = useNavigate();
   const activityColors = {
     "canicross": "bg-forest text-white",
     "cani-hiking": "bg-earth text-white",
@@ -44,10 +47,18 @@ const ActivityCard = ({
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      navigate(`/activity/${id}`);
+    }
+  };
+
   return (
     <Card 
       className="activity-card cursor-pointer" 
-      onClick={onClick}
+      onClick={handleClick}
     >
       <CardContent className="p-0">
         <div className="p-4 pb-3">

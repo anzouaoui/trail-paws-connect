@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 import DogProfilesPage from "./pages/DogProfilesPage";
 import DogProfileFormPage from "./pages/DogProfileFormPage";
 import RunnerProfilePage from "./pages/RunnerProfilePage";
+import ActivityDetailPage from "./pages/ActivityDetailPage";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
               <Route path="/dogs" element={<DogProfilesPage />} />
               <Route path="/dog/:id" element={<DogProfileFormPage />} />
               <Route path="/runner-profile" element={<RunnerProfilePage />} />
+              <Route path="/activity/:id" element={<ActivityDetailPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Routes>

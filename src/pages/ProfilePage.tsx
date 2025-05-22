@@ -140,7 +140,7 @@ const ProfilePage = () => {
               <ActivityCard 
                 key={activity.id}
                 {...activity}
-                onClick={() => console.log(`View activity ${activity.id}`)}
+                onClick={() => navigate(`/activity/${activity.id}`)}
               />
             ))}
           </TabsContent>
