@@ -16,6 +16,9 @@ import StatsPage from "./pages/StatsPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
+import DogProfilesPage from "./pages/DogProfilesPage";
+import DogProfileFormPage from "./pages/DogProfileFormPage";
+import RunnerProfilePage from "./pages/RunnerProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +41,9 @@ const App = () => (
               <Route path="/stats" element={<StatsPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/dogs" element={<DogProfilesPage />} />
+              <Route path="/dog/:id" element={<DogProfileFormPage />} />
+              <Route path="/runner-profile" element={<RunnerProfilePage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Routes>

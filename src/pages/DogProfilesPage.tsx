@@ -1,0 +1,107 @@
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Plus, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import DogProfileCard from "@/components/DogProfileCard";
+import { useToast } from "@/hooks/use-toast";
+
+// Mock data - in a real app this would come from a database
+const mockDogs = [
+  {
+    id: "1",
+    name: "Max",
+    breed: "Border Collie",
+    age: 3,
+    weight: "18 kg",
+    imageSrc: undefined,
+    sportPreference: "Canicross",
+    level: "intermediate" as const
+  },
+  {
+    id: "2",
+    name: "Bella",
+    breed: "Golden Retriever",
+    age: 2,
+    weight: "25 kg",
+    imageSrc: undefined,
+    sportPreference: "Cani-hiking",
+    level: "beginner" as const
+  }
+];
+
+const DogProfilesPage = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleAddDog = () => {
+    navigate("/dog/new");
+  };
+
+  const handleViewDog = (id: string) => {
+    navigate(`/dog/${id}`);
+  };
+
+  return (
+    <div className="pb-24">
+      {/* Header */}
+      <div className="bg-white sticky top-0 z-10 shadow-sm">
+        <div className="flex items-center p-4">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={() => navigate("/profile")}
+            className="mr-2"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          <h1 className="text-xl font-bold">My Dogs</h1>
+          <div className="flex-1"></div>
+          <Button 
+            onClick={handleAddDog}
+            size="icon"
+            className="bg-forest text-white"
+          >
+            <Plus className="h-5 w-5" />
+          </Button>
+        </div>
+      </div>
+
+      <div className="p-4 space-y-6">
+        {mockDogs.length === 0 ? (
+          <Card className="border-dashed">
+            <CardContent className="p-6 flex flex-col items-center justify-center">
+              <p className="text-muted-foreground text-center mb-4">
+                You haven't added any dogs yet. Add your first dog to start tracking activities together!
+              </p>
+              <Button onClick={handleAddDog} className="bg-forest text-white">
+                <Plus className="h-5 w-5 mr-2" /> Add Dog
+              </Button>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="grid gap-4">
+            {mockDogs.map((dog) => (
+              <div 
+                key={dog.id}
+                onClick={() => handleViewDog(dog.id)}
+                className="cursor-pointer transform transition-transform hover:scale-[1.01]"
+              >
+                <DogProfileCard {...dog} />
+              </div>
+            ))}
+            <Button 
+              onClick={handleAddDog} 
+              className="mt-4 bg-forest text-white"
+            >
+              <Plus className="h-5 w-5 mr-2" /> Add Another Dog
+            </Button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default DogProfilesPage;

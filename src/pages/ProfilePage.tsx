@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Settings, Trophy, Medal, PawPrint } from "lucide-react";
+import { Settings, Trophy, Medal, PawPrint, Edit, Dog } from "lucide-react";
 import DogProfileCard from "@/components/DogProfileCard";
 import ActivityCard from "@/components/ActivityCard";
 
@@ -58,14 +58,24 @@ const ProfilePage = () => {
               <AvatarImage src="" alt="User" />
               <AvatarFallback className="bg-forest text-white text-xl">JD</AvatarFallback>
             </Avatar>
-            <Button 
-              variant="outline" 
-              size="icon" 
-              className="bg-white h-10 w-10"
-              onClick={() => navigate("/settings")}
-            >
-              <Settings className="h-5 w-5" />
-            </Button>
+            <div className="flex space-x-2">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="bg-white h-10 w-10"
+                onClick={() => navigate("/runner-profile")}
+              >
+                <Edit className="h-5 w-5 text-forest" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="bg-white h-10 w-10"
+                onClick={() => navigate("/settings")}
+              >
+                <Settings className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
           <div className="mt-2">
             <h1 className="text-2xl font-bold">John Doe</h1>
@@ -105,14 +115,24 @@ const ProfilePage = () => {
           </TabsList>
           
           <TabsContent value="dogs" className="mt-4">
-            <DogProfileCard 
-              name="Max"
-              breed="Border Collie"
-              age={3}
-              weight="18 kg"
-              sportPreference="Canicross"
-              level="intermediate"
-            />
+            <div className="space-y-4">
+              <DogProfileCard 
+                name="Max"
+                breed="Border Collie"
+                age={3}
+                weight="18 kg"
+                sportPreference="Canicross"
+                level="intermediate"
+              />
+              
+              <Button 
+                onClick={() => navigate("/dogs")} 
+                className="w-full mt-4 flex items-center justify-center bg-forest text-white"
+              >
+                <Dog className="mr-2 h-4 w-4" />
+                Manage Dogs
+              </Button>
+            </div>
           </TabsContent>
           
           <TabsContent value="activities" className="mt-4 space-y-4">
