@@ -108,4 +108,36 @@
   .nav-link.active {
     @apply text-forest;
   }
+  
+  .message-bubble {
+    @apply p-3 rounded-2xl max-w-[80%];
+  }
+  
+  .message-bubble.sent {
+    @apply bg-forest text-white ml-auto rounded-tr-none;
+  }
+  
+  .message-bubble.received {
+    @apply bg-muted text-foreground mr-auto rounded-tl-none;
+  }
+  
+  .message-time {
+    @apply text-xs text-muted-foreground mt-1;
+  }
+  
+  .message-status {
+    @apply text-xs ml-1;
+  }
+  
+  .message-attachment {
+    @apply rounded-lg overflow-hidden mt-1 border;
+  }
+  
+  .chat-list-item {
+    @apply flex items-center p-4 gap-3 border-b last:border-b-0 transition-colors hover:bg-muted/50;
+  }
+  
+  .chat-input {
+    @apply flex items-center gap-2 bg-background p-2 border-t sticky bottom-0;
+  }
 }
