@@ -22,6 +22,10 @@ import RunnerProfilePage from "./pages/RunnerProfilePage";
 import ActivityDetailPage from "./pages/ActivityDetailPage";
 import MessagesPage from "./pages/MessagesPage";
 import ChatDetailPage from "./pages/ChatDetailPage";
+import AdvancedAnalyticsPage from "./pages/AdvancedAnalyticsPage";
+import CompareActivitiesPage from "./pages/CompareActivitiesPage";
+import HealthAlertsPage from "./pages/HealthAlertsPage";
+import DeviceIntegrationPage from "./pages/DeviceIntegrationPage";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +54,12 @@ const App = () => (
               <Route path="/activity/:id" element={<ActivityDetailPage />} />
               <Route path="/messages" element={<MessagesPage />} />
               <Route path="/messages/:id" element={<ChatDetailPage />} />
+              {/* Premium feature routes */}
+              <Route path="/analytics" element={<AdvancedAnalyticsPage />} />
+              <Route path="/analytics/:metric" element={<AdvancedAnalyticsPage />} />
+              <Route path="/compare" element={<CompareActivitiesPage />} />
+              <Route path="/health-alerts" element={<HealthAlertsPage />} />
+              <Route path="/devices" element={<DeviceIntegrationPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Routes>
