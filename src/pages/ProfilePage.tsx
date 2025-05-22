@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,8 @@ import DogProfileCard from "@/components/DogProfileCard";
 import ActivityCard from "@/components/ActivityCard";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  
   // Sample activities
   const userActivities = [
     {
@@ -55,7 +58,12 @@ const ProfilePage = () => {
               <AvatarImage src="" alt="User" />
               <AvatarFallback className="bg-forest text-white text-xl">JD</AvatarFallback>
             </Avatar>
-            <Button variant="outline" size="icon" className="bg-white h-10 w-10">
+            <Button 
+              variant="outline" 
+              size="icon" 
+              className="bg-white h-10 w-10"
+              onClick={() => navigate("/settings")}
+            >
               <Settings className="h-5 w-5" />
             </Button>
           </div>

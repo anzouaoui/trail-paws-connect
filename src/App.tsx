@@ -14,6 +14,7 @@ import ExplorePage from "./pages/ExplorePage";
 import TrackPage from "./pages/TrackPage";
 import StatsPage from "./pages/StatsPage";
 import ProfilePage from "./pages/ProfilePage";
+import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
               <Route path="/track" element={<TrackPage />} />
               <Route path="/stats" element={<StatsPage />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/settings" element={<SettingsPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Routes>
