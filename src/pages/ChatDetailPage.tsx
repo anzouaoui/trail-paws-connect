@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, Phone, MoreVertical } from "lucide-react";
-import Message, { MessageProps, MessageStatus } from "@/components/Message";
+import Message, { MessageProps, MessageStatus, MessageType } from "@/components/Message";
 import MessageInput from "@/components/MessageInput";
 import { 
   Dialog,
@@ -52,8 +51,8 @@ const ChatDetailPage: React.FC = () => {
     
     setChat(mockChat);
     
-    // Load mock messages
-    const mockMessages = [
+    // Load mock messages with proper typing
+    const mockMessages: Omit<MessageProps, 'isSender'>[] = [
       {
         id: '1',
         content: 'Hey everyone! How did your morning runs go?',
@@ -86,7 +85,7 @@ const ChatDetailPage: React.FC = () => {
           avatar: undefined
         },
         status: 'seen' as MessageStatus,
-        attachmentType: 'activity',
+        attachmentType: 'activity' as MessageType,
         attachmentUrl: 'activity-summary'
       },
       {
@@ -99,7 +98,7 @@ const ChatDetailPage: React.FC = () => {
           avatar: undefined
         },
         status: 'seen' as MessageStatus,
-        attachmentType: 'route',
+        attachmentType: 'route' as MessageType,
         attachmentUrl: 'https://images.unsplash.com/photo-1559511260-66a654ae982a?q=80&w=500&auto=format&fit=crop'
       },
       {
@@ -130,7 +129,7 @@ const ChatDetailPage: React.FC = () => {
       sender: currentUser,
       status: 'sending' as MessageStatus,
       ...(attachmentType && { 
-        attachmentType: attachmentType as any, 
+        attachmentType: attachmentType as MessageType, 
         attachmentUrl 
       })
     };
