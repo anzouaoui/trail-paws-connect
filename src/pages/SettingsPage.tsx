@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { 
@@ -6,7 +5,7 @@ import {
   Shield, 
   MapPin, 
   Camera, 
-  Microphone, 
+  Mic, 
   Languages, 
   ShieldCheck, 
   Lock, 
@@ -164,7 +163,7 @@ const SettingsPage = () => {
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <Microphone className="h-4 w-4 mr-2 text-muted-foreground" />
+                <Mic className="h-4 w-4 mr-2 text-muted-foreground" />
                 <p className="font-medium">Microphone</p>
               </div>
               <Switch id="microphone-permission" />
