@@ -242,8 +242,8 @@ const AdvancedAnalyticsPage = () => {
                     <ChartContainer config={chartConfig}>
                       <ChartLegendContent 
                         payload={[
-                          { value: 'Speed (km/h)', name: 'speed', dataKey: 'speed', color: '#2D6A4F' },
-                          { value: 'Avg Speed', name: 'avgSpeed', dataKey: 'avgSpeed', color: '#95D5B2' }
+                          { value: 'Speed (km/h)', id: 'speed', dataKey: 'speed', color: '#2D6A4F' },
+                          { value: 'Avg Speed', id: 'avgSpeed', dataKey: 'avgSpeed', color: '#95D5B2' }
                         ]}
                       />
                     </ChartContainer>
@@ -292,8 +292,8 @@ const AdvancedAnalyticsPage = () => {
                     <ChartContainer config={chartConfig}>
                       <ChartLegendContent 
                         payload={[
-                          { value: 'Cadence (spm)', name: 'cadence', dataKey: 'cadence', color: '#1A85FF' },
-                          { value: 'Avg Cadence', name: 'avgCadence', dataKey: 'avgCadence', color: '#A0C4FF' }
+                          { value: 'Cadence (spm)', id: 'cadence', dataKey: 'cadence', color: '#1A85FF' },
+                          { value: 'Avg Cadence', id: 'avgCadence', dataKey: 'avgCadence', color: '#A0C4FF' }
                         ]}
                       />
                     </ChartContainer>
@@ -333,7 +333,7 @@ const AdvancedAnalyticsPage = () => {
                     <ChartContainer config={chartConfig}>
                       <ChartLegendContent 
                         payload={[
-                          { value: 'Elevation (m)', name: 'elevation', dataKey: 'elevation', color: '#876800' }
+                          { value: 'Elevation (m)', id: 'elevation', dataKey: 'elevation', color: '#876800' }
                         ]}
                       />
                     </ChartContainer>
@@ -399,8 +399,8 @@ const AdvancedAnalyticsPage = () => {
                     <ChartContainer config={chartConfig}>
                       <ChartLegendContent 
                         payload={[
-                          { value: 'Heart Rate (bpm)', name: 'heartRate', dataKey: 'heartRate', color: '#FF5A5F' },
-                          { value: 'Resting Rate', name: 'restingRate', dataKey: 'restingRate', color: '#FFB2B2' }
+                          { value: 'Heart Rate (bpm)', id: 'heartRate', dataKey: 'heartRate', color: '#FF5A5F' },
+                          { value: 'Resting Rate', id: 'restingRate', dataKey: 'restingRate', color: '#FFB2B2' }
                         ]}
                       />
                     </ChartContainer>
@@ -434,7 +434,7 @@ const AdvancedAnalyticsPage = () => {
                     <ChartContainer config={chartConfig}>
                       <ChartLegendContent 
                         payload={[
-                          { value: 'Activity (%)', name: 'activity', dataKey: 'activity', color: '#52B788' }
+                          { value: 'Activity (%)', id: 'activity', dataKey: 'activity', color: '#52B788' }
                         ]}
                       />
                     </ChartContainer>
