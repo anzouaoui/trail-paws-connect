@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import ActivityCard from "@/components/ActivityCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Search, Bell, Filter } from "lucide-react";
+import { Search, Bell, Filter, Users, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import PostCard from "@/components/PostCard";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -49,12 +51,97 @@ const HomePage = () => {
     }
   ];
 
+  // Sample posts data
+  const [posts, setPosts] = useState([
+    {
+      id: "1",
+      userId: "user1",
+      userName: "Sarah Johnson",
+      userAvatar: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9",
+      content: "Had an amazing run with Max today! We crushed our personal best time on the forest trail.",
+      image: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
+      activityId: "1",
+      activityType: "canicross",
+      location: "Forest Hills Trail",
+      date: "2025-05-22",
+      likes: 24,
+      comments: 8,
+      isLiked: false
+    },
+    {
+      id: "2",
+      userId: "user2",
+      userName: "Mike Roberts",
+      userAvatar: "",
+      content: "First time trying cani-hiking with Luna. She loved the mountain views!",
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
+      activityId: "2",
+      activityType: "cani-hiking",
+      location: "Blue Mountain Ridge",
+      date: "2025-05-21",
+      likes: 18,
+      comments: 5,
+      isLiked: true
+    },
+    {
+      id: "3",
+      userId: "user3",
+      userName: "Emma Wilson",
+      userAvatar: "https://images.unsplash.com/photo-1582562124811-c09040d0a901",
+      content: "Sunny day at the lake with Bella. Perfect for a relaxed jog!",
+      image: "",
+      activityId: "3",
+      activityType: "canicross",
+      location: "Lakeside Park",
+      date: "2025-05-20",
+      likes: 32,
+      comments: 12,
+      isLiked: false
+    }
+  ]);
+
   // Mock unread notification count
   const [unreadNotifications] = useState<number>(4);
+  const [unreadFriendRequests] = useState<number>(2);
+  
+  // State for feed filter
+  const [feedFilter, setFeedFilter] = useState<string>("all");
 
   const handleActivityClick = (id: string) => {
     console.log(`Clicked activity ${id}`);
-    // Navigate to activity detail
+    navigate(`/activity/${id}`);
+  };
+
+  const handlePostLike = (postId: string) => {
+    setPosts(posts.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          likes: post.isLiked ? post.likes - 1 : post.likes + 1,
+          isLiked: !post.isLiked
+        };
+      }
+      return post;
+    }));
+  };
+
+  const handlePostComment = (postId: string) => {
+    navigate(`/post/${postId}`);
+  };
+
+  const filteredPosts = () => {
+    switch(feedFilter) {
+      case "friends":
+        return posts.filter(post => post.userId === "user1" || post.userId === "user3");
+      case "nearby":
+        return posts.filter(post => post.location.includes("Forest") || post.location.includes("Lakeside"));
+      case "canicross":
+        return posts.filter(post => post.activityType === "canicross");
+      case "hiking":
+        return posts.filter(post => post.activityType === "cani-hiking");
+      default:
+        return posts;
+    }
   };
 
   return (
@@ -79,6 +166,22 @@ const HomePage = () => {
               variant="ghost" 
               size="icon" 
               className="rounded-full relative"
+              onClick={() => navigate('/friend-requests')}
+            >
+              <Users className="h-5 w-5" />
+              {unreadFriendRequests > 0 && (
+                <Badge 
+                  variant="destructive" 
+                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                >
+                  {unreadFriendRequests}
+                </Badge>
+              )}
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full relative"
               onClick={() => navigate('/notifications')}
             >
               <Bell className="h-5 w-5" />
@@ -94,24 +197,77 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">Activity Feed</h2>
-          <Button variant="outline" size="sm" className="flex items-center">
-            <Filter className="h-4 w-4 mr-1" />
-            Filter
-          </Button>
-        </div>
+        <Tabs defaultValue="feed" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-4">
+            <TabsTrigger value="feed">Feed</TabsTrigger>
+            <TabsTrigger value="activities">Your Activities</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="feed">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Activity Feed</h2>
+              <div className="flex space-x-1">
+                <Button 
+                  variant={feedFilter === "friends" ? "default" : "outline"} 
+                  size="sm" 
+                  onClick={() => setFeedFilter("friends")}
+                  className="text-xs px-2"
+                >
+                  Friends
+                </Button>
+                <Button 
+                  variant={feedFilter === "nearby" ? "default" : "outline"} 
+                  size="sm" 
+                  onClick={() => setFeedFilter("nearby")}
+                  className="text-xs px-2"
+                >
+                  <MapPin className="h-3 w-3 mr-1" /> Nearby
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="flex items-center"
+                  onClick={() => setFeedFilter(feedFilter === "all" ? "canicross" : feedFilter === "canicross" ? "hiking" : "all")}
+                >
+                  <Filter className="h-4 w-4 mr-1" />
+                  {feedFilter === "all" ? "All" : feedFilter === "canicross" ? "Canicross" : feedFilter === "hiking" ? "Hiking" : "Filter"}
+                </Button>
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              {filteredPosts().map(post => (
+                <PostCard 
+                  key={post.id}
+                  post={post}
+                  onLike={() => handlePostLike(post.id)}
+                  onComment={() => handlePostComment(post.id)}
+                />
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="activities">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Your Activity</h2>
+              <Button variant="outline" size="sm" className="flex items-center">
+                <Filter className="h-4 w-4 mr-1" />
+                Filter
+              </Button>
+            </div>
+            
+            <section className="space-y-4">
+              {recentActivities.map(activity => (
+                <ActivityCard 
+                  key={activity.id}
+                  {...activity}
+                  onClick={() => handleActivityClick(activity.id)}
+                />
+              ))}
+            </section>
+          </TabsContent>
+        </Tabs>
       </header>
-
-      <section className="px-4 space-y-4">
-        {recentActivities.map(activity => (
-          <ActivityCard 
-            key={activity.id}
-            {...activity}
-            onClick={() => handleActivityClick(activity.id)}
-          />
-        ))}
-      </section>
 
       <section className="mt-8 px-4">
         <h2 className="text-xl font-semibold mb-4">Upcoming Challenges</h2>

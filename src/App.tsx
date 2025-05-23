@@ -30,6 +30,8 @@ import SubscriptionPage from "./pages/SubscriptionPage";
 import DogHealthRecordsPage from "./pages/DogHealthRecordsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import NotificationSettingsPage from "./pages/NotificationSettingsPage";
+import FriendRequestsPage from "./pages/FriendRequestsPage";
+import PostDetailPage from "./pages/PostDetailPage";
 
 const queryClient = new QueryClient();
 
@@ -56,12 +58,14 @@ const App = () => (
               <Route path="/dog/:id" element={<DogProfileFormPage />} />
               <Route path="/runner-profile" element={<RunnerProfilePage />} />
               <Route path="/activity/:id" element={<ActivityDetailPage />} />
+              <Route path="/post/:id" element={<PostDetailPage />} />
               <Route path="/messages" element={<MessagesPage />} />
               <Route path="/messages/:id" element={<ChatDetailPage />} />
               <Route path="/subscription" element={<SubscriptionPage />} />
               <Route path="/health-records" element={<DogHealthRecordsPage />} />
               <Route path="/notifications" element={<NotificationsPage />} />
               <Route path="/notification-settings" element={<NotificationSettingsPage />} />
+              <Route path="/friend-requests" element={<FriendRequestsPage />} />
               {/* Premium feature routes */}
               <Route path="/analytics" element={<AdvancedAnalyticsPage />} />
               <Route path="/analytics/:metric" element={<AdvancedAnalyticsPage />} />
@@ -71,7 +75,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Routes>
-              {["/home", "/explore", "/track", "/stats", "/profile", "/messages", "/notifications"].map((path) => (
+              {["/home", "/explore", "/track", "/stats", "/profile", "/messages", "/notifications", "/friend-requests"].map((path) => (
                 <Route
                   key={path}
                   path={path}

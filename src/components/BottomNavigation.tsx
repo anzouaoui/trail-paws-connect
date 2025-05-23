@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { MapPin, BarChart2, Home, User, PlusCircle, MessageCircle } from "lucide-react";
+import { MapPin, BarChart2, Home, User, PlusCircle, MessageCircle, Users } from "lucide-react";
 
 const BottomNavigation = () => {
   const location = useLocation();
@@ -42,6 +42,14 @@ const BottomNavigation = () => {
         >
           <BarChart2 className="h-6 w-6" />
           <span className="text-xs">Stats</span>
+        </Link>
+        
+        <Link 
+          to="/friend-requests" 
+          className={`nav-link ${currentPath === "/friend-requests" ? "active" : ""}`}
+        >
+          <Users className="h-6 w-6" />
+          <span className="text-xs">Friends</span>
         </Link>
         
         <Link 
