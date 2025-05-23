@@ -91,6 +91,13 @@ const SettingsPage = () => {
           
           <SettingsSection
             icon={<Bell className="h-5 w-5" />}
+            title="Notifications"
+            description="Configure your notification preferences"
+            onClick={() => navigate("/notification-settings")}
+          />
+          
+          <SettingsSection
+            icon={<Bell className="h-5 w-5" />}
             title="Health Alerts"
             description="Set up health monitoring and reminders"
             onClick={() => navigate("/health-alerts")}
@@ -102,27 +109,6 @@ const SettingsPage = () => {
         {/* App Settings */}
         <div>
           <h2 className="text-lg font-semibold mb-3">App Settings</h2>
-          
-          <SettingsSection
-            icon={<Bell className="h-5 w-5" />}
-            title="Notifications"
-            description="Configure your notification preferences"
-          >
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Activity reminders</span>
-                <Switch defaultChecked />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Health alerts</span>
-                <Switch defaultChecked />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Social updates</span>
-                <Switch />
-              </div>
-            </div>
-          </SettingsSection>
           
           <SettingsSection
             icon={<Shield className="h-5 w-5" />}

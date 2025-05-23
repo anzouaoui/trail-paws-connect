@@ -1,11 +1,14 @@
 
-import React from "react";
+import React, { useState } from "react";
 import ActivityCard from "@/components/ActivityCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Search, Bell, Filter } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   // Sample data
   const recentActivities = [
     {
@@ -46,6 +49,9 @@ const HomePage = () => {
     }
   ];
 
+  // Mock unread notification count
+  const [unreadNotifications] = useState<number>(4);
+
   const handleActivityClick = (id: string) => {
     console.log(`Clicked activity ${id}`);
     // Navigate to activity detail
@@ -69,9 +75,21 @@ const HomePage = () => {
             <Button variant="ghost" size="icon" className="rounded-full">
               <Search className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-full relative">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full relative"
+              onClick={() => navigate('/notifications')}
+            >
               <Bell className="h-5 w-5" />
-              <span className="absolute top-1 right-1 h-2 w-2 bg-destructive rounded-full"></span>
+              {unreadNotifications > 0 && (
+                <Badge 
+                  variant="destructive" 
+                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                >
+                  {unreadNotifications > 9 ? '9+' : unreadNotifications}
+                </Badge>
+              )}
             </Button>
           </div>
         </div>

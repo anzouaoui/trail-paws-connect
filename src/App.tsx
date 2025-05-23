@@ -28,6 +28,8 @@ import HealthAlertsPage from "./pages/HealthAlertsPage";
 import DeviceIntegrationPage from "./pages/DeviceIntegrationPage";
 import SubscriptionPage from "./pages/SubscriptionPage";
 import DogHealthRecordsPage from "./pages/DogHealthRecordsPage";
+import NotificationsPage from "./pages/NotificationsPage";
+import NotificationSettingsPage from "./pages/NotificationSettingsPage";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +60,8 @@ const App = () => (
               <Route path="/messages/:id" element={<ChatDetailPage />} />
               <Route path="/subscription" element={<SubscriptionPage />} />
               <Route path="/health-records" element={<DogHealthRecordsPage />} />
+              <Route path="/notifications" element={<NotificationsPage />} />
+              <Route path="/notification-settings" element={<NotificationSettingsPage />} />
               {/* Premium feature routes */}
               <Route path="/analytics" element={<AdvancedAnalyticsPage />} />
               <Route path="/analytics/:metric" element={<AdvancedAnalyticsPage />} />
@@ -67,7 +71,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Routes>
-              {["/home", "/explore", "/track", "/stats", "/profile", "/messages"].map((path) => (
+              {["/home", "/explore", "/track", "/stats", "/profile", "/messages", "/notifications"].map((path) => (
                 <Route
                   key={path}
                   path={path}
