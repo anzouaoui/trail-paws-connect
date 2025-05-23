@@ -8,22 +8,22 @@ const BottomNavigation = () => {
   const currentPath = location.pathname;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-sm py-2 px-6 z-10">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-sm py-2 px-4 z-10">
       <div className="flex justify-between items-center">
         <Link 
           to="/home" 
-          className={`nav-link ${currentPath === "/home" ? "active" : ""}`}
+          className={`nav-link ${currentPath === "/home" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
-          <Home className="h-6 w-6" />
-          <span className="text-xs">Home</span>
+          <Home className={`h-5 w-5 ${currentPath === "/home" ? "text-primary" : ""}`} />
+          <span className="text-xs mt-1">Home</span>
         </Link>
         
         <Link 
           to="/explore" 
-          className={`nav-link ${currentPath === "/explore" ? "active" : ""}`}
+          className={`nav-link ${currentPath === "/explore" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
-          <MapPin className="h-6 w-6" />
-          <span className="text-xs">Explore</span>
+          <MapPin className={`h-5 w-5 ${currentPath === "/explore" ? "text-primary" : ""}`} />
+          <span className="text-xs mt-1">Explore</span>
         </Link>
         
         <Link 
@@ -31,41 +31,41 @@ const BottomNavigation = () => {
           className="flex flex-col items-center"
         >
           <div className="bg-forest rounded-full p-3 -mt-8 shadow-lg">
-            <PlusCircle className="h-6 w-6 text-white" />
+            <PlusCircle className="h-5 w-5 text-white" />
           </div>
           <span className="text-xs text-muted-foreground mt-1">Track</span>
         </Link>
         
         <Link 
           to="/stats" 
-          className={`nav-link ${currentPath === "/stats" ? "active" : ""}`}
+          className={`nav-link ${currentPath === "/stats" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
-          <BarChart2 className="h-6 w-6" />
-          <span className="text-xs">Stats</span>
+          <BarChart2 className={`h-5 w-5 ${currentPath === "/stats" ? "text-primary" : ""}`} />
+          <span className="text-xs mt-1">Stats</span>
         </Link>
         
         <Link 
           to="/friend-requests" 
-          className={`nav-link ${currentPath === "/friend-requests" ? "active" : ""}`}
+          className={`nav-link ${currentPath === "/friend-requests" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center relative`}
         >
-          <Users className="h-6 w-6" />
-          <span className="text-xs">Friends</span>
+          <Users className={`h-5 w-5 ${currentPath === "/friend-requests" ? "text-primary" : ""}`} />
+          <span className="text-xs mt-1">Friends</span>
         </Link>
         
         <Link 
           to="/messages" 
-          className={`nav-link ${currentPath === "/messages" ? "active" : ""}`}
+          className={`nav-link ${currentPath === "/messages" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
-          <MessageCircle className="h-6 w-6" />
-          <span className="text-xs">Messages</span>
+          <MessageCircle className={`h-5 w-5 ${currentPath === "/messages" ? "text-primary" : ""}`} />
+          <span className="text-xs mt-1">Messages</span>
         </Link>
         
         <Link 
           to="/profile" 
-          className={`nav-link ${currentPath === "/profile" ? "active" : ""}`}
+          className={`nav-link ${currentPath === "/profile" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
-          <User className="h-6 w-6" />
-          <span className="text-xs">Profile</span>
+          <User className={`h-5 w-5 ${currentPath === "/profile" ? "text-primary" : ""}`} />
+          <span className="text-xs mt-1">Profile</span>
         </Link>
       </div>
     </div>

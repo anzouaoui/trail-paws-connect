@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import PostCard from "@/components/PostCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ActivityRecommendations from "@/components/ActivityRecommendations";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -23,7 +24,8 @@ const HomePage = () => {
       location: "Central Park Trail",
       dogName: "Max",
       dogImage: undefined,
-      likes: 14
+      likes: 14,
+      rating: 2.5 // Added rating for intensity/difficulty
     },
     {
       id: "2",
@@ -35,7 +37,8 @@ const HomePage = () => {
       location: "Mountain View Path",
       dogName: "Bella",
       dogImage: undefined,
-      likes: 23
+      likes: 23,
+      rating: 4.0 // Added rating for intensity/difficulty
     },
     {
       id: "3",
@@ -47,7 +50,8 @@ const HomePage = () => {
       location: "River Valley Trail",
       dogName: "Rocky",
       dogImage: undefined,
-      likes: 31
+      likes: 31,
+      rating: 3.5 // Added rating for intensity/difficulty
     }
   ];
 
@@ -106,6 +110,8 @@ const HomePage = () => {
   
   // State for feed filter
   const [feedFilter, setFeedFilter] = useState<string>("all");
+  // Mock premium status - In a real app, this would come from auth context
+  const [isPremiumUser] = useState<boolean>(true);
 
   const handleActivityClick = (id: string) => {
     console.log(`Clicked activity ${id}`);
@@ -196,6 +202,11 @@ const HomePage = () => {
             </Button>
           </div>
         </div>
+
+        {/* AI Recommendations Section */}
+        <section className="mb-6">
+          <ActivityRecommendations isPremium={isPremiumUser} />
+        </section>
 
         <Tabs defaultValue="feed" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-4">

@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, MapPin, Award, Heart } from "lucide-react";
+import { Clock, MapPin, Award, Heart, Star } from "lucide-react";
 import DogAvatar from "./DogAvatar";
 
 export type ActivityType = "canicross" | "cani-hiking" | "cani-MTB";
@@ -19,6 +19,7 @@ interface ActivityCardProps {
   dogName: string;
   dogImage?: string;
   likes: number;
+  rating?: number;
   onClick?: () => void;
 }
 
@@ -33,6 +34,7 @@ const ActivityCard = ({
   dogName,
   dogImage,
   likes,
+  rating = 0,
   onClick
 }: ActivityCardProps) => {
   const navigate = useNavigate();
@@ -53,6 +55,22 @@ const ActivityCard = ({
     } else {
       navigate(`/activity/${id}`);
     }
+  };
+
+  const getRatingText = (rating: number) => {
+    if (rating >= 4.5) return "Expert";
+    if (rating >= 3.5) return "Advanced";
+    if (rating >= 2.5) return "Intermediate";
+    if (rating >= 1.5) return "Beginner";
+    return "Easy";
+  };
+
+  const getRatingColor = (rating: number) => {
+    if (rating >= 4.5) return "text-red-500";
+    if (rating >= 3.5) return "text-orange-500";
+    if (rating >= 2.5) return "text-yellow-500";
+    if (rating >= 1.5) return "text-green-500";
+    return "text-blue-500";
   };
 
   return (
@@ -93,6 +111,28 @@ const ActivityCard = ({
               <span className="text-xs text-muted-foreground">Pace</span>
             </div>
           </div>
+
+          {rating > 0 && (
+            <div className="mt-3 pt-3 border-t border-border/50">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <span className="text-sm font-medium mr-2">Difficulty:</span>
+                  <div className={`flex items-center ${getRatingColor(rating)}`}>
+                    <span className="text-sm font-bold mr-1">{getRatingText(rating)}</span>
+                    <Star className="h-3.5 w-3.5 fill-current" />
+                  </div>
+                </div>
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star 
+                      key={star}
+                      className={`h-3.5 w-3.5 ${star <= rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </CardContent>
       <CardFooter className="flex justify-between items-center border-t p-3 text-sm">
