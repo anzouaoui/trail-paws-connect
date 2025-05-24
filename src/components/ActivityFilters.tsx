@@ -318,9 +318,9 @@ const ActivityFilters = ({
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Any distance</SelectItem>
-                    <SelectItem value="short">Short (< 5km)</SelectItem>
+                    <SelectItem value="short">Short (&lt; 5km)</SelectItem>
                     <SelectItem value="medium">Medium (5-15km)</SelectItem>
-                    <SelectItem value="long">Long (> 15km)</SelectItem>
+                    <SelectItem value="long">Long (&gt; 15km)</SelectItem>
                   </SelectContent>
                 </Select>
               </AccordionContent>
@@ -338,9 +338,9 @@ const ActivityFilters = ({
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Any elevation</SelectItem>
-                    <SelectItem value="low">Low (< 100m)</SelectItem>
+                    <SelectItem value="low">Low (&lt; 100m)</SelectItem>
                     <SelectItem value="medium">Medium (100-500m)</SelectItem>
-                    <SelectItem value="high">High (> 500m)</SelectItem>
+                    <SelectItem value="high">High (&gt; 500m)</SelectItem>
                   </SelectContent>
                 </Select>
               </AccordionContent>
