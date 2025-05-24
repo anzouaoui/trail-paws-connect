@@ -1,93 +1,78 @@
 
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "./hooks/useAuth";
-import BottomNavigation from "./components/BottomNavigation";
-import OnboardingPage from "./pages/OnboardingPage";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
-import HomePage from "./pages/HomePage";
-import ExplorePage from "./pages/ExplorePage";
-import TrackPage from "./pages/TrackPage";
-import StatsPage from "./pages/StatsPage";
-import ProfilePage from "./pages/ProfilePage";
-import SettingsPage from "./pages/SettingsPage";
-import NotFound from "./pages/NotFound";
-import DogProfilesPage from "./pages/DogProfilesPage";
-import DogProfileFormPage from "./pages/DogProfileFormPage";
-import RunnerProfilePage from "./pages/RunnerProfilePage";
-import ActivityDetailPage from "./pages/ActivityDetailPage";
-import MessagesPage from "./pages/MessagesPage";
-import ChatDetailPage from "./pages/ChatDetailPage";
-import AdvancedAnalyticsPage from "./pages/AdvancedAnalyticsPage";
-import CompareActivitiesPage from "./pages/CompareActivitiesPage";
-import HealthAlertsPage from "./pages/HealthAlertsPage";
-import DeviceIntegrationPage from "./pages/DeviceIntegrationPage";
-import SubscriptionPage from "./pages/SubscriptionPage";
-import DogHealthRecordsPage from "./pages/DogHealthRecordsPage";
-import NotificationsPage from "./pages/NotificationsPage";
-import NotificationSettingsPage from "./pages/NotificationSettingsPage";
-import FriendRequestsPage from "./pages/FriendRequestsPage";
-import PostDetailPage from "./pages/PostDetailPage";
+import BottomNavigation from './components/BottomNavigation';
+import HomePage from './pages/HomePage';
+import ExplorePage from './pages/ExplorePage';
+import TrackPage from './pages/TrackPage';
+import StatsPage from './pages/StatsPage';
+import ProfilePage from './pages/ProfilePage';
+import ActivityDetailPage from './pages/ActivityDetailPage';
+import ActivityRatingPage from './pages/ActivityRatingPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import OnboardingPage from './pages/OnboardingPage';
+import SettingsPage from './pages/SettingsPage';
+import NotificationsPage from './pages/NotificationsPage';
+import NotificationSettingsPage from './pages/NotificationSettingsPage';
+import MessagesPage from './pages/MessagesPage';
+import ChatDetailPage from './pages/ChatDetailPage';
+import FriendRequestsPage from './pages/FriendRequestsPage';
+import DogProfilesPage from './pages/DogProfilesPage';
+import DogProfileFormPage from './pages/DogProfileFormPage';
+import DogHealthRecordsPage from './pages/DogHealthRecordsPage';
+import HealthAlertsPage from './pages/HealthAlertsPage';
+import RunnerProfilePage from './pages/RunnerProfilePage';
+import PostDetailPage from './pages/PostDetailPage';
+import SubscriptionPage from './pages/SubscriptionPage';
+import AdvancedAnalyticsPage from './pages/AdvancedAnalyticsPage';
+import CompareActivitiesPage from './pages/CompareActivitiesPage';
+import DeviceIntegrationPage from './pages/DeviceIntegrationPage';
+import NotFound from './pages/NotFound';
+import Index from './pages/Index';
+import './App.css';
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AuthProvider>
-          <div className="min-h-screen bg-background">
-            <Routes>
-              <Route path="/" element={<Navigate to="/onboarding" replace />} />
-              <Route path="/onboarding" element={<OnboardingPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="/home" element={<HomePage />} />
-              <Route path="/explore" element={<ExplorePage />} />
-              <Route path="/track" element={<TrackPage />} />
-              <Route path="/stats" element={<StatsPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/settings" element={<SettingsPage />} />
-              <Route path="/dogs" element={<DogProfilesPage />} />
-              <Route path="/dog/:id" element={<DogProfileFormPage />} />
-              <Route path="/runner-profile" element={<RunnerProfilePage />} />
-              <Route path="/activity/:id" element={<ActivityDetailPage />} />
-              <Route path="/post/:id" element={<PostDetailPage />} />
-              <Route path="/messages" element={<MessagesPage />} />
-              <Route path="/messages/:id" element={<ChatDetailPage />} />
-              <Route path="/subscription" element={<SubscriptionPage />} />
-              <Route path="/health-records" element={<DogHealthRecordsPage />} />
-              <Route path="/notifications" element={<NotificationsPage />} />
-              <Route path="/notification-settings" element={<NotificationSettingsPage />} />
-              <Route path="/friend-requests" element={<FriendRequestsPage />} />
-              {/* Premium feature routes */}
-              <Route path="/analytics" element={<AdvancedAnalyticsPage />} />
-              <Route path="/analytics/:metric" element={<AdvancedAnalyticsPage />} />
-              <Route path="/compare" element={<CompareActivitiesPage />} />
-              <Route path="/health-alerts" element={<HealthAlertsPage />} />
-              <Route path="/devices" element={<DeviceIntegrationPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Routes>
-              {["/home", "/explore", "/track", "/stats", "/profile", "/messages", "/notifications", "/friend-requests"].map((path) => (
-                <Route
-                  key={path}
-                  path={path}
-                  element={<BottomNavigation />}
-                />
-              ))}
-            </Routes>
-          </div>
-        </AuthProvider>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <Router>
+      <div className="min-h-screen bg-background">
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/track" element={<TrackPage />} />
+          <Route path="/stats" element={<StatsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/activity/:id" element={<ActivityDetailPage />} />
+          <Route path="/activity/:id/rate" element={<ActivityRatingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/notifications" element={<NotificationsPage />} />
+          <Route path="/notification-settings" element={<NotificationSettingsPage />} />
+          <Route path="/messages" element={<MessagesPage />} />
+          <Route path="/chat/:id" element={<ChatDetailPage />} />
+          <Route path="/friend-requests" element={<FriendRequestsPage />} />
+          <Route path="/dog-profiles" element={<DogProfilesPage />} />
+          <Route path="/dog-profile/new" element={<DogProfileFormPage />} />
+          <Route path="/dog-profile/:id/edit" element={<DogProfileFormPage />} />
+          <Route path="/dog-health/:id" element={<DogHealthRecordsPage />} />
+          <Route path="/health-alerts" element={<HealthAlertsPage />} />
+          <Route path="/runner/:id" element={<RunnerProfilePage />} />
+          <Route path="/post/:id" element={<PostDetailPage />} />
+          <Route path="/subscription" element={<SubscriptionPage />} />
+          <Route path="/analytics" element={<AdvancedAnalyticsPage />} />
+          <Route path="/compare" element={<CompareActivitiesPage />} />
+          <Route path="/devices" element={<DeviceIntegrationPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <BottomNavigation />
+        <Toaster />
+      </div>
+    </Router>
+  );
+}
 
 export default App;
