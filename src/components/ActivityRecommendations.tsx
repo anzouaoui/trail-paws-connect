@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronRight, Sparkles, RefreshCw } from "lucide-react";
+import { ChevronRight, Sparkles, RefreshCw, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ActivityType } from "./ActivityCard";
 import { Badge } from "./ui/badge";
