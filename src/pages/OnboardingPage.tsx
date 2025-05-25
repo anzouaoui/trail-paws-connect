@@ -40,7 +40,7 @@ const OnboardingPage = () => {
   };
 
   const handleComplete = () => {
-    // In a real app, you might want to store that the user has completed onboarding
+    // Dans une vraie app, on sauvegarderait que l'utilisateur a terminé l'onboarding
     localStorage.setItem("onboardingCompleted", "true");
     navigate("/signup");
   };

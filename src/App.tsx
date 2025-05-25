@@ -55,12 +55,12 @@ function App() {
           <Route path="/messages" element={<MessagesPage />} />
           <Route path="/chat/:id" element={<ChatDetailPage />} />
           <Route path="/friend-requests" element={<FriendRequestsPage />} />
-          <Route path="/dog-profiles" element={<DogProfilesPage />} />
+          <Route path="/dogs" element={<DogProfilesPage />} />
           <Route path="/dog-profile/new" element={<DogProfileFormPage />} />
           <Route path="/dog-profile/:id/edit" element={<DogProfileFormPage />} />
           <Route path="/dog-health/:id" element={<DogHealthRecordsPage />} />
           <Route path="/health-alerts" element={<HealthAlertsPage />} />
-          <Route path="/runner/:id" element={<RunnerProfilePage />} />
+          <Route path="/runner-profile" element={<RunnerProfilePage />} />
           <Route path="/post/:id" element={<PostDetailPage />} />
           <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/analytics" element={<AdvancedAnalyticsPage />} />

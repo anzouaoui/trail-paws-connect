@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import DogProfileCard from "@/components/DogProfileCard";
 import { useToast } from "@/hooks/use-toast";
 
-// Mock data - in a real app this would come from a database
+// Données fictives - dans une vraie app cela viendrait d'une base de données
 const mockDogs = [
   {
     id: "1",
@@ -36,16 +36,16 @@ const DogProfilesPage = () => {
   const { toast } = useToast();
 
   const handleAddDog = () => {
-    navigate("/dog/new");
+    navigate("/dog-profile/new");
   };
 
   const handleViewDog = (id: string) => {
-    navigate(`/dog/${id}`);
+    navigate(`/dog-profile/${id}/edit`);
   };
 
   return (
     <div className="pb-24">
-      {/* Header */}
+      {/* En-tête */}
       <div className="bg-white sticky top-0 z-10 shadow-sm">
         <div className="flex items-center p-4">
           <Button 

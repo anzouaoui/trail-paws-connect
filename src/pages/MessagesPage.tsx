@@ -18,7 +18,7 @@ type Chat = {
 const MessagesPage = () => {
   const navigate = useNavigate();
   
-  // Mock data for conversations
+  // Données fictives pour les conversations
   const chats: Chat[] = [
     {
       id: "1",
@@ -76,7 +76,7 @@ const MessagesPage = () => {
   };
 
   const handleChatClick = (id: string) => {
-    navigate(`/messages/${id}`);
+    navigate(`/chat/${id}`);
   };
 
   return (
