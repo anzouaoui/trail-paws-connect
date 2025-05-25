@@ -9,7 +9,7 @@ const BottomNavigation = () => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-sm py-2 px-4 z-10">
-      <div className="flex justify-between items-center">
+      <div className="grid grid-cols-7 items-center justify-items-center">
         <Link 
           to="/home" 
           className={`nav-link ${currentPath === "/home" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
@@ -27,21 +27,21 @@ const BottomNavigation = () => {
         </Link>
         
         <Link 
-          to="/track" 
-          className="flex flex-col items-center"
-        >
-          <div className="bg-forest rounded-full p-3 -mt-8 shadow-lg">
-            <PlusCircle className="h-5 w-5 text-white" />
-          </div>
-          <span className="text-xs text-muted-foreground mt-1">Tracker</span>
-        </Link>
-        
-        <Link 
           to="/stats" 
           className={`nav-link ${currentPath === "/stats" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
           <BarChart2 className={`h-5 w-5 ${currentPath === "/stats" ? "text-primary" : ""}`} />
           <span className="text-xs mt-1">Stats</span>
+        </Link>
+        
+        <Link 
+          to="/track" 
+          className="flex flex-col items-center justify-self-center"
+        >
+          <div className="bg-forest rounded-full p-3 -mt-8 shadow-lg">
+            <PlusCircle className="h-5 w-5 text-white" />
+          </div>
+          <span className="text-xs text-muted-foreground mt-1">Tracker</span>
         </Link>
         
         <Link 
