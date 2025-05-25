@@ -54,7 +54,7 @@ const SettingsPage = () => {
             onClick={() => navigate("/analytics")}
           />
           
-          <lov-write>
+          <SettingsSection
             icon={<Smartphone className="h-5 w-5" />}
             title="Intégration d'Appareils"
             description="Connectez montres connectées et trackers GPS"
