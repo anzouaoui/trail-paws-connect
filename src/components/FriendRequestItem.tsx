@@ -38,7 +38,7 @@ const FriendRequestItem = ({ request, onAccept, onReject }: FriendRequestItemPro
           </div>
           <p className="text-xs flex items-center mt-1">
             <Users className="h-3 w-3 mr-1" />
-            {request.mutualFriends} mutual {request.mutualFriends === 1 ? 'friend' : 'friends'}
+            {request.mutualFriends} ami{request.mutualFriends === 1 ? '' : 's'} en commun
           </p>
           
           <div className="flex justify-end space-x-2 mt-3">
@@ -49,14 +49,14 @@ const FriendRequestItem = ({ request, onAccept, onReject }: FriendRequestItemPro
               onClick={onReject}
             >
               <X className="h-4 w-4 mr-1" />
-              Reject
+              Refuser
             </Button>
             <Button 
               size="sm"
               onClick={onAccept}
             >
               <Check className="h-4 w-4 mr-1" />
-              Accept
+              Accepter
             </Button>
           </div>
         </div>

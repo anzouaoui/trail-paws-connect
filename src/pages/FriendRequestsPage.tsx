@@ -38,14 +38,14 @@ const initialFriends = [
     id: "user1",
     name: "Sarah Johnson",
     avatar: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9",
-    lastActive: "2 hours ago",
+    lastActive: "Il y a 2 heures",
     status: "online" as const
   },
   {
     id: "user3",
     name: "Emma Wilson",
     avatar: "https://images.unsplash.com/photo-1582562124811-c09040d0a901",
-    lastActive: "1 day ago",
+    lastActive: "Il y a 1 jour",
     status: "offline" as const
   }
 ];
@@ -91,25 +91,25 @@ const FriendRequestsPage = () => {
       id: request.userId,
       name: request.name,
       avatar: request.avatar,
-      lastActive: "Just now",
+      lastActive: "À l'instant",
       status: "online" as const
     }]);
     
-    toast(`You're now friends with ${request.name}`);
+    toast(`Vous êtes maintenant ami avec ${request.name}`);
   };
   
   const handleRejectRequest = (requestId: string) => {
     setPendingRequests(pendingRequests.filter(r => r.id !== requestId));
-    toast("Friend request rejected");
+    toast("Demande d'ami refusée");
   };
   
   const handleSendRequest = (userId: string, name: string) => {
-    toast(`Friend request sent to ${name}`);
+    toast(`Demande d'ami envoyée à ${name}`);
   };
   
   const handleRemoveFriend = (userId: string, name: string) => {
     setFriends(friends.filter(f => f.id !== userId));
-    toast(`${name} was removed from your friends list`);
+    toast(`${name} a été retiré de votre liste d'amis`);
   };
   
   const filteredFriends = friends.filter(friend => 
@@ -127,7 +127,7 @@ const FriendRequestsPage = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-xl font-bold ml-2">Friends</h1>
+          <h1 className="text-xl font-bold ml-2">Amis</h1>
         </div>
       </header>
       
@@ -136,7 +136,7 @@ const FriendRequestsPage = () => {
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input 
-              placeholder="Search friends" 
+              placeholder="Rechercher des amis" 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-9"
@@ -147,15 +147,15 @@ const FriendRequestsPage = () => {
         <Tabs defaultValue="requests" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="requests" className="relative">
-              Requests
+              Demandes
               {pendingRequests.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-destructive text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
                   {pendingRequests.length}
                 </span>
               )}
             </TabsTrigger>
-            <TabsTrigger value="friends">Friends</TabsTrigger>
-            <TabsTrigger value="suggested">Suggested</TabsTrigger>
+            <TabsTrigger value="friends">Amis</TabsTrigger>
+            <TabsTrigger value="suggested">Suggestions</TabsTrigger>
           </TabsList>
           
           <TabsContent value="requests" className="mt-4">
@@ -173,7 +173,7 @@ const FriendRequestsPage = () => {
             ) : (
               <div className="text-center py-8">
                 <Users className="h-12 w-12 mx-auto text-muted-foreground" />
-                <p className="mt-4 text-muted-foreground">No pending friend requests</p>
+                <p className="mt-4 text-muted-foreground">Aucune demande d'ami en attente</p>
               </div>
             )}
           </TabsContent>
@@ -200,7 +200,7 @@ const FriendRequestsPage = () => {
                             )}
                           />
                           <p className="text-xs text-muted-foreground">
-                            {friend.status === "online" ? "Online" : friend.lastActive}
+                            {friend.status === "online" ? "En ligne" : friend.lastActive}
                           </p>
                         </div>
                       </div>
@@ -219,7 +219,7 @@ const FriendRequestsPage = () => {
                         onClick={() => handleRemoveFriend(friend.id, friend.name)}
                         className="text-destructive border-destructive hover:bg-destructive/10"
                       >
-                        Remove
+                        Retirer
                       </Button>
                     </div>
                   </div>
@@ -227,17 +227,17 @@ const FriendRequestsPage = () => {
               </div>
             ) : searchQuery ? (
               <div className="text-center py-8">
-                <p className="text-muted-foreground">No friends match your search</p>
+                <p className="text-muted-foreground">Aucun ami ne correspond à votre recherche</p>
               </div>
             ) : (
               <div className="text-center py-8">
                 <Users className="h-12 w-12 mx-auto text-muted-foreground" />
-                <p className="mt-4 text-muted-foreground">You haven't added any friends yet</p>
+                <p className="mt-4 text-muted-foreground">Vous n'avez pas encore ajouté d'amis</p>
                 <Button 
                   className="mt-4" 
                   onClick={() => navigate('/explore')}
                 >
-                  Find Friends
+                  Trouver des Amis
                 </Button>
               </div>
             )}
@@ -257,7 +257,7 @@ const FriendRequestsPage = () => {
                     <div>
                       <h3 className="font-semibold">{friend.name}</h3>
                       <p className="text-xs text-muted-foreground">
-                        {friend.mutualFriends} mutual {friend.mutualFriends === 1 ? 'friend' : 'friends'}
+                        {friend.mutualFriends} ami{friend.mutualFriends === 1 ? '' : 's'} en commun
                       </p>
                     </div>
                   </div>
@@ -267,7 +267,7 @@ const FriendRequestsPage = () => {
                     onClick={() => handleSendRequest(friend.id, friend.name)}
                   >
                     <UserPlus className="h-4 w-4" />
-                    Add Friend
+                    Ajouter
                   </Button>
                 </div>
               ))}
