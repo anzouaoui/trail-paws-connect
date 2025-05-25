@@ -22,10 +22,10 @@ const MessagesPage = () => {
   const chats: Chat[] = [
     {
       id: "1",
-      name: "Trail Runners Club",
+      name: "Club de Trail",
       avatar: undefined,
-      lastMessage: "See you all at the park tomorrow at 7am!",
-      timestamp: "10:23 AM",
+      lastMessage: "Rendez-vous demain au parc à 7h !",
+      timestamp: "10:23",
       unread: 3,
       isGroup: true
     },
@@ -33,8 +33,8 @@ const MessagesPage = () => {
       id: "2",
       name: "Sarah Johnson",
       avatar: undefined,
-      lastMessage: "How's Max doing after the run?",
-      timestamp: "Yesterday",
+      lastMessage: "Comment va Max après la course ?",
+      timestamp: "Hier",
       unread: 0,
       isGroup: false
     },
@@ -42,17 +42,17 @@ const MessagesPage = () => {
       id: "3",
       name: "Mike Peterson",
       avatar: undefined,
-      lastMessage: "I shared our trail map with you",
-      timestamp: "Yesterday",
+      lastMessage: "J'ai partagé notre carte de sentier",
+      timestamp: "Hier",
       unread: 1,
       isGroup: false
     },
     {
       id: "4",
-      name: "Dog Owners Chat",
+      name: "Propriétaires de Chiens",
       avatar: undefined,
-      lastMessage: "Check out this new harness I got for Luna",
-      timestamp: "Monday",
+      lastMessage: "Regardez ce nouveau harnais pour Luna",
+      timestamp: "Lundi",
       unread: 0,
       isGroup: true
     },
@@ -60,8 +60,8 @@ const MessagesPage = () => {
       id: "5",
       name: "Jessica Williams",
       avatar: undefined,
-      lastMessage: "Great seeing you and Buddy today!",
-      timestamp: "Monday",
+      lastMessage: "Ravi de vous avoir vus avec Buddy !",
+      timestamp: "Lundi",
       unread: 0,
       isGroup: false
     }

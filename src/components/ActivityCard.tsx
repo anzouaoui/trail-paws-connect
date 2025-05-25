@@ -46,7 +46,7 @@ const ActivityCard = ({
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString('en-US', options);
+    return new Date(dateString).toLocaleDateString('fr-FR', options);
   };
 
   const handleClick = () => {
@@ -59,10 +59,10 @@ const ActivityCard = ({
 
   const getRatingText = (rating: number) => {
     if (rating >= 4.5) return "Expert";
-    if (rating >= 3.5) return "Advanced";
-    if (rating >= 2.5) return "Intermediate";
-    if (rating >= 1.5) return "Beginner";
-    return "Easy";
+    if (rating >= 3.5) return "Avancé";
+    if (rating >= 2.5) return "Intermédiaire";
+    if (rating >= 1.5) return "Débutant";
+    return "Facile";
   };
 
   const getRatingColor = (rating: number) => {
@@ -98,7 +98,7 @@ const ActivityCard = ({
             <div className="flex flex-col items-center">
               <Clock className="h-4 w-4 text-muted-foreground mb-1" />
               <span className="text-sm font-medium">{duration}</span>
-              <span className="text-xs text-muted-foreground">Time</span>
+              <span className="text-xs text-muted-foreground">Temps</span>
             </div>
             <div className="flex flex-col items-center">
               <MapPin className="h-4 w-4 text-muted-foreground mb-1" />
@@ -108,7 +108,7 @@ const ActivityCard = ({
             <div className="flex flex-col items-center">
               <Award className="h-4 w-4 text-muted-foreground mb-1" />
               <span className="text-sm font-medium">87%</span>
-              <span className="text-xs text-muted-foreground">Pace</span>
+              <span className="text-xs text-muted-foreground">Rythme</span>
             </div>
           </div>
 
@@ -116,7 +116,7 @@ const ActivityCard = ({
             <div className="mt-3 pt-3 border-t border-border/50">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <span className="text-sm font-medium mr-2">Difficulty:</span>
+                  <span className="text-sm font-medium mr-2">Difficulté :</span>
                   <div className={`flex items-center ${getRatingColor(rating)}`}>
                     <span className="text-sm font-bold mr-1">{getRatingText(rating)}</span>
                     <Star className="h-3.5 w-3.5 fill-current" />

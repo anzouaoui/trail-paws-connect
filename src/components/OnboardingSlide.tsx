@@ -48,7 +48,7 @@ const OnboardingSlide = ({
     >
       <div className="flex justify-end">
         <Button variant="ghost" size="sm" onClick={onSkip}>
-          Skip
+          Passer
         </Button>
       </div>
 
@@ -83,7 +83,7 @@ const OnboardingSlide = ({
           className="w-full"
           onClick={isLastSlide ? onComplete : onNext}
         >
-          {isLastSlide ? "Get Started" : "Continue"}
+          {isLastSlide ? "Commencer" : "Continuer"}
           <ArrowRight className="ml-2" />
         </Button>
       </div>

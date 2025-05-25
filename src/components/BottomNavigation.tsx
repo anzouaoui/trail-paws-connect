@@ -15,7 +15,7 @@ const BottomNavigation = () => {
           className={`nav-link ${currentPath === "/home" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
           <Home className={`h-5 w-5 ${currentPath === "/home" ? "text-primary" : ""}`} />
-          <span className="text-xs mt-1">Home</span>
+          <span className="text-xs mt-1">Accueil</span>
         </Link>
         
         <Link 
@@ -23,7 +23,7 @@ const BottomNavigation = () => {
           className={`nav-link ${currentPath === "/explore" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
           <MapPin className={`h-5 w-5 ${currentPath === "/explore" ? "text-primary" : ""}`} />
-          <span className="text-xs mt-1">Explore</span>
+          <span className="text-xs mt-1">Explorer</span>
         </Link>
         
         <Link 
@@ -33,7 +33,7 @@ const BottomNavigation = () => {
           <div className="bg-forest rounded-full p-3 -mt-8 shadow-lg">
             <PlusCircle className="h-5 w-5 text-white" />
           </div>
-          <span className="text-xs text-muted-foreground mt-1">Track</span>
+          <span className="text-xs text-muted-foreground mt-1">Tracker</span>
         </Link>
         
         <Link 
@@ -49,7 +49,7 @@ const BottomNavigation = () => {
           className={`nav-link ${currentPath === "/friend-requests" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center relative`}
         >
           <Users className={`h-5 w-5 ${currentPath === "/friend-requests" ? "text-primary" : ""}`} />
-          <span className="text-xs mt-1">Friends</span>
+          <span className="text-xs mt-1">Amis</span>
         </Link>
         
         <Link 
@@ -65,7 +65,7 @@ const BottomNavigation = () => {
           className={`nav-link ${currentPath === "/profile" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
           <User className={`h-5 w-5 ${currentPath === "/profile" ? "text-primary" : ""}`} />
-          <span className="text-xs mt-1">Profile</span>
+          <span className="text-xs mt-1">Profil</span>
         </Link>
       </div>
     </div>

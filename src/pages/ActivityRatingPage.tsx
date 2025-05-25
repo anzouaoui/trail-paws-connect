@@ -18,14 +18,14 @@ interface MoodTag {
 }
 
 const MOOD_TAGS: MoodTag[] = [
-  { id: "fun", label: "Fun", emoji: "🎉", color: "bg-yellow-100 text-yellow-800" },
-  { id: "challenging", label: "Challenging", emoji: "💪", color: "bg-orange-100 text-orange-800" },
-  { id: "peaceful", label: "Peaceful", emoji: "🧘", color: "bg-green-100 text-green-800" },
-  { id: "energetic", label: "Energetic", emoji: "⚡", color: "bg-blue-100 text-blue-800" },
-  { id: "scenic", label: "Scenic", emoji: "🌄", color: "bg-purple-100 text-purple-800" },
-  { id: "muddy", label: "Muddy", emoji: "🦶", color: "bg-amber-100 text-amber-800" },
+  { id: "fun", label: "Amusant", emoji: "🎉", color: "bg-yellow-100 text-yellow-800" },
+  { id: "challenging", label: "Exigeant", emoji: "💪", color: "bg-orange-100 text-orange-800" },
+  { id: "peaceful", label: "Paisible", emoji: "🧘", color: "bg-green-100 text-green-800" },
+  { id: "energetic", label: "Énergique", emoji: "⚡", color: "bg-blue-100 text-blue-800" },
+  { id: "scenic", label: "Panoramique", emoji: "🌄", color: "bg-purple-100 text-purple-800" },
+  { id: "muddy", label: "Boueux", emoji: "🦶", color: "bg-amber-100 text-amber-800" },
   { id: "social", label: "Social", emoji: "👥", color: "bg-pink-100 text-pink-800" },
-  { id: "technical", label: "Technical", emoji: "🎯", color: "bg-red-100 text-red-800" }
+  { id: "technical", label: "Technique", emoji: "🎯", color: "bg-red-100 text-red-800" }
 ];
 
 const ActivityRatingPage = () => {
@@ -40,10 +40,10 @@ const ActivityRatingPage = () => {
 
   // Mock activity data
   const activity = {
-    title: "Woodland Trail Adventure",
+    title: "Aventure en Forêt",
     type: "canicross",
-    date: "Today",
-    distance: "5.2 km",
+    date: "Aujourd'hui",
+    distance: "5,2 km",
     duration: "32 min",
     dogName: "Max"
   };
@@ -63,8 +63,8 @@ const ActivityRatingPage = () => {
   const handleSubmit = async () => {
     if (rating === 0) {
       toast({
-        title: "Rating Required",
-        description: "Please select a star rating before submitting.",
+        title: "Note requise",
+        description: "Veuillez sélectionner une note avant de valider.",
         variant: "destructive"
       });
       return;
@@ -79,8 +79,8 @@ const ActivityRatingPage = () => {
     setIsSubmitted(true);
     
     toast({
-      title: "Review Submitted! 🎉",
-      description: `Thanks for sharing your ${rating}-star experience with ${activity.dogName}!`
+      title: "Avis soumis ! 🎉",
+      description: `Merci d'avoir partagé votre expérience ${rating} étoiles avec ${activity.dogName} !`
     });
 
     // Navigate back after a delay
@@ -91,12 +91,12 @@ const ActivityRatingPage = () => {
 
   const getRatingText = (stars: number) => {
     switch (stars) {
-      case 1: return "Not great 😕";
-      case 2: return "Could be better 🤔";
-      case 3: return "Pretty good! 😊";
-      case 4: return "Really enjoyed it! 😄";
-      case 5: return "Amazing adventure! 🤩";
-      default: return "How was your run?";
+      case 1: return "Pas terrible 😕";
+      case 2: return "Peut mieux faire 🤔";
+      case 3: return "Plutôt bien ! 😊";
+      case 4: return "Vraiment sympa ! 😄";
+      case 5: return "Aventure incroyable ! 🤩";
+      default: return "Comment était votre course ?";
     }
   };
 
@@ -116,9 +116,9 @@ const ActivityRatingPage = () => {
           >
             <CheckCircle className="h-20 w-20 text-forest mx-auto" />
           </motion.div>
-          <h2 className="text-2xl font-bold mb-2">Thank you!</h2>
+          <h2 className="text-2xl font-bold mb-2">Merci !</h2>
           <p className="text-muted-foreground mb-4">
-            Your review helps the community find great adventures
+            Votre avis aide la communauté à trouver de superbes aventures
           </p>
           <motion.div
             animate={{ rotate: [0, 10, -10, 0] }}
@@ -144,7 +144,7 @@ const ActivityRatingPage = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="font-semibold">Rate Your Adventure</h1>
+          <h1 className="font-semibold">Évaluez votre aventure</h1>
           <div className="w-10" />
         </div>
       </header>
@@ -175,7 +175,7 @@ const ActivityRatingPage = () => {
               {getRatingText(hoveredRating || rating)}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
-              Help others choose the right adventure! 🌟
+              Aidez les autres à choisir la bonne aventure ! 🌟
             </p>
           </CardHeader>
           <CardContent className="pt-0">
@@ -212,7 +212,7 @@ const ActivityRatingPage = () => {
                   {/* Mood Tags */}
                   <div>
                     <h4 className="text-sm font-medium mb-3">
-                      How would you describe this adventure? (Optional)
+                      Comment décririez-vous cette aventure ? (Optionnel)
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {MOOD_TAGS.map((mood) => (
@@ -237,10 +237,10 @@ const ActivityRatingPage = () => {
                   {/* Review Text Area */}
                   <div>
                     <h4 className="text-sm font-medium mb-2">
-                      Tell us more about your experience (Optional)
+                      Parlez-nous de votre expérience (Optionnel)
                     </h4>
                     <Textarea
-                      placeholder={`Tell us what you and ${activity.dogName} thought of the trail... Was it muddy? Perfect for beginners? Great views? Any tips for other runners?`}
+                      placeholder={`Dites-nous ce que vous et ${activity.dogName} avez pensé du sentier... Était-il boueux ? Parfait pour les débutants ? Belle vue ? Des conseils pour d'autres coureurs ?`}
                       value={review}
                       onChange={(e) => setReview(e.target.value)}
                       className="min-h-[100px] resize-none border-2 focus:border-forest transition-colors"
@@ -266,7 +266,7 @@ const ActivityRatingPage = () => {
             <CardContent className="p-4 text-center">
               <Sparkles className="h-8 w-8 mx-auto mb-2 text-forest" />
               <p className="text-sm text-muted-foreground">
-                Your reviews help power AI recommendations for premium users!
+                Vos avis alimentent les recommandations IA pour les utilisateurs premium !
               </p>
             </CardContent>
           </Card>
@@ -291,12 +291,12 @@ const ActivityRatingPage = () => {
                 >
                   <Heart className="h-5 w-5" />
                 </motion.div>
-                Sharing your experience...
+                Partage de votre expérience...
               </div>
             ) : (
               <>
                 <Star className="h-5 w-5 mr-2" />
-                Share Your Experience
+                Partagez votre expérience
               </>
             )}
           </Button>

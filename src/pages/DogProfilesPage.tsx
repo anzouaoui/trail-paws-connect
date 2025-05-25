@@ -26,7 +26,7 @@ const mockDogs = [
     age: 2,
     weight: "25 kg",
     imageSrc: undefined,
-    sportPreference: "Cani-hiking",
+    sportPreference: "Randonnée canine",
     level: "beginner" as const
   }
 ];
@@ -56,7 +56,7 @@ const DogProfilesPage = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-xl font-bold">My Dogs</h1>
+          <h1 className="text-xl font-bold">Mes Chiens</h1>
           <div className="flex-1"></div>
           <Button 
             onClick={handleAddDog}
@@ -73,10 +73,10 @@ const DogProfilesPage = () => {
           <Card className="border-dashed">
             <CardContent className="p-6 flex flex-col items-center justify-center">
               <p className="text-muted-foreground text-center mb-4">
-                You haven't added any dogs yet. Add your first dog to start tracking activities together!
+                Vous n'avez pas encore ajouté de chiens. Ajoutez votre premier chien pour commencer à suivre vos activités ensemble !
               </p>
               <Button onClick={handleAddDog} className="bg-forest text-white">
-                <Plus className="h-5 w-5 mr-2" /> Add Dog
+                <Plus className="h-5 w-5 mr-2" /> Ajouter un chien
               </Button>
             </CardContent>
           </Card>
@@ -95,7 +95,7 @@ const DogProfilesPage = () => {
               onClick={handleAddDog} 
               className="mt-4 bg-forest text-white"
             >
-              <Plus className="h-5 w-5 mr-2" /> Add Another Dog
+              <Plus className="h-5 w-5 mr-2" /> Ajouter un autre chien
             </Button>
           </div>
         )}

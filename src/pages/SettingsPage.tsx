@@ -28,7 +28,7 @@ const SettingsPage = () => {
       {/* Header */}
       <div className="bg-white sticky top-0 z-10 shadow-sm">
         <div className="flex items-center p-4">
-          <h1 className="text-xl font-bold">Settings</h1>
+          <h1 className="text-xl font-bold">Paramètres</h1>
         </div>
       </div>
 
@@ -37,34 +37,34 @@ const SettingsPage = () => {
         <div>
           <h2 className="text-lg font-semibold mb-3 flex items-center">
             <Crown className="h-5 w-5 mr-2 text-amber-500" />
-            Premium Features
+            Fonctionnalités Premium
           </h2>
           
           <SettingsSection
             icon={<Heart className="h-5 w-5" />}
-            title="Dog Health Records"
-            description="Comprehensive health tracking, vaccinations, and vet reports"
+            title="Dossiers Santé"
+            description="Suivi de santé complet, vaccinations et rapports vétérinaires"
             onClick={() => navigate("/health-records")}
           />
           
           <SettingsSection
             icon={<BarChart3 className="h-5 w-5" />}
-            title="Advanced Analytics"
-            description="Interactive charts and detailed performance insights"
+            title="Analyses Avancées"
+            description="Graphiques interactifs et insights de performance détaillés"
             onClick={() => navigate("/analytics")}
           />
           
-          <SettingsSection
+          <lov-write>
             icon={<Smartphone className="h-5 w-5" />}
-            title="Device Integration"
-            description="Connect smartwatches and GPS trackers"
+            title="Intégration d'Appareils"
+            description="Connectez montres connectées et trackers GPS"
             onClick={() => navigate("/devices")}
           />
           
           <SettingsSection
             icon={<Crown className="h-5 w-5" />}
-            title="Manage Subscription"
-            description="View your premium plan and billing"
+            title="Gérer l'Abonnement"
+            description="Consultez votre plan premium et facturation"
             onClick={() => navigate("/subscription")}
           />
         </div>
@@ -73,33 +73,33 @@ const SettingsPage = () => {
 
         {/* Account Section */}
         <div>
-          <h2 className="text-lg font-semibold mb-3">Account</h2>
+          <h2 className="text-lg font-semibold mb-3">Compte</h2>
           
           <SettingsSection
             icon={<User className="h-5 w-5" />}
-            title="Profile Settings"
-            description="Edit your personal information"
+            title="Paramètres du Profil"
+            description="Modifiez vos informations personnelles"
             onClick={() => navigate("/runner-profile")}
           />
           
           <SettingsSection
             icon={<Dog className="h-5 w-5" />}
-            title="Dog Profiles"
-            description="Manage your dog's information"
+            title="Profils des Chiens"
+            description="Gérez les informations de vos chiens"
             onClick={() => navigate("/dogs")}
           />
           
           <SettingsSection
             icon={<Bell className="h-5 w-5" />}
             title="Notifications"
-            description="Configure your notification preferences"
+            description="Configurez vos préférences de notification"
             onClick={() => navigate("/notification-settings")}
           />
           
           <SettingsSection
             icon={<Bell className="h-5 w-5" />}
-            title="Health Alerts"
-            description="Set up health monitoring and reminders"
+            title="Alertes Santé"
+            description="Configurez le monitoring santé et rappels"
             onClick={() => navigate("/health-alerts")}
           />
         </div>
@@ -108,18 +108,18 @@ const SettingsPage = () => {
 
         {/* App Settings */}
         <div>
-          <h2 className="text-lg font-semibold mb-3">App Settings</h2>
+          <h2 className="text-lg font-semibold mb-3">Paramètres de l'App</h2>
           
           <SettingsSection
             icon={<Shield className="h-5 w-5" />}
-            title="Privacy & Security"
-            description="Manage your privacy and security settings"
+            title="Confidentialité et Sécurité"
+            description="Gérez vos paramètres de confidentialité et sécurité"
           />
           
           <SettingsSection
             icon={<MessageSquare className="h-5 w-5" />}
             title="Messages"
-            description="Chat and communication settings"
+            description="Paramètres de chat et communication"
             onClick={() => navigate("/messages")}
           />
         </div>
@@ -132,8 +132,8 @@ const SettingsPage = () => {
           
           <SettingsSection
             icon={<HelpCircle className="h-5 w-5" />}
-            title="Help & Support"
-            description="Get help and contact support"
+            title="Aide et Support"
+            description="Obtenez de l'aide et contactez le support"
           />
         </div>
 
@@ -146,7 +146,7 @@ const SettingsPage = () => {
             className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
           >
             <LogOut className="h-5 w-5 mr-3" />
-            Sign Out
+            Se Déconnecter
           </Button>
         </div>
       </div>

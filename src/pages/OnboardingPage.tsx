@@ -6,22 +6,22 @@ import OnboardingSlide from "@/components/OnboardingSlide";
 
 const slides = [
   {
-    title: "Discover New Trails",
-    description: "Discover new trails and track your adventures with your canine companion.",
+    title: "Découvrez de nouveaux sentiers",
+    description: "Découvrez de nouveaux sentiers et suivez vos aventures avec votre compagnon canin.",
     imageSrc: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&h=600",
-    imageAlt: "Dog and owner exploring a trail in the forest",
+    imageAlt: "Chien et propriétaire explorant un sentier en forêt",
   },
   {
-    title: "Monitor Health & Performance",
-    description: "Monitor your dog's health and performance to ensure optimal well-being.",
+    title: "Surveillez santé et performance",
+    description: "Surveillez la santé et les performances de votre chien pour garantir un bien-être optimal.",
     imageSrc: "https://images.unsplash.com/photo-1517022812141-23620dba5c23?auto=format&fit=crop&w=600&h=600",
-    imageAlt: "Dog wearing activity tracker during outdoor exercise",
+    imageAlt: "Chien portant un tracker d'activité pendant l'exercice en plein air",
   },
   {
-    title: "Connect With Community",
-    description: "Connect with a community of fellow dog sport enthusiasts and share your experiences.",
+    title: "Connectez-vous à la communauté",
+    description: "Connectez-vous avec une communauté de passionnés de sports canins et partagez vos expériences.",
     imageSrc: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?auto=format&fit=crop&w=600&h=600",
-    imageAlt: "Group of dog owners with their pets at an outdoor event",
+    imageAlt: "Groupe de propriétaires de chiens avec leurs animaux lors d'un événement en plein air",
   },
 ];
 
