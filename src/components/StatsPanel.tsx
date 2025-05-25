@@ -26,13 +26,13 @@ const StatsPanel = ({ weeklyData, monthlyData, activityTypes }: StatsPanelProps)
   return (
     <Card className="w-full">
       <CardHeader className="pb-0">
-        <CardTitle className="text-lg">Performance Stats</CardTitle>
+        <CardTitle className="text-lg">Statistiques de Performance</CardTitle>
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="weekly" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-4">
-            <TabsTrigger value="weekly">Weekly</TabsTrigger>
-            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+            <TabsTrigger value="weekly">Hebdomadaire</TabsTrigger>
+            <TabsTrigger value="monthly">Mensuel</TabsTrigger>
           </TabsList>
           
           <TabsContent value="weekly" className="space-y-4">
@@ -63,19 +63,19 @@ const StatsPanel = ({ weeklyData, monthlyData, activityTypes }: StatsPanelProps)
             
             <div className="grid grid-cols-3 gap-3">
               <div className="stats-card">
-                <span className="text-sm text-muted-foreground">Total Distance</span>
+                <span className="text-sm text-muted-foreground">Distance Totale</span>
                 <span className="text-xl font-semibold text-forest">
                   {weeklyData.reduce((acc, curr) => acc + curr.distance, 0).toFixed(1)} km
                 </span>
               </div>
               <div className="stats-card">
-                <span className="text-sm text-muted-foreground">Average Pace</span>
+                <span className="text-sm text-muted-foreground">Allure Moyenne</span>
                 <span className="text-xl font-semibold text-sky">
                   {(weeklyData.reduce((acc, curr) => acc + curr.pace, 0) / weeklyData.length).toFixed(1)} min/km
                 </span>
               </div>
               <div className="stats-card">
-                <span className="text-sm text-muted-foreground">Activities</span>
+                <span className="text-sm text-muted-foreground">Activités</span>
                 <span className="text-xl font-semibold text-earth">
                   {weeklyData.length}
                 </span>

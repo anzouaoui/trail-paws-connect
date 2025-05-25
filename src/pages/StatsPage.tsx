@@ -18,20 +18,20 @@ const StatsPage = () => {
   
   // Sample data for stats
   const weeklyData = [
-    { date: "Mon", distance: 3.2, duration: 25, pace: 7.8, heartRate: 135 },
-    { date: "Tue", distance: 0, duration: 0, pace: 0, heartRate: 0 },
-    { date: "Wed", distance: 4.5, duration: 32, pace: 7.1, heartRate: 142 },
-    { date: "Thu", distance: 2.8, duration: 22, pace: 7.9, heartRate: 138 },
-    { date: "Fri", distance: 0, duration: 0, pace: 0, heartRate: 0 },
-    { date: "Sat", distance: 6.7, duration: 45, pace: 6.7, heartRate: 151 },
-    { date: "Sun", distance: 5.3, duration: 38, pace: 7.2, heartRate: 145 }
+    { date: "Lun", distance: 3.2, duration: 25, pace: 7.8, heartRate: 135 },
+    { date: "Mar", distance: 0, duration: 0, pace: 0, heartRate: 0 },
+    { date: "Mer", distance: 4.5, duration: 32, pace: 7.1, heartRate: 142 },
+    { date: "Jeu", distance: 2.8, duration: 22, pace: 7.9, heartRate: 138 },
+    { date: "Ven", distance: 0, duration: 0, pace: 0, heartRate: 0 },
+    { date: "Sam", distance: 6.7, duration: 45, pace: 6.7, heartRate: 151 },
+    { date: "Dim", distance: 5.3, duration: 38, pace: 7.2, heartRate: 145 }
   ];
 
   const monthlyData = [
-    { date: "Week 1", distance: 15.4, duration: 125, pace: 7.5, heartRate: 140 },
-    { date: "Week 2", distance: 18.7, duration: 145, pace: 7.3, heartRate: 143 },
-    { date: "Week 3", distance: 12.8, duration: 95, pace: 7.8, heartRate: 138 },
-    { date: "Week 4", distance: 21.3, duration: 160, pace: 7.0, heartRate: 147 }
+    { date: "Sem 1", distance: 15.4, duration: 125, pace: 7.5, heartRate: 140 },
+    { date: "Sem 2", distance: 18.7, duration: 145, pace: 7.3, heartRate: 143 },
+    { date: "Sem 3", distance: 12.8, duration: 95, pace: 7.8, heartRate: 138 },
+    { date: "Sem 4", distance: 21.3, duration: 160, pace: 7.0, heartRate: 147 }
   ];
 
   const activityTypes = [
@@ -41,15 +41,15 @@ const StatsPage = () => {
   ];
 
   const dogs = [
-    { name: "Max", breed: "Border Collie", achievements: ["Mountain Master", "Sprint Specialist"], energy: 92, health: 95 },
-    { name: "Bella", breed: "Husky", achievements: ["Endurance Pro", "Trail Explorer"], energy: 88, health: 91 }
+    { name: "Max", breed: "Border Collie", achievements: ["Maître des Montagnes", "Spécialiste Sprint"], energy: 92, health: 95 },
+    { name: "Bella", breed: "Husky", achievements: ["Pro Endurance", "Explorateur de Sentiers"], energy: 88, health: 91 }
   ];
 
   // Achievements cards
   const achievements = [
-    { title: "100km Club", description: "Completed 100km of tracked activities", icon: <Trophy className="h-5 w-5 text-sunny" />, progress: 75 },
-    { title: "Early Bird", description: "Completed 10 morning sessions", icon: <Zap className="h-5 w-5 text-sky" />, progress: 90 },
-    { title: "Pack Leader", description: "Invited 5 friends to the app", icon: <Heart className="h-5 w-5 text-earth" />, progress: 40 }
+    { title: "Club 100km", description: "Complété 100km d'activités suivies", icon: <Trophy className="h-5 w-5 text-sunny" />, progress: 75 },
+    { title: "Lève-tôt", description: "Complété 10 séances matinales", icon: <Zap className="h-5 w-5 text-sky" />, progress: 90 },
+    { title: "Chef de Meute", description: "Invité 5 amis à rejoindre l'app", icon: <Heart className="h-5 w-5 text-earth" />, progress: 40 }
   ];
 
   return (
@@ -61,9 +61,9 @@ const StatsPage = () => {
           transition={{ duration: 0.3 }}
           className="text-2xl font-bold"
         >
-          Your Performance
+          Vos Performances
         </motion.h1>
-        <p className="text-muted-foreground">Track your progress & achievements</p>
+        <p className="text-muted-foreground">Suivez vos progrès et réussites</p>
       </header>
       
       <div className="mb-4">
@@ -73,7 +73,7 @@ const StatsPage = () => {
               value="you" 
               className="rounded-xl text-base data-[state=active]:bg-forest data-[state=active]:text-white"
             >
-              You
+              Vous
             </TabsTrigger>
             {dogs.map((dog, index) => (
               <TabsTrigger 
@@ -93,14 +93,14 @@ const StatsPage = () => {
                 onClick={() => setSelectedPeriod("week")}
                 className="rounded-xl h-12 font-medium"
               >
-                This Week
+                Cette Semaine
               </Button>
               <Button 
                 variant={selectedPeriod === "month" ? "default" : "outline"} 
                 onClick={() => setSelectedPeriod("month")}
                 className="rounded-xl h-12 font-medium"
               >
-                This Month
+                Ce Mois
               </Button>
             </div>
             
@@ -117,7 +117,7 @@ const StatsPage = () => {
             </motion.div>
             
             <section className="space-y-4">
-              <h2 className="text-xl font-semibold">Health Insights</h2>
+              <h2 className="text-xl font-semibold">Aperçus Santé</h2>
               <div className="grid grid-cols-2 gap-4">
                 <HoverCard>
                   <HoverCardTrigger asChild>
@@ -125,19 +125,19 @@ const StatsPage = () => {
                       <CardHeader className="p-4 pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                           <Heart className="h-5 w-5 text-forest" />
-                          Avg. Heart Rate
+                          FC Moyenne
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="p-4 pt-0">
                         <div className="text-2xl font-bold text-forest">143 BPM</div>
-                        <p className="text-sm text-muted-foreground">Healthy zone</p>
+                        <p className="text-sm text-muted-foreground">Zone saine</p>
                       </CardContent>
                     </Card>
                   </HoverCardTrigger>
                   <HoverCardContent className="w-80 p-4 rounded-2xl">
                     <div className="space-y-2">
-                      <h4 className="font-medium">Heart Rate Analysis</h4>
-                      <p className="text-sm">Your average heart rate during activities is in the healthy aerobic zone, improving cardiovascular fitness.</p>
+                      <h4 className="font-medium">Analyse Fréquence Cardiaque</h4>
+                      <p className="text-sm">Votre fréquence cardiaque moyenne pendant les activités est dans la zone aérobie saine, améliorant la condition cardiovasculaire.</p>
                     </div>
                   </HoverCardContent>
                 </HoverCard>
@@ -148,19 +148,19 @@ const StatsPage = () => {
                       <CardHeader className="p-4 pb-2">
                         <CardTitle className="text-base flex items-center gap-2">
                           <Zap className="h-5 w-5 text-sky" />
-                          Recovery Rate
+                          Taux de Récupération
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="p-4 pt-0">
                         <div className="text-2xl font-bold text-sky">85%</div>
-                        <p className="text-sm text-muted-foreground">Good condition</p>
+                        <p className="text-sm text-muted-foreground">Bonne condition</p>
                       </CardContent>
                     </Card>
                   </HoverCardTrigger>
                   <HoverCardContent className="w-80 p-4 rounded-2xl">
                     <div className="space-y-2">
-                      <h4 className="font-medium">Recovery Analysis</h4>
-                      <p className="text-sm">Your body is recovering well between activities, allowing for consistent performance improvement.</p>
+                      <h4 className="font-medium">Analyse de Récupération</h4>
+                      <p className="text-sm">Votre corps récupère bien entre les activités, permettant une amélioration constante des performances.</p>
                     </div>
                   </HoverCardContent>
                 </HoverCard>
@@ -169,9 +169,9 @@ const StatsPage = () => {
             
             <section className="space-y-4">
               <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold">Achievements</h2>
+                <h2 className="text-xl font-semibold">Réussites</h2>
                 <Button variant="ghost" size="sm" className="flex items-center gap-1 text-forest">
-                  View All <ChevronRight className="h-4 w-4" />
+                  Voir Tout <ChevronRight className="h-4 w-4" />
                 </Button>
               </div>
               
@@ -215,18 +215,18 @@ const StatsPage = () => {
                             {achievement.title}
                           </DialogTitle>
                           <DialogDescription>
-                            Keep up the great work! You're making progress toward this achievement.
+                            Continuez comme ça ! Vous progressez vers cette réussite.
                           </DialogDescription>
                         </DialogHeader>
                         <div className="space-y-4 py-4">
-                          <p className="text-sm">Complete the remaining activities to unlock this badge and earn special rewards!</p>
+                          <p className="text-sm">Complétez les activités restantes pour débloquer ce badge et gagner des récompenses spéciales !</p>
                           <div className="bg-muted h-2 rounded-full w-full">
                             <div 
                               className="bg-forest h-2 rounded-full" 
                               style={{ width: `${achievement.progress}%` }}
                             />
                           </div>
-                          <p className="text-xs text-right text-muted-foreground">{achievement.progress}% complete</p>
+                          <p className="text-xs text-right text-muted-foreground">{achievement.progress}% terminé</p>
                         </div>
                       </DialogContent>
                     </Dialog>
@@ -269,18 +269,18 @@ const StatsPage = () => {
               </motion.div>
               
               <section className="space-y-4">
-                <h2 className="text-xl font-semibold">Health Insights</h2>
+                <h2 className="text-xl font-semibold">Aperçus Santé</h2>
                 <div className="grid grid-cols-2 gap-4">
                   <Card className="overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all">
                     <CardHeader className="p-4 pb-2">
                       <CardTitle className="text-base flex items-center gap-2">
                         <Sparkles className="h-5 w-5 text-forest" />
-                        Energy Level
+                        Niveau d'Énergie
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-4 pt-0">
                       <div className="text-2xl font-bold text-earth">{dog.energy}%</div>
-                      <p className="text-sm text-muted-foreground">Above average</p>
+                      <p className="text-sm text-muted-foreground">Au-dessus de la moyenne</p>
                     </CardContent>
                   </Card>
                   
@@ -288,19 +288,19 @@ const StatsPage = () => {
                     <CardHeader className="p-4 pb-2">
                       <CardTitle className="text-base flex items-center gap-2">
                         <Heart className="h-5 w-5 text-forest" />
-                        Health Score
+                        Score Santé
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-4 pt-0">
                       <div className="text-2xl font-bold text-forest">{dog.health}/100</div>
-                      <p className="text-sm text-muted-foreground">Excellent condition</p>
+                      <p className="text-sm text-muted-foreground">Excellente condition</p>
                     </CardContent>
                   </Card>
                 </div>
               </section>
               
               <section className="space-y-4">
-                <h2 className="text-xl font-semibold">Recent Activities</h2>
+                <h2 className="text-xl font-semibold">Activités Récentes</h2>
                 <Card className="overflow-hidden rounded-2xl shadow-sm">
                   <CardContent className="p-4">
                     <div className="space-y-4">
@@ -313,11 +313,11 @@ const StatsPage = () => {
                             </AvatarFallback>
                           </Avatar>
                           <div className="flex-1">
-                            <h4 className="font-medium">{i === 0 ? "Morning Run" : i === 1 ? "Trail Adventure" : "Evening Walk"}</h4>
+                            <h4 className="font-medium">{i === 0 ? "Course Matinale" : i === 1 ? "Aventure Sentier" : "Promenade du Soir"}</h4>
                             <p className="text-xs text-muted-foreground">{i === 0 ? "3.2km • 25min" : i === 1 ? "5.8km • 48min" : "2.1km • 30min"}</p>
                           </div>
                           <Badge variant={i === 0 ? "default" : i === 1 ? "outline" : "secondary"} className="rounded-full">
-                            {i === 0 ? "Canicross" : i === 1 ? "Hiking" : "Walk"}
+                            {i === 0 ? "Canicross" : i === 1 ? "Randonnée" : "Promenade"}
                           </Badge>
                         </div>
                       ))}
