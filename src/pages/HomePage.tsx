@@ -260,7 +260,7 @@ const HomePage = () => {
           
           <TabsContent value="activities">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Votre Activité</h2>
+              <h2 className="text-xl font-semibold">Vos Activités</h2>
               <Button variant="outline" size="sm" className="flex items-center">
                 <Filter className="h-4 w-4 mr-1" />
                 Filtre
