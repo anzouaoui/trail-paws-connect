@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Settings, Trophy, Medal, PawPrint, Edit, Dog } from "lucide-react";
+import { Settings, Trophy, Medal, PawPrint, Edit, Dog, BarChart2 } from "lucide-react";
 import DogProfileCard from "@/components/DogProfileCard";
 import ActivityCard from "@/components/ActivityCard";
 
@@ -59,6 +59,14 @@ const ProfilePage = () => {
               <AvatarFallback className="bg-forest text-white text-xl">JD</AvatarFallback>
             </Avatar>
             <div className="flex space-x-2">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="bg-white h-10 w-10"
+                onClick={() => navigate("/stats")}
+              >
+                <BarChart2 className="h-5 w-5 text-forest" />
+              </Button>
               <Button 
                 variant="outline" 
                 size="icon" 

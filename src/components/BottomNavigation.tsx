@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { MapPin, BarChart2, Home, User, PlusCircle, MessageCircle, Users } from "lucide-react";
+import { MapPin, Home, User, PlusCircle, MessageCircle } from "lucide-react";
 
 const BottomNavigation = () => {
   const location = useLocation();
@@ -9,7 +9,7 @@ const BottomNavigation = () => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-sm py-2 px-4 z-10">
-      <div className="grid grid-cols-7 items-center justify-items-center">
+      <div className="grid grid-cols-5 items-center justify-items-center">
         <Link 
           to="/home" 
           className={`nav-link ${currentPath === "/home" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
@@ -27,14 +27,6 @@ const BottomNavigation = () => {
         </Link>
         
         <Link 
-          to="/stats" 
-          className={`nav-link ${currentPath === "/stats" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
-        >
-          <BarChart2 className={`h-5 w-5 ${currentPath === "/stats" ? "text-primary" : ""}`} />
-          <span className="text-xs mt-1">Stats</span>
-        </Link>
-        
-        <Link 
           to="/track" 
           className="flex flex-col items-center justify-self-center"
         >
@@ -42,14 +34,6 @@ const BottomNavigation = () => {
             <PlusCircle className="h-5 w-5 text-white" />
           </div>
           <span className="text-xs text-muted-foreground mt-1">Tracker</span>
-        </Link>
-        
-        <Link 
-          to="/friend-requests" 
-          className={`nav-link ${currentPath === "/friend-requests" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center relative`}
-        >
-          <Users className={`h-5 w-5 ${currentPath === "/friend-requests" ? "text-primary" : ""}`} />
-          <span className="text-xs mt-1">Amis</span>
         </Link>
         
         <Link 
