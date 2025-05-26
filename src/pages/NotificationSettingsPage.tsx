@@ -64,9 +64,9 @@ const NotificationSettingsPage = () => {
   
   // Submit handler
   const onSubmit = (data: NotificationFormValues) => {
-    console.log("Notification settings updated:", data);
-    toast.success("Notification preferences saved", {
-      description: "Your notification preferences have been updated",
+    console.log("Paramètres de notification mis à jour:", data);
+    toast.success("Préférences de notification sauvegardées", {
+      description: "Vos préférences de notification ont été mises à jour",
     });
   };
 
@@ -82,14 +82,14 @@ const NotificationSettingsPage = () => {
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
-        <h1 className="text-xl font-bold">Notification Settings</h1>
+        <h1 className="text-xl font-bold">Paramètres de Notification</h1>
       </div>
 
       <div className="p-4">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div>
-              <h2 className="text-lg font-semibold mb-4">Notification Categories</h2>
+              <h2 className="text-lg font-semibold mb-4">Catégories de Notifications</h2>
               
               <div className="space-y-4">
                 <FormField
@@ -103,7 +103,7 @@ const NotificationSettingsPage = () => {
                           <FormLabel>Messages</FormLabel>
                         </div>
                         <FormDescription className="text-xs">
-                          Notifications for new messages and group chats
+                          Notifications pour nouveaux messages et discussions de groupe
                         </FormDescription>
                       </div>
                       <FormControl>
@@ -124,10 +124,10 @@ const NotificationSettingsPage = () => {
                       <div className="space-y-0">
                         <div className="flex items-center">
                           <Activity className="h-4 w-4 text-red-500 mr-2" />
-                          <FormLabel>Health Reminders</FormLabel>
+                          <FormLabel>Rappels Santé</FormLabel>
                         </div>
                         <FormDescription className="text-xs">
-                          Vaccination reminders and health alerts
+                          Rappels de vaccination et alertes santé
                         </FormDescription>
                       </div>
                       <FormControl>
@@ -148,10 +148,10 @@ const NotificationSettingsPage = () => {
                       <div className="space-y-0">
                         <div className="flex items-center">
                           <Award className="h-4 w-4 text-amber-500 mr-2" />
-                          <FormLabel>Achievements</FormLabel>
+                          <FormLabel>Accomplissements</FormLabel>
                         </div>
                         <FormDescription className="text-xs">
-                          Badges, milestones, and achievements
+                          Badges, jalons et accomplissements
                         </FormDescription>
                       </div>
                       <FormControl>
@@ -172,10 +172,10 @@ const NotificationSettingsPage = () => {
                       <div className="space-y-0">
                         <div className="flex items-center">
                           <Heart className="h-4 w-4 text-pink-500 mr-2" />
-                          <FormLabel>Social Interactions</FormLabel>
+                          <FormLabel>Interactions Sociales</FormLabel>
                         </div>
                         <FormDescription className="text-xs">
-                          Likes, comments, and mentions
+                          J'aime, commentaires et mentions
                         </FormDescription>
                       </div>
                       <FormControl>
@@ -196,10 +196,10 @@ const NotificationSettingsPage = () => {
                       <div className="space-y-0">
                         <div className="flex items-center">
                           <Calendar className="h-4 w-4 text-green-500 mr-2" />
-                          <FormLabel>Events</FormLabel>
+                          <FormLabel>Événements</FormLabel>
                         </div>
                         <FormDescription className="text-xs">
-                          Upcoming events and activities
+                          Événements et activités à venir
                         </FormDescription>
                       </div>
                       <FormControl>
@@ -217,7 +217,7 @@ const NotificationSettingsPage = () => {
             <Separator />
             
             <div>
-              <h2 className="text-lg font-semibold mb-4">General Settings</h2>
+              <h2 className="text-lg font-semibold mb-4">Paramètres Généraux</h2>
               
               <div className="space-y-4">
                 <FormField
@@ -226,9 +226,9 @@ const NotificationSettingsPage = () => {
                   render={({ field }) => (
                     <FormItem className="flex items-center justify-between">
                       <div>
-                        <FormLabel>Push Notifications</FormLabel>
+                        <FormLabel>Notifications Push</FormLabel>
                         <FormDescription className="text-xs">
-                          Receive notifications on your device
+                          Recevoir des notifications sur votre appareil
                         </FormDescription>
                       </div>
                       <FormControl>
@@ -247,9 +247,9 @@ const NotificationSettingsPage = () => {
                   render={({ field }) => (
                     <FormItem className="flex items-center justify-between">
                       <div>
-                        <FormLabel>Email Notifications</FormLabel>
+                        <FormLabel>Notifications Email</FormLabel>
                         <FormDescription className="text-xs">
-                          Receive email digests and alerts
+                          Recevoir des résumés et alertes par email
                         </FormDescription>
                       </div>
                       <FormControl>
@@ -270,10 +270,10 @@ const NotificationSettingsPage = () => {
                       <div className="flex flex-col">
                         <div className="flex items-center">
                           <BellOff className="h-4 w-4 text-slate-500 mr-2" />
-                          <FormLabel>Do Not Disturb</FormLabel>
+                          <FormLabel>Ne Pas Déranger</FormLabel>
                         </div>
                         <FormDescription className="text-xs">
-                          Mute all notifications temporarily
+                          Couper temporairement toutes les notifications
                         </FormDescription>
                       </div>
                       <FormControl>
@@ -289,7 +289,7 @@ const NotificationSettingsPage = () => {
             </div>
             
             <div className="pt-4">
-              <Button type="submit" className="w-full">Save Preferences</Button>
+              <Button type="submit" className="w-full">Sauvegarder les Préférences</Button>
             </div>
           </form>
         </Form>

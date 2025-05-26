@@ -48,9 +48,9 @@ const NotificationsPage = () => {
     {
       id: "1",
       type: "message",
-      title: "New message from Sarah",
-      description: "How's Max doing after the run?",
-      timestamp: "10 min ago",
+      title: "Nouveau message de Sarah",
+      description: "Comment va Max après la course ?",
+      timestamp: "il y a 10 min",
       read: false,
       actionUrl: "/messages/2",
       avatarFallback: "SJ"
@@ -58,9 +58,9 @@ const NotificationsPage = () => {
     {
       id: "2",
       type: "message",
-      title: "Trail Runners Club",
-      description: "See you all at the park tomorrow at 7am!",
-      timestamp: "1 hour ago",
+      title: "Club Trail Runners",
+      description: "Rendez-vous tous au parc demain à 7h !",
+      timestamp: "il y a 1 heure",
       read: false,
       actionUrl: "/messages/1",
       avatarFallback: "TR"
@@ -68,9 +68,9 @@ const NotificationsPage = () => {
     {
       id: "3",
       type: "health",
-      title: "Vaccination Due",
-      description: "Max's annual rabies vaccination is due next week",
-      timestamp: "Yesterday",
+      title: "Vaccination à prévoir",
+      description: "Le vaccin antirabique annuel de Max est dû la semaine prochaine",
+      timestamp: "Hier",
       read: true,
       actionUrl: "/health-records",
       avatarFallback: "🩺"
@@ -78,9 +78,9 @@ const NotificationsPage = () => {
     {
       id: "4",
       type: "achievement",
-      title: "New Badge Earned!",
-      description: "You've earned the '10K Runner' badge",
-      timestamp: "2 days ago",
+      title: "Nouveau badge obtenu !",
+      description: "Vous avez obtenu le badge 'Coureur 10K'",
+      timestamp: "il y a 2 jours",
       read: true,
       actionUrl: "/profile",
       avatarFallback: "🏅"
@@ -88,9 +88,9 @@ const NotificationsPage = () => {
     {
       id: "5",
       type: "social",
-      title: "Jessica liked your activity",
-      description: "Morning Run with Max",
-      timestamp: "2 days ago",
+      title: "Jessica a aimé votre activité",
+      description: "Course matinale avec Max",
+      timestamp: "il y a 2 jours",
       read: true,
       actionUrl: "/activity/1",
       avatarFallback: "JW"
@@ -98,9 +98,9 @@ const NotificationsPage = () => {
     {
       id: "6",
       type: "event",
-      title: "New Event Nearby",
-      description: "Summer Trail Challenge is starting soon",
-      timestamp: "3 days ago",
+      title: "Nouvel événement à proximité",
+      description: "Le Défi Trail d'Été commence bientôt",
+      timestamp: "il y a 3 jours",
       read: true,
       actionUrl: "/explore",
       avatarFallback: "🗓️"
@@ -148,7 +148,7 @@ const NotificationsPage = () => {
             Notifications
             {unreadCount > 0 && (
               <Badge variant="destructive" className="ml-2">
-                {unreadCount} new
+                {unreadCount} nouveau{unreadCount > 1 ? 'x' : ''}
               </Badge>
             )}
           </h1>
@@ -160,7 +160,7 @@ const NotificationsPage = () => {
               className="flex items-center gap-1"
             >
               <Check className="h-4 w-4" />
-              Mark all read
+              Tout marquer lu
             </Button>
             <Button 
               variant="ghost" 
@@ -181,15 +181,15 @@ const NotificationsPage = () => {
         >
           <div className="px-4">
             <TabsList className="grid grid-cols-6 w-full">
-              <TabsTrigger value="all" className="text-xs">All</TabsTrigger>
+              <TabsTrigger value="all" className="text-xs">Tout</TabsTrigger>
               <TabsTrigger value="message" className="text-xs">
                 <MessageSquare className="h-3 w-3 mr-1" />
                 Messages
               </TabsTrigger>
-              <TabsTrigger value="health" className="text-xs">Health</TabsTrigger>
+              <TabsTrigger value="health" className="text-xs">Santé</TabsTrigger>
               <TabsTrigger value="achievement" className="text-xs">Badges</TabsTrigger>
               <TabsTrigger value="social" className="text-xs">Social</TabsTrigger>
-              <TabsTrigger value="event" className="text-xs">Events</TabsTrigger>
+              <TabsTrigger value="event" className="text-xs">Événements</TabsTrigger>
             </TabsList>
           </div>
         </Tabs>
@@ -211,11 +211,17 @@ const NotificationsPage = () => {
           ) : (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Bell className="h-12 w-12 text-muted-foreground mb-4" />
-              <h3 className="font-medium text-lg">No notifications</h3>
+              <h3 className="font-medium text-lg">Aucune notification</h3>
               <p className="text-muted-foreground max-w-xs mt-2">
                 {activeTab === "all" 
-                  ? "You don't have any notifications right now."
-                  : `You don't have any ${activeTab} notifications.`}
+                  ? "Vous n'avez aucune notification pour le moment."
+                  : `Vous n'avez aucune notification ${
+                      activeTab === "message" ? "de message" :
+                      activeTab === "health" ? "de santé" :
+                      activeTab === "achievement" ? "de badge" :
+                      activeTab === "social" ? "sociale" :
+                      activeTab === "event" ? "d'événement" : ""
+                    }.`}
               </p>
             </div>
           )}
