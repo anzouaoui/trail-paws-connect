@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { 
@@ -117,11 +116,7 @@ const ActivityDetailPage = () => {
   };
 
   const handleEdit = () => {
-    toast({
-      title: "Edit mode",
-      description: "Editing functionality would open here",
-    });
-    // In a real app, would navigate to edit form or open modal
+    navigate(`/activity/${id}/edit`);
   };
 
   const handleDelete = () => {

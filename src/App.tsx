@@ -9,6 +9,7 @@ import TrackPage from './pages/TrackPage';
 import StatsPage from './pages/StatsPage';
 import ProfilePage from './pages/ProfilePage';
 import ActivityDetailPage from './pages/ActivityDetailPage';
+import EditActivityPage from './pages/EditActivityPage';
 import ActivityRatingPage from './pages/ActivityRatingPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -45,6 +46,7 @@ function App() {
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/activity/:id" element={<ActivityDetailPage />} />
+          <Route path="/activity/:id/edit" element={<EditActivityPage />} />
           <Route path="/activity/:id/rate" element={<ActivityRatingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
