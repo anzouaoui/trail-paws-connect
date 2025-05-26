@@ -184,7 +184,10 @@ const FriendRequestsPage = () => {
                 {filteredFriends.map(friend => (
                   <div key={friend.id} className="flex justify-between items-center p-3 border rounded-lg">
                     <div className="flex items-center">
-                      <Avatar className="h-10 w-10 mr-3">
+                      <Avatar 
+                        className="h-10 w-10 mr-3 cursor-pointer hover:opacity-80 transition-opacity" 
+                        onClick={() => navigate(`/chat/${friend.id}`)}
+                      >
                         <AvatarImage src={friend.avatar} alt={friend.name} />
                         <AvatarFallback className="bg-forest text-white">
                           {friend.name.split(' ').map(n => n[0]).join('')}
@@ -209,7 +212,7 @@ const FriendRequestsPage = () => {
                       <Button 
                         variant="outline"
                         size="sm"
-                        onClick={() => navigate(`/messages/${friend.id}`)}
+                        onClick={() => navigate(`/chat/${friend.id}`)}
                       >
                         Message
                       </Button>
