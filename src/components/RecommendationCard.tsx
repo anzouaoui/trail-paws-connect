@@ -16,7 +16,7 @@ const RecommendationCard = ({ recommendation }: RecommendationCardProps) => {
   return (
     <div 
       className="p-3 rounded-lg bg-muted/50 hover:bg-muted cursor-pointer transition-colors"
-      onClick={() => navigate(`/activity/${recommendation.id}`)}
+      onClick={() => navigate(`/recommendation/${recommendation.id}`)}
     >
       <div className="flex justify-between items-start mb-2">
         <div>
