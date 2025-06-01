@@ -90,9 +90,9 @@ const ActivityRecommendations = ({ isPremium = false }: ActivityRecommendationsP
 
   const getActivityTypeLabel = (type: ActivityType) => {
     switch(type) {
-      case "canicross": return "Running";
-      case "cani-hiking": return "Hiking";
-      case "cani-MTB": return "Biking";
+      case "canicross": return "Course";
+      case "cani-hiking": return "Randonnée";
+      case "cani-MTB": return "Vélo";
       default: return type;
     }
   };
@@ -106,10 +106,10 @@ const ActivityRecommendations = ({ isPremium = false }: ActivityRecommendationsP
 
   const getDifficultyText = (rating: number) => {
     if (rating >= 4.5) return "Expert";
-    if (rating >= 3.5) return "Advanced";
-    if (rating >= 2.5) return "Intermediate";
-    if (rating >= 1.5) return "Beginner";
-    return "Easy";
+    if (rating >= 3.5) return "Avancé";
+    if (rating >= 2.5) return "Intermédiaire";
+    if (rating >= 1.5) return "Débutant";
+    return "Facile";
   };
 
   if (!isPremium) {
@@ -117,15 +117,15 @@ const ActivityRecommendations = ({ isPremium = false }: ActivityRecommendationsP
       <Card className="border-dashed border-primary/50 bg-primary/5">
         <CardContent className="pt-6 pb-6 text-center">
           <Sparkles className="h-12 w-12 mx-auto mb-4 text-primary opacity-80" />
-          <h3 className="text-lg font-semibold mb-2">Personalized Activity Recommendations</h3>
+          <h3 className="text-lg font-semibold mb-2">Recommandations d'Activités Personnalisées</h3>
           <p className="text-sm text-muted-foreground mb-4">
-            Get AI-powered recommendations based on your activity history and your dog's preferences.
+            Obtenez des recommandations basées sur l'IA selon votre historique d'activités et les préférences de votre chien.
           </p>
           <Button 
             onClick={() => navigate('/subscription')}
             className="mt-2"
           >
-            Upgrade to Premium
+            Passer à Premium
           </Button>
         </CardContent>
       </Card>
@@ -138,7 +138,7 @@ const ActivityRecommendations = ({ isPremium = false }: ActivityRecommendationsP
         <div className="flex justify-between items-center">
           <CardTitle className="text-lg flex items-center">
             <Sparkles className="h-5 w-5 mr-2 text-primary" />
-            Recommended For You
+            Recommandé Pour Vous
           </CardTitle>
           <Button 
             variant="ghost" 
@@ -159,16 +159,16 @@ const ActivityRecommendations = ({ isPremium = false }: ActivityRecommendationsP
           className="w-full"
         >
           <TabsList className="grid grid-cols-4 mb-4">
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="canicross">Running</TabsTrigger>
-            <TabsTrigger value="cani-hiking">Hiking</TabsTrigger>
-            <TabsTrigger value="cani-MTB">Biking</TabsTrigger>
+            <TabsTrigger value="all">Tout</TabsTrigger>
+            <TabsTrigger value="canicross">Course</TabsTrigger>
+            <TabsTrigger value="cani-hiking">Randonnée</TabsTrigger>
+            <TabsTrigger value="cani-MTB">Vélo</TabsTrigger>
           </TabsList>
           
           <TabsContent value={selectedTab} className="mt-0 space-y-3">
             {filteredRecommendations.length === 0 ? (
               <div className="text-center py-8 text-muted-foreground">
-                <p>No recommendations available.</p>
+                <p>Aucune recommandation disponible.</p>
               </div>
             ) : (
               filteredRecommendations.map((rec) => (
@@ -202,11 +202,11 @@ const ActivityRecommendations = ({ isPremium = false }: ActivityRecommendationsP
                       <p className="font-medium">{rec.distance}</p>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Duration:</span>
+                      <span className="text-muted-foreground">Durée:</span>
                       <p className="font-medium">{rec.duration}</p>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Elevation:</span>
+                      <span className="text-muted-foreground">Dénivelé:</span>
                       <p className="font-medium">{rec.elevation}</p>
                     </div>
                   </div>
@@ -217,7 +217,7 @@ const ActivityRecommendations = ({ isPremium = false }: ActivityRecommendationsP
                       {rec.location}
                     </div>
                     <div className="text-xs">
-                      Recommended for: <span className="font-medium">{rec.dogNames.join(', ')}</span>
+                      Recommandé pour: <span className="font-medium">{rec.dogNames.join(', ')}</span>
                     </div>
                   </div>
                 </div>
