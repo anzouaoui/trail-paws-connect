@@ -47,7 +47,7 @@ const TrackPage = () => {
       name: "Max", 
       breed: "Border Collie", 
       energy: 92,
-      status: "Ready to run",
+      status: "Prêt à courir",
       avatar: undefined
     },
     { 
@@ -55,7 +55,7 @@ const TrackPage = () => {
       name: "Bella", 
       breed: "Husky",
       energy: 88,
-      status: "Rested",
+      status: "Reposé",
       avatar: undefined
     }
   ];
@@ -67,31 +67,31 @@ const TrackPage = () => {
       name: "Sarah", 
       avatar: undefined,
       online: true,
-      lastActivity: "2 hours ago"
+      lastActivity: "Il y a 2 heures"
     },
     { 
       id: "user2", 
       name: "Mike", 
       avatar: undefined,
       online: false,
-      lastActivity: "Yesterday"
+      lastActivity: "Hier"
     },
     { 
       id: "user3", 
       name: "Emma", 
       avatar: undefined,
       online: true,
-      lastActivity: "Just now"
+      lastActivity: "À l'instant"
     }
   ];
 
   // Customizable widgets
   const [widgets, setWidgets] = useState<Widget[]>([
-    { id: 'stats', type: 'stats', title: 'Activity Stats', position: 0, visible: true, icon: <BarChart className="h-5 w-5" /> },
-    { id: 'timer', type: 'timer', title: 'Timer', position: 1, visible: true, icon: <Timer className="h-5 w-5" /> },
-    { id: 'map', type: 'map', title: 'Live Map', position: 2, visible: true, icon: <MapPin className="h-5 w-5" /> },
-    { id: 'partners', type: 'partners', title: 'Team Partners', position: 3, visible: true, icon: <Users className="h-5 w-5" /> },
-    { id: 'goals', type: 'goals', title: 'Today\'s Goals', position: 4, visible: false, icon: <Zap className="h-5 w-5" /> }
+    { id: 'stats', type: 'stats', title: 'Statistiques d\'Activité', position: 0, visible: true, icon: <BarChart className="h-5 w-5" /> },
+    { id: 'timer', type: 'timer', title: 'Chronomètre', position: 1, visible: true, icon: <Timer className="h-5 w-5" /> },
+    { id: 'map', type: 'map', title: 'Carte en Direct', position: 2, visible: true, icon: <MapPin className="h-5 w-5" /> },
+    { id: 'partners', type: 'partners', title: 'Partenaires d\'Équipe', position: 3, visible: true, icon: <Users className="h-5 w-5" /> },
+    { id: 'goals', type: 'goals', title: 'Objectifs du Jour', position: 4, visible: false, icon: <Zap className="h-5 w-5" /> }
   ]);
 
   // Handle widget position changes (simple implementation)
@@ -175,21 +175,21 @@ const TrackPage = () => {
       setIsTracking(true);
       setIsPaused(false);
       toast({
-        title: "Activity Started",
-        description: `Tracking started with ${dogs[selectedDogIndex].name}`,
+        title: "Activité Commencée",
+        description: `Suivi commencé avec ${dogs[selectedDogIndex].name}`,
       });
     } else if (isPaused) {
       // Resuming
       setIsPaused(false);
       toast({
-        description: "Activity resumed",
+        description: "Activité reprise",
       });
     } else {
       // Pausing
       setIsPaused(true);
       if (timerInterval) clearInterval(timerInterval);
       toast({
-        description: "Activity paused",
+        description: "Activité en pause",
       });
     }
   };
@@ -201,8 +201,8 @@ const TrackPage = () => {
     
     // Would normally save the activity here
     toast({
-      title: "Activity Completed",
-      description: `You covered ${distance}km in ${elapsedTime}`,
+      title: "Activité Terminée",
+      description: `Vous avez parcouru ${distance}km en ${elapsedTime}`,
       variant: "default",
     });
     
@@ -220,7 +220,7 @@ const TrackPage = () => {
   const handleDogSelection = (index: number) => {
     setSelectedDogIndex(index);
     toast({
-      description: `${dogs[index].name} is ready for action!`,
+      description: `${dogs[index].name} est prêt pour l'action !`,
     });
   };
   
@@ -232,7 +232,7 @@ const TrackPage = () => {
   return (
     <div className="px-4 py-6 pb-24">
       <header className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Track Activity</h1>
+        <h1 className="text-2xl font-bold">Suivre l'Activité</h1>
         <Button 
           variant="outline" 
           size="icon"
@@ -249,13 +249,13 @@ const TrackPage = () => {
             value="activity" 
             className="rounded-xl text-base data-[state=active]:bg-forest data-[state=active]:text-white"
           >
-            Activity
+            Activité
           </TabsTrigger>
           <TabsTrigger 
             value="settings" 
             className="rounded-xl text-base data-[state=active]:bg-forest data-[state=active]:text-white"
           >
-            Settings
+            Paramètres
           </TabsTrigger>
         </TabsList>
         
@@ -263,21 +263,21 @@ const TrackPage = () => {
           <Card className="rounded-2xl border-none shadow-sm">
             <CardContent className="p-4">
               <div className="mb-6">
-                <Label htmlFor="activity-type" className="text-base font-medium">Activity Type</Label>
+                <Label htmlFor="activity-type" className="text-base font-medium">Type d'Activité</Label>
                 <Select defaultValue="canicross">
                   <SelectTrigger id="activity-type" className="mt-1 rounded-xl h-12">
-                    <SelectValue placeholder="Select activity type" />
+                    <SelectValue placeholder="Sélectionnez le type d'activité" />
                   </SelectTrigger>
                   <SelectContent className="rounded-xl">
                     <SelectItem value="canicross">Canicross</SelectItem>
-                    <SelectItem value="cani-hiking">Cani-hiking</SelectItem>
-                    <SelectItem value="cani-MTB">Cani-MTB</SelectItem>
+                    <SelectItem value="cani-hiking">Cani-randonnée</SelectItem>
+                    <SelectItem value="cani-MTB">Cani-VTT</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               
               <div className="mb-6">
-                <Label className="text-base font-medium">Dog Partner</Label>
+                <Label className="text-base font-medium">Partenaire Canin</Label>
                 <div className="flex space-x-3 mt-3 overflow-x-auto pb-2 scrollbar-hide">
                   {dogs.map((dog, index) => (
                     <motion.div
@@ -294,7 +294,7 @@ const TrackPage = () => {
                       <div className={`mt-1 px-2 py-0.5 rounded-full text-xs ${
                         dog.energy > 90 ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'
                       }`}>
-                        {dog.energy}% Energy
+                        {dog.energy}% Énergie
                       </div>
                     </motion.div>
                   ))}
@@ -303,7 +303,7 @@ const TrackPage = () => {
               
               <div className="flex items-center space-x-2 mb-4">
                 <Switch id="auto-pause" />
-                <Label htmlFor="auto-pause">Auto-pause when stopped</Label>
+                <Label htmlFor="auto-pause">Pause automatique à l'arrêt</Label>
               </div>
             </CardContent>
           </Card>
@@ -314,52 +314,52 @@ const TrackPage = () => {
             <CardContent className="p-4 space-y-5">
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
-                  <Label className="text-base">Voice Feedback</Label>
-                  <p className="text-sm text-muted-foreground">Receive audio updates during activity</p>
+                  <Label className="text-base">Retour Vocal</Label>
+                  <p className="text-sm text-muted-foreground">Recevoir des mises à jour audio pendant l'activité</p>
                 </div>
                 <Switch />
               </div>
               
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
-                  <Label className="text-base">GPS Accuracy</Label>
-                  <p className="text-sm text-muted-foreground">High precision mode (uses more battery)</p>
+                  <Label className="text-base">Précision GPS</Label>
+                  <p className="text-sm text-muted-foreground">Mode haute précision (consomme plus de batterie)</p>
                 </div>
                 <Switch defaultChecked />
               </div>
               
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
-                  <Label className="text-base">Screen Always On</Label>
-                  <p className="text-sm text-muted-foreground">Keep display active during tracking</p>
+                  <Label className="text-base">Écran Toujours Actif</Label>
+                  <p className="text-sm text-muted-foreground">Garder l'affichage actif pendant le suivi</p>
                 </div>
                 <Switch defaultChecked />
               </div>
               
               <div>
-                <Label htmlFor="update-frequency" className="text-base">Update Frequency</Label>
+                <Label htmlFor="update-frequency" className="text-base">Fréquence de Mise à Jour</Label>
                 <Select defaultValue="3">
                   <SelectTrigger id="update-frequency" className="mt-1 rounded-xl h-12">
-                    <SelectValue placeholder="Select frequency" />
+                    <SelectValue placeholder="Sélectionnez la fréquence" />
                   </SelectTrigger>
                   <SelectContent className="rounded-xl">
-                    <SelectItem value="1">1 second</SelectItem>
-                    <SelectItem value="3">3 seconds</SelectItem>
-                    <SelectItem value="5">5 seconds</SelectItem>
+                    <SelectItem value="1">1 seconde</SelectItem>
+                    <SelectItem value="3">3 secondes</SelectItem>
+                    <SelectItem value="5">5 secondes</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               
               <div>
-                <Label htmlFor="notification-interval" className="text-base">Notification Interval</Label>
+                <Label htmlFor="notification-interval" className="text-base">Intervalle de Notification</Label>
                 <Select defaultValue="5">
                   <SelectTrigger id="notification-interval" className="mt-1 rounded-xl h-12">
-                    <SelectValue placeholder="Select interval" />
+                    <SelectValue placeholder="Sélectionnez l'intervalle" />
                   </SelectTrigger>
                   <SelectContent className="rounded-xl">
-                    <SelectItem value="1">Every 1 minute</SelectItem>
-                    <SelectItem value="5">Every 5 minutes</SelectItem>
-                    <SelectItem value="10">Every 10 minutes</SelectItem>
+                    <SelectItem value="1">Toutes les 1 minute</SelectItem>
+                    <SelectItem value="5">Toutes les 5 minutes</SelectItem>
+                    <SelectItem value="10">Toutes les 10 minutes</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -377,19 +377,19 @@ const TrackPage = () => {
           <Card className="rounded-2xl border-forest border-dashed shadow-sm bg-forest/5">
             <CardHeader className="p-3">
               <CardTitle className="text-sm flex items-center justify-between">
-                <span>Customize Dashboard</span>
+                <span>Personnaliser le Tableau de Bord</span>
                 <Button 
                   variant="outline" 
                   size="sm" 
                   className="h-8 rounded-lg"
                   onClick={() => setIsCustomizingWidgets(false)}
                 >
-                  Done
+                  Terminé
                 </Button>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-3 pt-0">
-              <p className="text-xs text-muted-foreground mb-3">Drag and arrange widgets or toggle visibility</p>
+              <p className="text-xs text-muted-foreground mb-3">Glissez et arrangez les widgets ou basculez la visibilité</p>
               <div className="space-y-2">
                 {widgets.map(widget => (
                   <div key={widget.id} 
@@ -449,7 +449,7 @@ const TrackPage = () => {
                   <CardHeader className="p-3 pb-0">
                     <CardTitle className="text-sm flex items-center gap-2">
                       <BarChart className="h-4 w-4 text-forest" />
-                      Activity Stats
+                      Statistiques d'Activité
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-3">
@@ -460,14 +460,14 @@ const TrackPage = () => {
                       </div>
                       <div className="bg-muted/50 rounded-xl p-3 text-center">
                         <div className="text-2xl font-bold">{speed} km/h</div>
-                        <div className="text-xs text-muted-foreground">Speed</div>
+                        <div className="text-xs text-muted-foreground">Vitesse</div>
                       </div>
                       <div className="bg-muted/50 rounded-xl p-3 text-center">
                         <div className="text-2xl font-bold flex items-center justify-center gap-1">
                           {heartRate}
                           <Heart className="h-4 w-4 text-red-500" />
                         </div>
-                        <div className="text-xs text-muted-foreground">Heart Rate</div>
+                        <div className="text-xs text-muted-foreground">Rythme Cardiaque</div>
                       </div>
                       <div className="bg-muted/50 rounded-xl p-3 text-center">
                         <div className="text-2xl font-bold flex items-center justify-center gap-1">
@@ -508,16 +508,16 @@ const TrackPage = () => {
                         <div className="text-center p-4">
                           <MapPin className="h-8 w-8 mx-auto mb-2 text-forest animate-pulse" />
                           <div className="bg-white/80 backdrop-blur-sm rounded-lg p-2">
-                            <p className="font-semibold">Tracking Active</p>
-                            <p className="text-sm text-forest">{distance}km covered</p>
+                            <p className="font-semibold">Suivi Actif</p>
+                            <p className="text-sm text-forest">{distance}km parcourus</p>
                           </div>
                         </div>
                       </div>
                     ) : (
                       <div className="text-center text-muted-foreground">
                         <MapPin className="h-8 w-8 mx-auto mb-2" />
-                        <p>Map view will appear here</p>
-                        <p className="text-sm">Start tracking to see your route</p>
+                        <p>La vue carte apparaîtra ici</p>
+                        <p className="text-sm">Commencez le suivi pour voir votre itinéraire</p>
                       </div>
                     )}
                   </div>
@@ -530,7 +530,7 @@ const TrackPage = () => {
                   <CardHeader className="p-3 pb-0">
                     <CardTitle className="text-sm flex items-center gap-2">
                       <Users className="h-4 w-4 text-sky" />
-                      Team Partners
+                      Partenaires d'Équipe
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-3">
@@ -553,7 +553,7 @@ const TrackPage = () => {
                         <Button variant="outline" size="icon" className="h-12 w-12 rounded-full">
                           <Users className="h-5 w-5" />
                         </Button>
-                        <div className="text-sm mt-1">Invite</div>
+                        <div className="text-sm mt-1">Inviter</div>
                       </div>
                     </div>
                   </CardContent>
@@ -566,14 +566,14 @@ const TrackPage = () => {
                   <CardHeader className="p-3 pb-0">
                     <CardTitle className="text-sm flex items-center gap-2">
                       <Zap className="h-4 w-4 text-yellow-500" />
-                      Today's Goals
+                      Objectifs du Jour
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-3">
                     <div className="space-y-3">
                       <div className="bg-muted/50 rounded-xl p-3">
                         <div className="flex justify-between items-center mb-1">
-                          <div className="font-medium text-sm">Distance Goal</div>
+                          <div className="font-medium text-sm">Objectif Distance</div>
                           <div className="text-xs font-medium">{distance}/5.0 km</div>
                         </div>
                         <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
@@ -586,7 +586,7 @@ const TrackPage = () => {
                       
                       <div className="bg-muted/50 rounded-xl p-3">
                         <div className="flex justify-between items-center mb-1">
-                          <div className="font-medium text-sm">Workout Time</div>
+                          <div className="font-medium text-sm">Temps d'Entraînement</div>
                           <div className="text-xs font-medium">{elapsedTime}/00:30:00</div>
                         </div>
                         <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
@@ -614,7 +614,7 @@ const TrackPage = () => {
                 {isPaused ? (
                   <>
                     <Play className="h-5 w-5 mr-2" />
-                    Resume
+                    Reprendre
                   </>
                 ) : (
                   <>
@@ -628,7 +628,7 @@ const TrackPage = () => {
                 onClick={handleStopTracking}
               >
                 <Timer className="h-5 w-5 mr-2" />
-                End
+                Terminer
               </Button>
             </div>
           ) : (
@@ -637,7 +637,7 @@ const TrackPage = () => {
               onClick={handleStartTracking}
             >
               <Play className="h-5 w-5 mr-2" />
-              Start Tracking
+              Commencer le Suivi
             </Button>
           )}
         </div>
