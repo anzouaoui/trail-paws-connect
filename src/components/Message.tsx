@@ -1,7 +1,11 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { Clock, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { 
+  Dialog,
+  DialogContent,
+  DialogTrigger
+} from "@/components/ui/dialog";
 
 export type MessageStatus = "sending" | "sent" | "delivered" | "seen";
 export type MessageType = "text" | "image" | "activity" | "route";
@@ -30,6 +34,7 @@ const Message: React.FC<MessageProps> = ({
   attachmentUrl
 }) => {
   const navigate = useNavigate();
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   const renderStatus = () => {
     switch (status) {
@@ -69,11 +74,23 @@ const Message: React.FC<MessageProps> = ({
       case "image":
         return (
           <div className="message-attachment mb-2">
-            <img 
-              src={attachmentUrl} 
-              alt="Attachment" 
-              className="rounded-lg w-full max-h-48 object-cover" 
-            />
+            <Dialog open={isImageModalOpen} onOpenChange={setIsImageModalOpen}>
+              <DialogTrigger asChild>
+                <img 
+                  src={attachmentUrl} 
+                  alt="Attachment" 
+                  className="rounded-lg w-full max-h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                  onClick={() => setIsImageModalOpen(true)}
+                />
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl w-full p-0 bg-transparent border-none">
+                <img 
+                  src={attachmentUrl} 
+                  alt="Attachment en grand format" 
+                  className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
+                />
+              </DialogContent>
+            </Dialog>
           </div>
         );
       case "activity":
