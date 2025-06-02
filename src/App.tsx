@@ -70,6 +70,7 @@ function App() {
             <Route path="/dog-profile/new" element={<DogProfileFormPage />} />
             <Route path="/dog-profile/:id/edit" element={<DogProfileFormPage />} />
             <Route path="/dog-health/:id" element={<DogHealthRecordsPage />} />
+            <Route path="/health-records" element={<DogHealthRecordsPage />} />
             <Route path="/health-alerts" element={<HealthAlertsPage />} />
             <Route path="/runner-profile" element={<RunnerProfilePage />} />
             <Route path="/post/:id" element={<PostDetailPage />} />
