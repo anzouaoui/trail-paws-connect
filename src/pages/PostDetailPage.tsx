@@ -38,7 +38,25 @@ const PostDetailPage = () => {
     date: "2025-05-22",
     likes: 24,
     comments: 2,
-    isLiked: false
+    isLiked: false,
+    postComments: [
+      {
+        id: "c1",
+        userId: "user3",
+        userName: "Emma Wilson",
+        userAvatar: "https://images.unsplash.com/photo-1582562124811-c09040d0a901",
+        content: "That's amazing! How long did it take?",
+        timestamp: "2 hours ago"
+      },
+      {
+        id: "c2",
+        userId: "user2",
+        userName: "Mike Roberts",
+        userAvatar: "",
+        content: "Great job! Which trail did you guys take? I'm looking for new routes.",
+        timestamp: "1 hour ago"
+      }
+    ]
   });
 
   // Sample comments
@@ -72,7 +90,26 @@ const PostDetailPage = () => {
     setIsLiked(!isLiked);
   };
 
-  const handleAddComment = () => {
+  const handleAddComment = (postId: string, content: string) => {
+    if (!content.trim()) return;
+
+    const newCommentObj = {
+      id: `c${post.postComments.length + 1}`,
+      userId: "currentUser",
+      userName: "John Doe",
+      userAvatar: "",
+      content: content,
+      timestamp: "Just now"
+    };
+
+    setPost({
+      ...post,
+      comments: post.comments + 1,
+      postComments: [...post.postComments, newCommentObj]
+    });
+  };
+
+  const handleAddCommentLegacy = () => {
     if (!newComment.trim()) return;
 
     const newCommentObj: Comment = {
@@ -113,6 +150,7 @@ const PostDetailPage = () => {
           post={post}
           onLike={handleLike}
           onComment={() => {}}
+          onAddComment={handleAddComment}
         />
         
         <Separator className="my-4" />
@@ -156,7 +194,7 @@ const PostDetailPage = () => {
               <Button 
                 size="icon"
                 disabled={!newComment.trim()}
-                onClick={handleAddComment}
+                onClick={handleAddCommentLegacy}
               >
                 <Send className="h-4 w-4" />
               </Button>
