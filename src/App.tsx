@@ -50,6 +50,7 @@ import EventDetailPage from './pages/EventDetailPage';
 import EventRegistrationPage from './pages/EventRegistrationPage';
 import TrailDetailPage from './pages/TrailDetailPage';
 import EmailSupportPage from './pages/EmailSupportPage';
+import PhoneSupportPage from './pages/PhoneSupportPage';
 
 function App() {
   return (
@@ -104,6 +105,7 @@ function App() {
             <Route path="/dog-management-guide" element={<DogProfileManagementGuide />} />
             <Route path="/premium-features-guide" element={<PremiumFeaturesGuide />} />
             <Route path="/sync-troubleshooting" element={<SyncTroubleshootingGuide />} />
+            <Route path="/phone-support" element={<PhoneSupportPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BottomNavigation />

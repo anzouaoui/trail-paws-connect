@@ -96,6 +96,7 @@ const HelpSupportPage = () => {
             icon={<Phone className="h-5 w-5" />}
             title="Support Téléphonique"
             description="Lun-Ven 9h-18h : +33 1 23 45 67 89"
+            onClick={() => navigate("/phone-support")}
           />
         </div>
 
