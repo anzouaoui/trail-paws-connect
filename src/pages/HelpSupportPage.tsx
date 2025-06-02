@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, HelpCircle, MessageSquare, Mail, Phone, FileText, ExternalLink } from "lucide-react";
@@ -110,6 +111,7 @@ const HelpSupportPage = () => {
             icon={<ExternalLink className="h-5 w-5" />}
             title="Guide de Démarrage"
             description="Tout ce qu'il faut savoir pour bien commencer"
+            onClick={() => navigate("/tracking-guide")}
           />
           
           <SettingsSection
