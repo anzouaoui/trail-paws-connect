@@ -5,6 +5,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Heart, MessageSquare, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
+import PostComments from "./PostComments";
+
+interface Comment {
+  id: string;
+  userId: string;
+  userName: string;
+  userAvatar: string;
+  content: string;
+  timestamp: string;
+}
 
 interface Post {
   id: string;
@@ -20,26 +31,39 @@ interface Post {
   likes: number;
   comments: number;
   isLiked: boolean;
+  postComments: Comment[];
 }
 
 interface PostCardProps {
   post: Post;
   onLike: () => void;
   onComment: () => void;
+  onAddComment: (postId: string, content: string) => void;
 }
 
-const PostCard = ({ post, onLike, onComment }: PostCardProps) => {
+const PostCard = ({ post, onLike, onComment, onAddComment }: PostCardProps) => {
+  const navigate = useNavigate();
+
+  const handleUserClick = () => {
+    navigate(`/user-profile/${post.userId}`);
+  };
+
   return (
     <Card className="p-4">
       <div className="flex items-start space-x-3 mb-3">
-        <Avatar>
+        <Avatar className="cursor-pointer" onClick={handleUserClick}>
           <AvatarImage src={post.userAvatar} alt={post.userName} />
           <AvatarFallback className="bg-forest text-white">
             {post.userName.split(' ').map(n => n[0]).join('')}
           </AvatarFallback>
         </Avatar>
         <div>
-          <h3 className="font-semibold">{post.userName}</h3>
+          <h3 
+            className="font-semibold cursor-pointer hover:underline" 
+            onClick={handleUserClick}
+          >
+            {post.userName}
+          </h3>
           <p className="text-xs text-muted-foreground flex items-center">
             {post.date}
             {post.location && (
@@ -95,6 +119,15 @@ const PostCard = ({ post, onLike, onComment }: PostCardProps) => {
           <MessageSquare className="h-4 w-4" /> 
           {post.comments}
         </Button>
+      </div>
+
+      {/* Section des commentaires */}
+      <div className="mt-3 pt-3 border-t">
+        <PostComments 
+          postId={post.id}
+          comments={post.postComments}
+          onAddComment={onAddComment}
+        />
       </div>
     </Card>
   );

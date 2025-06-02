@@ -31,6 +31,7 @@ import AdvancedAnalyticsPage from './pages/AdvancedAnalyticsPage';
 import CompareActivitiesPage from './pages/CompareActivitiesPage';
 import DeviceIntegrationPage from './pages/DeviceIntegrationPage';
 import AddDevicePage from './pages/AddDevicePage';
+import UserProfilePage from './pages/UserProfilePage';
 import NotFound from './pages/NotFound';
 import Index from './pages/Index';
 import './App.css';
@@ -65,6 +66,7 @@ function App() {
           <Route path="/health-alerts" element={<HealthAlertsPage />} />
           <Route path="/runner-profile" element={<RunnerProfilePage />} />
           <Route path="/post/:id" element={<PostDetailPage />} />
+          <Route path="/user-profile/:id" element={<UserProfilePage />} />
           <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/analytics" element={<AdvancedAnalyticsPage />} />
           <Route path="/compare" element={<CompareActivitiesPage />} />

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import ActivityCard from "@/components/ActivityCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,6 +11,7 @@ import ActivityRecommendations from "@/components/ActivityRecommendations";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  
   // Données d'exemple
   const recentActivities = [
     {
@@ -55,7 +55,7 @@ const HomePage = () => {
     }
   ];
 
-  // Données d'exemple des posts
+  // Données d'exemple des posts avec commentaires
   const [posts, setPosts] = useState([
     {
       id: "1",
@@ -69,8 +69,26 @@ const HomePage = () => {
       location: "Sentier de Forest Hills",
       date: "2025-05-22",
       likes: 24,
-      comments: 8,
-      isLiked: false
+      comments: 2,
+      isLiked: false,
+      postComments: [
+        {
+          id: "c1",
+          userId: "user3",
+          userName: "Emma Wilson",
+          userAvatar: "https://images.unsplash.com/photo-1582562124811-c09040d0a901",
+          content: "Génial ! Combien de temps avez-vous mis ?",
+          timestamp: "il y a 2h"
+        },
+        {
+          id: "c2",
+          userId: "user2",
+          userName: "Mike Roberts",
+          userAvatar: "",
+          content: "Bravo ! Quel sentier avez-vous pris ?",
+          timestamp: "il y a 1h"
+        }
+      ]
     },
     {
       id: "2",
@@ -84,8 +102,18 @@ const HomePage = () => {
       location: "Crête de Blue Mountain",
       date: "2025-05-21",
       likes: 18,
-      comments: 5,
-      isLiked: true
+      comments: 1,
+      isLiked: true,
+      postComments: [
+        {
+          id: "c3",
+          userId: "user1",
+          userName: "Sarah Johnson",
+          userAvatar: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9",
+          content: "Magnifique ! Luna a l'air ravie 🐕",
+          timestamp: "il y a 3h"
+        }
+      ]
     },
     {
       id: "3",
@@ -99,8 +127,9 @@ const HomePage = () => {
       location: "Parc du Lac",
       date: "2025-05-20",
       likes: 32,
-      comments: 12,
-      isLiked: false
+      comments: 0,
+      isLiked: false,
+      postComments: []
     }
   ]);
 
@@ -133,6 +162,28 @@ const HomePage = () => {
 
   const handlePostComment = (postId: string) => {
     navigate(`/post/${postId}`);
+  };
+
+  const handleAddComment = (postId: string, content: string) => {
+    const newComment = {
+      id: `c${Date.now()}`,
+      userId: "currentUser",
+      userName: "John Doe",
+      userAvatar: "",
+      content: content,
+      timestamp: "à l'instant"
+    };
+
+    setPosts(posts.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          comments: post.comments + 1,
+          postComments: [...post.postComments, newComment]
+        };
+      }
+      return post;
+    }));
   };
 
   const filteredPosts = () => {
@@ -253,6 +304,7 @@ const HomePage = () => {
                   post={post}
                   onLike={() => handlePostLike(post.id)}
                   onComment={() => handlePostComment(post.id)}
+                  onAddComment={handleAddComment}
                 />
               ))}
             </div>
