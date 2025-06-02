@@ -62,6 +62,7 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/onboarding" element={<OnboardingPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/privacy-security" element={<PrivacySecurityPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/notification-settings" element={<NotificationSettingsPage />} />
             <Route path="/messages" element={<MessagesPage />} />
