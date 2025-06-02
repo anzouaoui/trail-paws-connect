@@ -225,7 +225,7 @@ const SyncTroubleshootingGuide = () => {
                 <div className="bg-forest text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5">4</div>
                 <div>
                   <p className="font-medium">Vérifiez les appareils connectés</p>
-                  <p className="text-sm text-muted-foreground">Allez dans Paramètres > Appareils connectés</p>
+                  <p className="text-sm text-muted-foreground">Allez dans Paramètres &gt; Appareils connectés</p>
                 </div>
               </div>
               
