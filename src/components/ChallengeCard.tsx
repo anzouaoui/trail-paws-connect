@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -47,8 +48,12 @@ const ChallengeCard = ({ challenge, onRegister }: ChallengeCardProps) => {
     navigate(`/challenge/${challenge.id}/register`);
   };
 
+  const handleCardClick = () => {
+    navigate(`/challenge/${challenge.id}`);
+  };
+
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden cursor-pointer" onClick={handleCardClick}>
       <div className="bg-gradient-to-r from-forest to-forest-dark text-white p-4">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-lg font-semibold">{challenge.title}</h3>
@@ -132,6 +137,7 @@ const ChallengeCard = ({ challenge, onRegister }: ChallengeCardProps) => {
               variant="outline" 
               className="w-full"
               disabled
+              onClick={(e) => e.stopPropagation()}
             >
               Déjà inscrit
             </Button>
@@ -140,6 +146,7 @@ const ChallengeCard = ({ challenge, onRegister }: ChallengeCardProps) => {
               variant="outline" 
               className="w-full"
               disabled
+              onClick={(e) => e.stopPropagation()}
             >
               Inscriptions fermées
             </Button>
@@ -148,13 +155,17 @@ const ChallengeCard = ({ challenge, onRegister }: ChallengeCardProps) => {
               variant="outline" 
               className="w-full"
               disabled
+              onClick={(e) => e.stopPropagation()}
             >
               Complet
             </Button>
           ) : (
             <Button 
               className="w-full bg-forest text-white hover:bg-forest-dark"
-              onClick={handleRegisterClick}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleRegisterClick();
+              }}
             >
               S'inscrire maintenant
             </Button>

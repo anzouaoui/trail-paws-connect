@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -32,6 +33,7 @@ import DeviceIntegrationPage from './pages/DeviceIntegrationPage';
 import AddDevicePage from './pages/AddDevicePage';
 import UserProfilePage from './pages/UserProfilePage';
 import ChallengeRegistrationPage from './pages/ChallengeRegistrationPage';
+import ChallengeDetailPage from './pages/ChallengeDetailPage';
 import NotFound from './pages/NotFound';
 import Index from './pages/Index';
 import './App.css';
@@ -75,6 +77,7 @@ function App() {
           <Route path="/compare" element={<CompareActivitiesPage />} />
           <Route path="/devices" element={<DeviceIntegrationPage />} />
           <Route path="/devices/add" element={<AddDevicePage />} />
+          <Route path="/challenge/:id" element={<ChallengeDetailPage />} />
           <Route path="/challenge/:id/register" element={<ChallengeRegistrationPage />} />
           <Route path="/event/:id" element={<EventDetailPage />} />
           <Route path="/event/:id/register" element={<EventRegistrationPage />} />
