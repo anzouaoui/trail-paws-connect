@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -40,6 +41,7 @@ import PrivacySecurityPage from './pages/PrivacySecurityPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import HelpSupportPage from './pages/HelpSupportPage';
+import LiveChatPage from './pages/LiveChatPage';
 import TrackingStartGuide from './pages/TrackingStartGuide';
 import DogProfileManagementGuide from './pages/DogProfileManagementGuide';
 import PremiumFeaturesGuide from './pages/PremiumFeaturesGuide';

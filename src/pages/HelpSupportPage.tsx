@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, HelpCircle, MessageSquare, Mail, Phone, FileText, ExternalLink } from "lucide-react";
@@ -82,6 +83,7 @@ const HelpSupportPage = () => {
             icon={<MessageSquare className="h-5 w-5" />}
             title="Chat en Direct"
             description="Assistance immédiate avec notre équipe support"
+            onClick={() => navigate("/live-chat")}
           />
           
           <SettingsSection
