@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import ActivityCard from "@/components/ActivityCard";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Search, Bell, Filter, Users, MapPin } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Filter } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import PostCard from "@/components/PostCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ActivityRecommendations from "@/components/ActivityRecommendations";
-import ChallengeCard from "@/components/ChallengeCard";
+import UserHeader from "@/components/UserHeader";
+import FeedFilters from "@/components/FeedFilters";
+import ChallengesList from "@/components/ChallengesList";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -195,13 +195,10 @@ const HomePage = () => {
     }
   ]);
 
-  // Nombre de notifications non lues (simulation)
+  // États et variables d'état
   const [unreadNotifications] = useState<number>(4);
   const [unreadFriendRequests] = useState<number>(2);
-  
-  // État pour le filtre du feed
   const [feedFilter, setFeedFilter] = useState<string>("all");
-  // Statut premium simulé - Dans une vraie app, cela viendrait du contexte d'auth
   const [isPremiumUser] = useState<boolean>(true);
 
   const handleActivityClick = (id: string) => {
@@ -250,7 +247,6 @@ const HomePage = () => {
 
   const handleChallengeRegister = (challengeId: string) => {
     console.log(`Inscription au défi ${challengeId}`);
-    // Ici on pourrait ouvrir une modale d'inscription ou rediriger vers une page dédiée
   };
 
   const filteredPosts = () => {
@@ -271,74 +267,19 @@ const HomePage = () => {
   return (
     <div className="pb-24">
       <header className="px-4 pt-4 pb-2">
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center">
-            <Avatar className="h-10 w-10 mr-3">
-              <AvatarImage src="" alt="Utilisateur" />
-              <AvatarFallback className="bg-forest text-white">JD</AvatarFallback>
-            </Avatar>
-            <div>
-              <h1 className="text-lg font-semibold">Salut, John!</h1>
-              <p className="text-sm text-muted-foreground">Prêt pour une nouvelle aventure ?</p>
-            </div>
-          </div>
-          <div className="flex space-x-1">
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <Search className="h-5 w-5" />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="rounded-full relative"
-              onClick={() => navigate('/friend-requests')}
-            >
-              <Users className="h-5 w-5" />
-              {unreadFriendRequests > 0 && (
-                <Badge 
-                  variant="destructive" 
-                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
-                >
-                  {unreadFriendRequests}
-                </Badge>
-              )}
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="rounded-full relative"
-              onClick={() => navigate('/notifications')}
-            >
-              <Bell className="h-5 w-5" />
-              {unreadNotifications > 0 && (
-                <Badge 
-                  variant="destructive" 
-                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
-                >
-                  {unreadNotifications > 9 ? '9+' : unreadNotifications}
-                </Badge>
-              )}
-            </Button>
-          </div>
-        </div>
+        <UserHeader 
+          unreadNotifications={unreadNotifications}
+          unreadFriendRequests={unreadFriendRequests}
+        />
 
-        {/* Section Recommandations IA */}
         <section className="mb-6">
           <ActivityRecommendations isPremium={isPremiumUser} />
         </section>
 
-        {/* Section Défis à Venir */}
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-4">Défis à Venir</h2>
-          <div className="space-y-4">
-            {challenges.map(challenge => (
-              <ChallengeCard 
-                key={challenge.id}
-                challenge={challenge}
-                onRegister={handleChallengeRegister}
-              />
-            ))}
-          </div>
-        </section>
+        <ChallengesList 
+          challenges={challenges}
+          onChallengeRegister={handleChallengeRegister}
+        />
 
         <Tabs defaultValue="feed" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-4">
@@ -347,36 +288,10 @@ const HomePage = () => {
           </TabsList>
           
           <TabsContent value="feed">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Fil d'Activité</h2>
-              <div className="flex space-x-1">
-                <Button 
-                  variant={feedFilter === "friends" ? "default" : "outline"} 
-                  size="sm" 
-                  onClick={() => setFeedFilter("friends")}
-                  className="text-xs px-2"
-                >
-                  Amis
-                </Button>
-                <Button 
-                  variant={feedFilter === "nearby" ? "default" : "outline"} 
-                  size="sm" 
-                  onClick={() => setFeedFilter("nearby")}
-                  className="text-xs px-2"
-                >
-                  <MapPin className="h-3 w-3 mr-1" /> Proche
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="flex items-center"
-                  onClick={() => setFeedFilter(feedFilter === "all" ? "canicross" : feedFilter === "canicross" ? "hiking" : "all")}
-                >
-                  <Filter className="h-4 w-4 mr-1" />
-                  {feedFilter === "all" ? "Tout" : feedFilter === "canicross" ? "Canicross" : feedFilter === "hiking" ? "Rando" : "Filtre"}
-                </Button>
-              </div>
-            </div>
+            <FeedFilters 
+              feedFilter={feedFilter}
+              setFeedFilter={setFeedFilter}
+            />
             
             <div className="space-y-4">
               {filteredPosts().map(post => (
