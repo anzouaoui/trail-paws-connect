@@ -19,9 +19,15 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import SettingsSection from "@/components/SettingsSection";
 import { Switch } from "@/components/ui/switch";
+import { useAuth } from "@/hooks/useAuth";
 
 const SettingsPage = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <div className="pb-24">
@@ -144,6 +150,7 @@ const SettingsPage = () => {
           <Button
             variant="ghost"
             className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
+            onClick={handleLogout}
           >
             <LogOut className="h-5 w-5 mr-3" />
             Se Déconnecter
