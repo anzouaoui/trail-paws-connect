@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -33,6 +32,7 @@ import DeviceIntegrationPage from './pages/DeviceIntegrationPage';
 import NotFound from './pages/NotFound';
 import Index from './pages/Index';
 import './App.css';
+import AddDevicePage from './pages/AddDevicePage';
 
 function App() {
   return (

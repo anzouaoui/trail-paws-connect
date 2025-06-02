@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
@@ -248,7 +247,6 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, onToggle }) => {
 
 const DeviceIntegrationPage = () => {
   const navigate = useNavigate();
-  const [showAddDeviceDialog, setShowAddDeviceDialog] = useState(false);
   const [localHumanDevices, setLocalHumanDevices] = useState(humanDevices);
   const [localDogDevices, setLocalDogDevices] = useState(dogDevices);
   
@@ -293,7 +291,7 @@ const DeviceIntegrationPage = () => {
           <div className="flex-1"></div>
           <Button 
             variant="outline" 
-            onClick={() => setShowAddDeviceDialog(true)}
+            onClick={() => navigate('/devices/add')}
           >
             <Plus className="h-4 w-4 mr-2" />
             Add Device
@@ -302,13 +300,19 @@ const DeviceIntegrationPage = () => {
       </div>
 
       <div className="p-4">
+        
+        
         <Tabs defaultValue="dog" className="w-full">
+          
+          
           <TabsList className="grid w-full grid-cols-2 mb-4">
             <TabsTrigger value="dog">Dog Devices</TabsTrigger>
             <TabsTrigger value="human">Your Devices</TabsTrigger>
           </TabsList>
           
           <TabsContent value="dog" className="space-y-4">
+            
+            
             <Card className="mb-4">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">Dog Device Settings</CardTitle>
@@ -361,7 +365,7 @@ const DeviceIntegrationPage = () => {
                   </p>
                   <Button 
                     variant="outline" 
-                    onClick={() => setShowAddDeviceDialog(true)}
+                    onClick={() => navigate('/devices/add')}
                   >
                     <Plus className="h-4 w-4 mr-2" />
                     Add Dog Device
@@ -373,7 +377,7 @@ const DeviceIntegrationPage = () => {
                 <Button 
                   variant="outline" 
                   className="w-full mt-4 border-dashed"
-                  onClick={() => setShowAddDeviceDialog(true)}
+                  onClick={() => navigate('/devices/add')}
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Another Device
@@ -383,6 +387,8 @@ const DeviceIntegrationPage = () => {
           </TabsContent>
           
           <TabsContent value="human" className="space-y-4">
+            
+            
             <Card className="mb-4">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">Your Device Settings</CardTitle>
@@ -435,7 +441,7 @@ const DeviceIntegrationPage = () => {
                   </p>
                   <Button 
                     variant="outline" 
-                    onClick={() => setShowAddDeviceDialog(true)}
+                    onClick={() => navigate('/devices/add')}
                   >
                     <Plus className="h-4 w-4 mr-2" />
                     Add Your Device
@@ -447,99 +453,19 @@ const DeviceIntegrationPage = () => {
                 <Button 
                   variant="outline" 
                   className="w-full mt-4 border-dashed"
-                  onClick={() => setShowAddDeviceDialog(true)}
+                  onClick={() => navigate('/devices/add')}
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Another Device
                 </Button>
-              )}
+                )}
             </div>
           </TabsContent>
         </Tabs>
       </div>
       
       {/* Add Device Dialog */}
-      <Dialog open={showAddDeviceDialog} onOpenChange={setShowAddDeviceDialog}>
-        <DialogContent className="sm:max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle>Add New Device</DialogTitle>
-            <DialogDescription>
-              Connect a new wearable or GPS tracking device
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="py-4">
-            <Tabs defaultValue="device" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-4">
-                <TabsTrigger value="device">Select Device</TabsTrigger>
-                <TabsTrigger value="scan">Scan for Device</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="device" className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
-                  {availableDevices.map((device) => (
-                    <Card 
-                      key={device.id} 
-                      className="cursor-pointer hover:border-primary transition-colors"
-                      onClick={() => {
-                        // In a real app, this would open a device-specific connection flow
-                        // Here we'll just close the dialog
-                        setShowAddDeviceDialog(false);
-                      }}
-                    >
-                      <CardContent className="p-3 flex flex-col items-center text-center">
-                        <Avatar className="h-16 w-16 mb-2 mt-2">
-                          <AvatarImage src={device.image} alt={device.name} className="object-cover" />
-                          <AvatarFallback>
-                            {device.type === "watch" ? (
-                              <Watch className="h-6 w-6" />
-                            ) : (
-                              <Wifi className="h-6 w-6" />
-                            )}
-                          </AvatarFallback>
-                        </Avatar>
-                        <h3 className="font-medium">{device.name}</h3>
-                        <p className="text-xs text-muted-foreground">{device.brand}</p>
-                        <Badge 
-                          variant="outline" 
-                          className="mt-2"
-                        >
-                          {device.type === "dog_tracker" ? "Dog Tracker" : "Wearable"}
-                        </Badge>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-                
-                <Button 
-                  variant="outline" 
-                  className="w-full"
-                  onClick={() => {
-                    setShowAddDeviceDialog(false);
-                  }}
-                >
-                  Don't see your device? Add manually
-                </Button>
-              </TabsContent>
-              
-              <TabsContent value="scan" className="space-y-4">
-                <div className="text-center py-10">
-                  <div className="animate-pulse mb-4">
-                    <Wifi className="h-12 w-12 mx-auto text-forest" />
-                  </div>
-                  <h3 className="font-medium mb-2">Scanning for Devices...</h3>
-                  <p className="text-sm text-muted-foreground mb-6 max-w-xs mx-auto">
-                    Make sure your device is in pairing mode and nearby
-                  </p>
-                  <Button variant="outline" onClick={() => setShowAddDeviceDialog(false)}>
-                    Cancel
-                  </Button>
-                </div>
-              </TabsContent>
-            </Tabs>
-          </div>
-        </DialogContent>
-      </Dialog>
+      
     </div>
   );
 };
