@@ -20,7 +20,7 @@ interface ActivityFormData {
 }
 
 interface ActivityNotesFormProps {
-  form: UseFormReturn<ActivityFormData>;
+  form: UseFormReturn<ActivityFormData, any, undefined>;
 }
 
 const ActivityNotesForm = ({ form }: ActivityNotesFormProps) => {

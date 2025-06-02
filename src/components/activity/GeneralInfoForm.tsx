@@ -34,7 +34,7 @@ interface Activity {
 }
 
 interface GeneralInfoFormProps {
-  form: UseFormReturn<ActivityFormData>;
+  form: UseFormReturn<ActivityFormData, any, undefined>;
   activity: Activity;
 }
 
