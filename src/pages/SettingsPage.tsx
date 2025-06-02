@@ -120,6 +120,7 @@ const SettingsPage = () => {
             icon={<Shield className="h-5 w-5" />}
             title="Confidentialité et Sécurité"
             description="Gérez vos paramètres de confidentialité et sécurité"
+            onClick={() => navigate("/privacy-security")}
           />
           
           <SettingsSection

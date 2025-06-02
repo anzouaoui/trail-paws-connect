@@ -37,6 +37,7 @@ import ChallengeRegistrationPage from './pages/ChallengeRegistrationPage';
 import ChallengeDetailPage from './pages/ChallengeDetailPage';
 import NotFound from './pages/NotFound';
 import Index from './pages/Index';
+import PrivacySecurityPage from './pages/PrivacySecurityPage';
 import './App.css';
 import EventDetailPage from './pages/EventDetailPage';
 import EventRegistrationPage from './pages/EventRegistrationPage';
