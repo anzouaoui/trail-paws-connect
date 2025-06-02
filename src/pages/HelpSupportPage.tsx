@@ -48,6 +48,7 @@ const HelpSupportPage = () => {
             icon={<FileText className="h-5 w-5" />}
             title="Comment démarrer le tracking ?"
             description="Guide pour commencer à tracker vos activités avec votre chien"
+            onClick={() => navigate("/tracking-guide")}
           />
           
           <SettingsSection

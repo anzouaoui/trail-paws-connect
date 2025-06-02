@@ -41,6 +41,7 @@ import PrivacySecurityPage from './pages/PrivacySecurityPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import HelpSupportPage from './pages/HelpSupportPage';
+import TrackingStartGuide from './pages/TrackingStartGuide';
 import './App.css';
 import EventDetailPage from './pages/EventDetailPage';
 import EventRegistrationPage from './pages/EventRegistrationPage';
@@ -93,6 +94,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
             <Route path="/help-support" element={<HelpSupportPage />} />
+            <Route path="/tracking-guide" element={<TrackingStartGuide />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BottomNavigation />
