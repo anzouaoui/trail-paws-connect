@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, HelpCircle, MessageSquare, Mail, Phone, FileText, ExternalLink } from "lucide-react";
@@ -90,6 +89,7 @@ const HelpSupportPage = () => {
             icon={<Mail className="h-5 w-5" />}
             title="Email Support"
             description="support@dogrunner.app - Réponse sous 24h"
+            onClick={() => navigate("/email-support")}
           />
           
           <SettingsSection

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -50,6 +49,7 @@ import './App.css';
 import EventDetailPage from './pages/EventDetailPage';
 import EventRegistrationPage from './pages/EventRegistrationPage';
 import TrailDetailPage from './pages/TrailDetailPage';
+import EmailSupportPage from './pages/EmailSupportPage';
 
 function App() {
   return (
@@ -99,6 +99,7 @@ function App() {
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
             <Route path="/help-support" element={<HelpSupportPage />} />
             <Route path="/live-chat" element={<LiveChatPage />} />
+            <Route path="/email-support" element={<EmailSupportPage />} />
             <Route path="/tracking-guide" element={<TrackingStartGuide />} />
             <Route path="/dog-management-guide" element={<DogProfileManagementGuide />} />
             <Route path="/premium-features-guide" element={<PremiumFeaturesGuide />} />
