@@ -42,6 +42,7 @@ import TermsOfServicePage from './pages/TermsOfServicePage';
 import HelpSupportPage from './pages/HelpSupportPage';
 import TrackingStartGuide from './pages/TrackingStartGuide';
 import DogProfileManagementGuide from './pages/DogProfileManagementGuide';
+import PremiumFeaturesGuide from './pages/PremiumFeaturesGuide';
 import './App.css';
 import EventDetailPage from './pages/EventDetailPage';
 import EventRegistrationPage from './pages/EventRegistrationPage';
@@ -96,6 +97,7 @@ function App() {
             <Route path="/help-support" element={<HelpSupportPage />} />
             <Route path="/tracking-guide" element={<TrackingStartGuide />} />
             <Route path="/dog-management-guide" element={<DogProfileManagementGuide />} />
+            <Route path="/premium-features-guide" element={<PremiumFeaturesGuide />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BottomNavigation />

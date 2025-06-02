@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, HelpCircle, MessageSquare, Mail, Phone, FileText, ExternalLink } from "lucide-react";
@@ -62,6 +61,7 @@ const HelpSupportPage = () => {
             icon={<FileText className="h-5 w-5" />}
             title="Fonctionnalités Premium"
             description="Découvrez tous les avantages de l'abonnement Premium"
+            onClick={() => navigate("/premium-features-guide")}
           />
           
           <SettingsSection
