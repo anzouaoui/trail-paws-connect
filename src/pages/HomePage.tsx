@@ -200,7 +200,6 @@ const HomePage = () => {
   const [unreadFriendRequests] = useState<number>(2);
   const [feedFilter, setFeedFilter] = useState<string>("all");
   const [isPremiumUser] = useState<boolean>(true);
-  const [showChallenges, setShowChallenges] = useState<boolean>(false);
 
   const handleActivityClick = (id: string) => {
     console.log(`Activité cliquée ${id}`);
@@ -277,12 +276,10 @@ const HomePage = () => {
           <ActivityRecommendations isPremium={isPremiumUser} />
         </section>
 
-        {showChallenges && (
-          <ChallengesList 
-            challenges={challenges}
-            onChallengeRegister={handleChallengeRegister}
-          />
-        )}
+        <ChallengesList 
+          challenges={challenges}
+          onChallengeRegister={handleChallengeRegister}
+        />
 
         <Tabs defaultValue="feed" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-4">
@@ -338,13 +335,8 @@ const HomePage = () => {
           <p className="text-sm opacity-90 mb-3">Complétez 50km dans les 14 prochains jours</p>
           <div className="flex justify-between items-center">
             <span className="text-sm">23 participants</span>
-            <Button 
-              size="sm" 
-              variant="secondary" 
-              className="bg-white text-forest hover:bg-gray-100"
-              onClick={() => setShowChallenges(!showChallenges)}
-            >
-              {showChallenges ? "Masquer" : "Rejoindre"}
+            <Button size="sm" variant="secondary" className="bg-white text-forest hover:bg-gray-100">
+              Rejoindre
             </Button>
           </div>
         </div>
