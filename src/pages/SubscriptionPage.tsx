@@ -14,8 +14,8 @@ const SubscriptionPage = () => {
   const handleSubscribe = () => {
     // This would connect to a payment processor in a real application
     toast({
-      title: "Subscription started",
-      description: "You would be directed to payment processing in a real app.",
+      title: "Abonnement commencé",
+      description: "Vous seriez redirigé vers le processus de paiement dans une vraie application.",
       duration: 3000,
     });
   };
@@ -23,43 +23,43 @@ const SubscriptionPage = () => {
   const features = [
     {
       icon: <ChartBar className="h-5 w-5 text-forest" />,
-      name: "Advanced Analytics",
-      description: "Interactive charts for speed, elevation, and cadence tracking"
+      name: "Analyses Avancées",
+      description: "Graphiques interactifs pour le suivi de la vitesse, de l'altitude et de la cadence"
     },
     {
       icon: <BarChart3 className="h-5 w-5 text-forest" />,
-      name: "Activity Comparison",
-      description: "Compare multiple activities side by side with detailed metrics"
+      name: "Comparaison d'Activités",
+      description: "Comparez plusieurs activités côte à côte avec des métriques détaillées"
     },
     {
       icon: <Heart className="h-5 w-5 text-forest" />,
-      name: "Dog Health Alerts",
-      description: "Veterinary reminders and heart rate threshold monitoring"
+      name: "Alertes Santé Chien",
+      description: "Rappels vétérinaires et surveillance des seuils de fréquence cardiaque"
     },
     {
       icon: <Smartphone className="h-5 w-5 text-forest" />,
-      name: "Device Integration",
-      description: "Connect with smartwatches and GPS trackers for dogs"
+      name: "Intégration d'Appareils",
+      description: "Connectez-vous avec des montres connectées et des trackers GPS pour chiens"
     },
     {
       icon: <Activity className="h-5 w-5 text-forest" />,
-      name: "Health Insights",
-      description: "Long-term health trend analysis for you and your dogs"
+      name: "Insights Santé",
+      description: "Analyse des tendances de santé à long terme pour vous et vos chiens"
     },
     {
       icon: <Timer className="h-5 w-5 text-forest" />,
-      name: "Training Programs",
-      description: "Access to premium training routines and plans"
+      name: "Programmes d'Entraînement",
+      description: "Accès aux routines et plans d'entraînement premium"
     },
     {
       icon: <Shield className="h-5 w-5 text-forest" />,
-      name: "Priority Support",
-      description: "Get answers and assistance quickly when you need it"
+      name: "Support Prioritaire",
+      description: "Obtenez des réponses et de l'aide rapidement quand vous en avez besoin"
     },
     {
       icon: <Zap className="h-5 w-5 text-forest" />,
-      name: "Early Access",
-      description: "Be the first to try new features and improvements"
+      name: "Accès Anticipé",
+      description: "Soyez le premier à essayer les nouvelles fonctionnalités et améliorations"
     }
   ];
 
@@ -76,30 +76,30 @@ const SubscriptionPage = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-xl font-bold">Premium Subscription</h1>
+          <h1 className="text-xl font-bold">Abonnement Premium</h1>
         </div>
       </div>
 
       <div className="p-4 max-w-2xl mx-auto">
         {/* Hero section */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-2">Unlock Premium Features</h2>
+          <h2 className="text-2xl font-bold mb-2">Débloquez les Fonctionnalités Premium</h2>
           <p className="text-muted-foreground">
-            Take your running experience with your dogs to the next level
+            Portez votre expérience de course avec vos chiens au niveau supérieur
           </p>
         </div>
 
         {/* Main subscription card */}
         <Card className="mb-6 border-2 border-primary shadow-lg">
           <CardHeader className="pb-3 text-center bg-primary/5 border-b border-primary/20">
-            <CardTitle className="text-2xl text-primary">Premium Plan</CardTitle>
-            <CardDescription>All the advanced features you need</CardDescription>
+            <CardTitle className="text-2xl text-primary">Plan Premium</CardTitle>
+            <CardDescription>Toutes les fonctionnalités avancées dont vous avez besoin</CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
             <div className="text-center mb-6">
               <div className="inline-flex items-baseline">
-                <span className="text-4xl font-bold">€6.99</span>
-                <span className="text-lg text-muted-foreground ml-1">/month</span>
+                <span className="text-4xl font-bold">6,99 €</span>
+                <span className="text-lg text-muted-foreground ml-1">/mois</span>
               </div>
             </div>
             
@@ -124,7 +124,7 @@ const SubscriptionPage = () => {
               className="w-full py-6 text-lg shadow-md hover:shadow-lg transition-all"
               onClick={handleSubscribe}
             >
-              Subscribe Now
+              S'abonner Maintenant
             </Button>
           </CardFooter>
         </Card>
@@ -134,16 +134,16 @@ const SubscriptionPage = () => {
           <div className="bg-muted/30 p-4 rounded-lg">
             <h3 className="font-semibold mb-2 flex items-center">
               <Check className="h-5 w-5 mr-2 text-primary" />
-              Advanced Analytics
+              Analyses Avancées
             </h3>
             <p className="text-sm text-muted-foreground">
-              Track your performance with detailed charts and visualizations. Analyze your speed, 
-              elevation, cadence, and more to optimize your training.
+              Suivez vos performances avec des graphiques et visualisations détaillés. Analysez votre vitesse, 
+              altitude, cadence et plus pour optimiser votre entraînement.
             </p>
             <div className="mt-3 bg-white p-2 rounded border">
               <img 
-                src="https://placehold.co/600x300/e6f7ff/0066cc?text=Analytics+Charts+Preview" 
-                alt="Analytics Preview" 
+                src="https://placehold.co/600x300/e6f7ff/0066cc?text=Aperçu+Graphiques+Analytics" 
+                alt="Aperçu Analytics" 
                 className="w-full h-auto rounded"
               />
             </div>
@@ -152,16 +152,16 @@ const SubscriptionPage = () => {
           <div className="bg-muted/30 p-4 rounded-lg">
             <h3 className="font-semibold mb-2 flex items-center">
               <Check className="h-5 w-5 mr-2 text-primary" />
-              Dog Health Monitoring
+              Surveillance Santé Chien
             </h3>
             <p className="text-sm text-muted-foreground">
-              Receive health alerts, track heart rate patterns, and get veterinary reminders. 
-              Keep your dogs in optimal condition for all your adventures together.
+              Recevez des alertes santé, suivez les patterns de fréquence cardiaque et obtenez des rappels vétérinaires. 
+              Gardez vos chiens en condition optimale pour toutes vos aventures ensemble.
             </p>
             <div className="mt-3 bg-white p-2 rounded border">
               <img 
-                src="https://placehold.co/600x300/fff5e6/ff9900?text=Health+Monitoring+Preview" 
-                alt="Health Monitoring Preview" 
+                src="https://placehold.co/600x300/fff5e6/ff9900?text=Aperçu+Surveillance+Santé" 
+                alt="Aperçu Surveillance Santé" 
                 className="w-full h-auto rounded"
               />
             </div>
@@ -171,22 +171,22 @@ const SubscriptionPage = () => {
         {/* FAQs or additional information */}
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle className="text-xl">Frequently Asked Questions</CardTitle>
+            <CardTitle className="text-xl">Questions Fréquemment Posées</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-semibold">Can I cancel anytime?</h4>
-              <p className="text-sm text-muted-foreground">Yes, you can cancel your subscription at any time with no cancellation fees.</p>
+              <h4 className="font-semibold">Puis-je annuler à tout moment ?</h4>
+              <p className="text-sm text-muted-foreground">Oui, vous pouvez annuler votre abonnement à tout moment sans frais d'annulation.</p>
             </div>
             <Separator />
             <div>
-              <h4 className="font-semibold">How do I get started?</h4>
-              <p className="text-sm text-muted-foreground">Click the "Subscribe Now" button, complete the payment process, and immediately get access to all premium features.</p>
+              <h4 className="font-semibold">Comment commencer ?</h4>
+              <p className="text-sm text-muted-foreground">Cliquez sur le bouton "S'abonner Maintenant", complétez le processus de paiement et obtenez immédiatement accès à toutes les fonctionnalités premium.</p>
             </div>
             <Separator />
             <div>
-              <h4 className="font-semibold">What payment methods are accepted?</h4>
-              <p className="text-sm text-muted-foreground">We accept credit/debit cards and PayPal for your convenience.</p>
+              <h4 className="font-semibold">Quels moyens de paiement sont acceptés ?</h4>
+              <p className="text-sm text-muted-foreground">Nous acceptons les cartes de crédit/débit et PayPal pour votre convenance.</p>
             </div>
           </CardContent>
         </Card>
@@ -198,10 +198,10 @@ const SubscriptionPage = () => {
             className="py-6 px-8 text-lg shadow-md hover:shadow-lg transition-all"
             onClick={handleSubscribe}
           >
-            Start Your Premium Experience
+            Commencez Votre Expérience Premium
           </Button>
           <p className="text-sm text-muted-foreground mt-3">
-            No commitment. Cancel anytime.
+            Aucun engagement. Annulez à tout moment.
           </p>
         </div>
       </div>
