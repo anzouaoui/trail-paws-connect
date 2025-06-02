@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -43,6 +42,10 @@ const ChallengeCard = ({ challenge, onRegister }: ChallengeCardProps) => {
 
   const isRegistrationOpen = new Date() < new Date(challenge.registrationDeadline);
   const spotsAvailable = challenge.maxParticipants - challenge.currentParticipants;
+
+  const handleRegisterClick = () => {
+    navigate(`/challenge/${challenge.id}/register`);
+  };
 
   return (
     <Card className="overflow-hidden">
@@ -151,7 +154,7 @@ const ChallengeCard = ({ challenge, onRegister }: ChallengeCardProps) => {
           ) : (
             <Button 
               className="w-full bg-forest text-white hover:bg-forest-dark"
-              onClick={() => onRegister(challenge.id)}
+              onClick={handleRegisterClick}
             >
               S'inscrire maintenant
             </Button>
