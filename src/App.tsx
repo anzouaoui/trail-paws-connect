@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
-import { AuthProvider } from '@/hooks/useAuth';
+import { FirebaseAuthProvider } from '@/hooks/useFirebaseAuth';
 import BottomNavigation from './components/BottomNavigation';
 import HomePage from './pages/HomePage';
 import ExplorePage from './pages/ExplorePage';
@@ -57,7 +57,7 @@ import CommunityPage from './pages/CommunityPage';
 function App() {
   return (
     <Router>
-      <AuthProvider>
+      <FirebaseAuthProvider>
         <div className="min-h-screen bg-background">
           <Routes>
             <Route path="/" element={<Index />} />
@@ -115,7 +115,7 @@ function App() {
           <BottomNavigation />
           <Toaster />
         </div>
-      </AuthProvider>
+      </FirebaseAuthProvider>
     </Router>
   );
 }

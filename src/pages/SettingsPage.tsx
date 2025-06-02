@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -19,11 +18,11 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import SettingsSection from "@/components/SettingsSection";
 import { Switch } from "@/components/ui/switch";
-import { useAuth } from "@/hooks/useAuth";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 
 const SettingsPage = () => {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout } = useFirebaseAuth();
 
   const handleLogout = () => {
     logout();

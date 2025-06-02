@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Facebook, Mail, Lock, User, ArrowRight, UserPlus } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { useAuth } from "@/hooks/useAuth";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 
 const SignupPage = () => {
   const [name, setName] = useState("");
@@ -18,7 +18,7 @@ const SignupPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { signup, socialLogin } = useAuth();
+  const { signup, socialLogin } = useFirebaseAuth();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const SignupPage = () => {
       
       toast({
         title: "Account created!",
-        description: "Welcome to TrailPaws Connect!",
+        description: "Welcome to DogRunner!",
       });
       
       navigate("/home");
@@ -62,7 +62,7 @@ const SignupPage = () => {
       
       toast({
         title: `Signed up with ${provider}!`,
-        description: "Welcome to TrailPaws Connect!",
+        description: "Welcome to DogRunner!",
       });
       
       navigate("/home");
