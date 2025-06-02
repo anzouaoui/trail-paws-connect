@@ -52,6 +52,7 @@ import EventRegistrationPage from './pages/EventRegistrationPage';
 import TrailDetailPage from './pages/TrailDetailPage';
 import EmailSupportPage from './pages/EmailSupportPage';
 import PhoneSupportPage from './pages/PhoneSupportPage';
+import CommunityPage from './pages/CommunityPage';
 
 function App() {
   return (
@@ -108,6 +109,7 @@ function App() {
             <Route path="/sync-troubleshooting" element={<SyncTroubleshootingGuide />} />
             <Route path="/training-tips" element={<TrainingTipsPage />} />
             <Route path="/phone-support" element={<PhoneSupportPage />} />
+            <Route path="/community" element={<CommunityPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BottomNavigation />

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, HelpCircle, MessageSquare, Mail, Phone, FileText, ExternalLink } from "lucide-react";
@@ -125,6 +124,7 @@ const HelpSupportPage = () => {
             icon={<ExternalLink className="h-5 w-5" />}
             title="Communauté DogRunner"
             description="Rejoignez notre communauté sur les réseaux sociaux"
+            onClick={() => navigate("/community")}
           />
         </div>
 
