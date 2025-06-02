@@ -118,6 +118,7 @@ const HelpSupportPage = () => {
             icon={<ExternalLink className="h-5 w-5" />}
             title="Conseils d'Entraînement"
             description="Tips pour améliorer vos performances et celles de votre chien"
+            onClick={() => navigate("/training-tips")}
           />
           
           <SettingsSection
