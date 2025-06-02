@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -29,10 +30,10 @@ import SubscriptionPage from './pages/SubscriptionPage';
 import AdvancedAnalyticsPage from './pages/AdvancedAnalyticsPage';
 import CompareActivitiesPage from './pages/CompareActivitiesPage';
 import DeviceIntegrationPage from './pages/DeviceIntegrationPage';
+import AddDevicePage from './pages/AddDevicePage';
 import NotFound from './pages/NotFound';
 import Index from './pages/Index';
 import './App.css';
-import AddDevicePage from './pages/AddDevicePage';
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
           <Route path="/analytics" element={<AdvancedAnalyticsPage />} />
           <Route path="/compare" element={<CompareActivitiesPage />} />
           <Route path="/devices" element={<DeviceIntegrationPage />} />
+          <Route path="/devices/add" element={<AddDevicePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNavigation />
