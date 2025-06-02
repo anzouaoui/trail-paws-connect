@@ -238,6 +238,10 @@ const ExplorePage = () => {
     navigate(`/event/${eventId}`);
   };
 
+  const handleTrailClick = (trailId: string) => {
+    navigate(`/trail/${trailId}`);
+  };
+
   const difficultyColors = {
     "beginner": "bg-green-100 text-green-800",
     "intermediate": "bg-yellow-100 text-yellow-800",
@@ -350,7 +354,11 @@ const ExplorePage = () => {
         {trails.length > 0 ? (
           <div className="space-y-4">
             {trails.map(trail => (
-              <Card key={trail.id} className="overflow-hidden">
+              <Card 
+                key={trail.id} 
+                className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+                onClick={() => handleTrailClick(trail.id)}
+              >
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start">
                     <div>
