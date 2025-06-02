@@ -98,6 +98,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
             <Route path="/help-support" element={<HelpSupportPage />} />
+            <Route path="/live-chat" element={<LiveChatPage />} />
             <Route path="/tracking-guide" element={<TrackingStartGuide />} />
             <Route path="/dog-management-guide" element={<DogProfileManagementGuide />} />
             <Route path="/premium-features-guide" element={<PremiumFeaturesGuide />} />
