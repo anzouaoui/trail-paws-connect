@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import PostCard from "@/components/PostCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ActivityRecommendations from "@/components/ActivityRecommendations";
+import ChallengeCard from "@/components/ChallengeCard";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -133,6 +134,67 @@ const HomePage = () => {
     }
   ]);
 
+  // Données d'exemple des défis
+  const [challenges] = useState([
+    {
+      id: "1",
+      title: "Défi Trail d'Été",
+      description: "Complétez 50km dans les 14 prochains jours avec votre compagnon canin",
+      startDate: "15 juin 2025",
+      endDate: "29 juin 2025",
+      registrationDeadline: "10 juin 2025",
+      price: 25,
+      currency: "€",
+      maxParticipants: 50,
+      currentParticipants: 23,
+      location: "Région Parisienne",
+      difficulty: "intermédiaire" as const,
+      requiredEquipment: ["Harnais canicross", "Laisse élastique", "Chaussures trail"],
+      rewards: ["Médaille finisher", "Bon d'achat 50€", "Photo souvenir"],
+      activityType: "canicross",
+      organizer: "Club Canicross Paris",
+      isRegistered: false
+    },
+    {
+      id: "2", 
+      title: "Marathon Canin",
+      description: "Défi ultime: 42km en équipe avec votre chien sur 30 jours",
+      startDate: "1 juillet 2025",
+      endDate: "31 juillet 2025", 
+      registrationDeadline: "25 juin 2025",
+      price: 45,
+      currency: "€",
+      maxParticipants: 30,
+      currentParticipants: 18,
+      location: "France entière",
+      difficulty: "expert" as const,
+      requiredEquipment: ["Équipement complet canicross", "GPS", "Trousse premiers secours"],
+      rewards: ["Trophée champion", "Pack premium", "Séance photo pro"],
+      activityType: "canicross",
+      organizer: "Fédération Française Canicross",
+      isRegistered: true
+    },
+    {
+      id: "3",
+      title: "Rando Découverte",
+      description: "Initiez-vous au cani-hiking avec des parcours adaptés",
+      startDate: "20 juin 2025", 
+      endDate: "27 juin 2025",
+      registrationDeadline: "18 juin 2025",
+      price: 0,
+      currency: "€",
+      maxParticipants: 100,
+      currentParticipants: 67,
+      location: "Forêt de Fontainebleau",
+      difficulty: "débutant" as const,
+      requiredEquipment: ["Harnais basique", "Laisse 2m", "Chaussures marche"],
+      rewards: ["Badge numérique", "Guide hiking"],
+      activityType: "cani-hiking",
+      organizer: "Nature & Chiens",
+      isRegistered: false
+    }
+  ]);
+
   // Nombre de notifications non lues (simulation)
   const [unreadNotifications] = useState<number>(4);
   const [unreadFriendRequests] = useState<number>(2);
@@ -184,6 +246,11 @@ const HomePage = () => {
       }
       return post;
     }));
+  };
+
+  const handleChallengeRegister = (challengeId: string) => {
+    console.log(`Inscription au défi ${challengeId}`);
+    // Ici on pourrait ouvrir une modale d'inscription ou rediriger vers une page dédiée
   };
 
   const filteredPosts = () => {
@@ -257,6 +324,20 @@ const HomePage = () => {
         {/* Section Recommandations IA */}
         <section className="mb-6">
           <ActivityRecommendations isPremium={isPremiumUser} />
+        </section>
+
+        {/* Section Défis à Venir */}
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold mb-4">Défis à Venir</h2>
+          <div className="space-y-4">
+            {challenges.map(challenge => (
+              <ChallengeCard 
+                key={challenge.id}
+                challenge={challenge}
+                onRegister={handleChallengeRegister}
+              />
+            ))}
+          </div>
         </section>
 
         <Tabs defaultValue="feed" className="w-full">
