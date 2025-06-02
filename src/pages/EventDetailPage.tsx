@@ -54,6 +54,10 @@ const EventDetailPage = () => {
     "cani-MTB": "bg-sky text-white"
   };
 
+  const handleJoinEvent = () => {
+    navigate(`/event/${id}/register`);
+  };
+
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
@@ -182,7 +186,11 @@ const EventDetailPage = () => {
 
         {/* Boutons d'action */}
         <div className="space-y-3">
-          <Button className="w-full bg-forest text-white hover:bg-forest-dark" size="lg">
+          <Button 
+            className="w-full bg-forest text-white hover:bg-forest-dark" 
+            size="lg"
+            onClick={handleJoinEvent}
+          >
             Rejoindre l'événement
           </Button>
           <div className="grid grid-cols-2 gap-3">
