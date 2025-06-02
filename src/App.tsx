@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -42,6 +41,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import HelpSupportPage from './pages/HelpSupportPage';
 import TrackingStartGuide from './pages/TrackingStartGuide';
+import DogProfileManagementGuide from './pages/DogProfileManagementGuide';
 import './App.css';
 import EventDetailPage from './pages/EventDetailPage';
 import EventRegistrationPage from './pages/EventRegistrationPage';
@@ -95,6 +95,7 @@ function App() {
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
             <Route path="/help-support" element={<HelpSupportPage />} />
             <Route path="/tracking-guide" element={<TrackingStartGuide />} />
+            <Route path="/dog-management-guide" element={<DogProfileManagementGuide />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BottomNavigation />

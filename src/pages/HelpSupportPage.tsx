@@ -55,6 +55,7 @@ const HelpSupportPage = () => {
             icon={<FileText className="h-5 w-5" />}
             title="Gestion des profils de chiens"
             description="Ajouter, modifier et gérer les informations de vos chiens"
+            onClick={() => navigate("/dog-management-guide")}
           />
           
           <SettingsSection
