@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -38,6 +37,8 @@ import ChallengeDetailPage from './pages/ChallengeDetailPage';
 import NotFound from './pages/NotFound';
 import Index from './pages/Index';
 import PrivacySecurityPage from './pages/PrivacySecurityPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 import './App.css';
 import EventDetailPage from './pages/EventDetailPage';
 import EventRegistrationPage from './pages/EventRegistrationPage';
@@ -87,6 +88,8 @@ function App() {
             <Route path="/event/:id" element={<EventDetailPage />} />
             <Route path="/event/:id/register" element={<EventRegistrationPage />} />
             <Route path="/trail/:id" element={<TrailDetailPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BottomNavigation />
