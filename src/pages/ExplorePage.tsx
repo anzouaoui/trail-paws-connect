@@ -7,9 +7,11 @@ import { Badge } from "@/components/ui/badge";
 import { Search, Users, MapPin, Calendar, ArrowUpRight } from "lucide-react";
 import { ActivityType } from "@/components/ActivityCard";
 import ActivityFilters, { FilterOptions } from "@/components/ActivityFilters";
+import TrailMap from "@/components/TrailMap";
 
 const ExplorePage = () => {
   const navigate = useNavigate();
+  const [showMap, setShowMap] = useState(false);
   
   // Sample events data
   const initialEvents = [
@@ -242,6 +244,14 @@ const ExplorePage = () => {
     navigate(`/trail/${trailId}`);
   };
 
+  const handleViewMap = () => {
+    setShowMap(true);
+  };
+
+  const handleCloseMap = () => {
+    setShowMap(false);
+  };
+
   const difficultyColors = {
     "beginner": "bg-green-100 text-green-800",
     "intermediate": "bg-yellow-100 text-yellow-800",
@@ -256,141 +266,152 @@ const ExplorePage = () => {
   };
 
   return (
-    <div className="px-4 py-6 pb-24">
-      <h1 className="text-2xl font-bold mb-4">Explore</h1>
-      
-      <div className="flex space-x-2 mb-4">
-        <Input 
-          placeholder="Search events, trails, or users" 
-          className="border-gray-300"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <Button size="icon" className="bg-forest text-white">
-          <Search className="h-4 w-4" />
-        </Button>
-      </div>
-      
-      <ActivityFilters 
-        filterOptions={filterOptions}
-        setFilterOptions={setFilterOptions}
-        onApplyFilters={applyFilters}
-        resultCount={events.length + trails.length}
-        isPremiumUser={isPremiumUser}
-      />
-      
-      <section className="mb-8">
-        <div className="flex justify-between items-center mb-3">
-          <h2 className="text-xl font-semibold">Upcoming Events</h2>
-          <Button variant="link" className="text-forest">
-            View all
+    <>
+      <div className="px-4 py-6 pb-24">
+        <h1 className="text-2xl font-bold mb-4">Explore</h1>
+        
+        <div className="flex space-x-2 mb-4">
+          <Input 
+            placeholder="Search events, trails, or users" 
+            className="border-gray-300"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <Button size="icon" className="bg-forest text-white">
+            <Search className="h-4 w-4" />
           </Button>
         </div>
         
-        {events.length > 0 ? (
-          <div className="space-y-4">
-            {events.map(event => (
-              <Card 
-                key={event.id} 
-                className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
-                onClick={() => handleEventClick(event.id)}
-              >
-                <div className="border-l-4 border-forest">
+        <ActivityFilters 
+          filterOptions={filterOptions}
+          setFilterOptions={setFilterOptions}
+          onApplyFilters={applyFilters}
+          resultCount={events.length + trails.length}
+          isPremiumUser={isPremiumUser}
+        />
+        
+        <section className="mb-8">
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="text-xl font-semibold">Upcoming Events</h2>
+            <Button variant="link" className="text-forest">
+              View all
+            </Button>
+          </div>
+          
+          {events.length > 0 ? (
+            <div className="space-y-4">
+              {events.map(event => (
+                <Card 
+                  key={event.id} 
+                  className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+                  onClick={() => handleEventClick(event.id)}
+                >
+                  <div className="border-l-4 border-forest">
+                    <CardContent className="p-4">
+                      <div className="flex justify-between">
+                        <h3 className="text-lg font-semibold">{event.title}</h3>
+                        <Badge className={typeColors[event.type]}>
+                          {event.type}
+                        </Badge>
+                      </div>
+                      
+                      <div className="flex items-center text-sm text-muted-foreground mt-2 space-x-4">
+                        <div className="flex items-center">
+                          <Calendar className="h-4 w-4 mr-1" />
+                          <span>{event.date}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <MapPin className="h-4 w-4 mr-1" />
+                          <span>{event.location}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        <Badge className={difficultyColors[event.difficulty as keyof typeof difficultyColors]}>
+                          {event.difficulty}
+                        </Badge>
+                        <Badge variant="outline">{event.eventType}</Badge>
+                      </div>
+                      
+                      <div className="flex justify-between items-center mt-3">
+                        <div className="flex items-center">
+                          <Users className="h-4 w-4 mr-1 text-muted-foreground" />
+                          <span className="text-sm text-muted-foreground">{event.attendees} attending</span>
+                        </div>
+                        <Button size="sm" className="bg-forest text-white">
+                          Join
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-muted-foreground border border-dashed rounded-md">
+              <p>No events match your filters</p>
+            </div>
+          )}
+        </section>
+        
+        <section>
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="text-xl font-semibold">Popular Trails</h2>
+            <Button variant="link" className="text-forest" onClick={handleViewMap}>
+              View map
+            </Button>
+          </div>
+          
+          {trails.length > 0 ? (
+            <div className="space-y-4">
+              {trails.map(trail => (
+                <Card 
+                  key={trail.id} 
+                  className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+                  onClick={() => handleTrailClick(trail.id)}
+                >
                   <CardContent className="p-4">
-                    <div className="flex justify-between">
-                      <h3 className="text-lg font-semibold">{event.title}</h3>
-                      <Badge className={typeColors[event.type]}>
-                        {event.type}
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="text-lg font-semibold">{trail.name}</h3>
+                        <div className="flex items-center text-sm text-muted-foreground mt-1">
+                          <MapPin className="h-4 w-4 mr-1" />
+                          <span>{trail.distance}</span>
+                        </div>
+                      </div>
+                      <ArrowUpRight className="h-5 w-5 text-forest" />
+                    </div>
+                    
+                    <div className="flex flex-wrap space-x-2 mt-3">
+                      <Badge className={difficultyColors[trail.difficulty as keyof typeof difficultyColors]}>
+                        {trail.difficulty}
                       </Badge>
-                    </div>
-                    
-                    <div className="flex items-center text-sm text-muted-foreground mt-2 space-x-4">
-                      <div className="flex items-center">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        <span>{event.date}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <MapPin className="h-4 w-4 mr-1" />
-                        <span>{event.location}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      <Badge className={difficultyColors[event.difficulty as keyof typeof difficultyColors]}>
-                        {event.difficulty}
+                      <Badge variant="outline">{trail.terrain}</Badge>
+                      <Badge className={typeColors[trail.type]}>
+                        {trail.type}
                       </Badge>
-                      <Badge variant="outline">{event.eventType}</Badge>
-                    </div>
-                    
-                    <div className="flex justify-between items-center mt-3">
-                      <div className="flex items-center">
-                        <Users className="h-4 w-4 mr-1 text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">{event.attendees} attending</span>
-                      </div>
-                      <Button size="sm" className="bg-forest text-white">
-                        Join
-                      </Button>
                     </div>
                   </CardContent>
-                </div>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-8 text-muted-foreground border border-dashed rounded-md">
-            <p>No events match your filters</p>
-          </div>
-        )}
-      </section>
-      
-      <section>
-        <div className="flex justify-between items-center mb-3">
-          <h2 className="text-xl font-semibold">Popular Trails</h2>
-          <Button variant="link" className="text-forest">
-            View map
-          </Button>
-        </div>
-        
-        {trails.length > 0 ? (
-          <div className="space-y-4">
-            {trails.map(trail => (
-              <Card 
-                key={trail.id} 
-                className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
-                onClick={() => handleTrailClick(trail.id)}
-              >
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-semibold">{trail.name}</h3>
-                      <div className="flex items-center text-sm text-muted-foreground mt-1">
-                        <MapPin className="h-4 w-4 mr-1" />
-                        <span>{trail.distance}</span>
-                      </div>
-                    </div>
-                    <ArrowUpRight className="h-5 w-5 text-forest" />
-                  </div>
-                  
-                  <div className="flex flex-wrap space-x-2 mt-3">
-                    <Badge className={difficultyColors[trail.difficulty as keyof typeof difficultyColors]}>
-                      {trail.difficulty}
-                    </Badge>
-                    <Badge variant="outline">{trail.terrain}</Badge>
-                    <Badge className={typeColors[trail.type]}>
-                      {trail.type}
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-8 text-muted-foreground border border-dashed rounded-md">
-            <p>No trails match your filters</p>
-          </div>
-        )}
-      </section>
-    </div>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-muted-foreground border border-dashed rounded-md">
+              <p>No trails match your filters</p>
+            </div>
+          )}
+        </section>
+      </div>
+
+      {/* Map Modal */}
+      {showMap && (
+        <TrailMap 
+          trails={trails}
+          onClose={handleCloseMap}
+          onTrailClick={handleTrailClick}
+        />
+      )}
+    </>
   );
 };
 
