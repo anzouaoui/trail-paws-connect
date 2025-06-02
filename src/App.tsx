@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -36,6 +35,7 @@ import ChallengeRegistrationPage from './pages/ChallengeRegistrationPage';
 import NotFound from './pages/NotFound';
 import Index from './pages/Index';
 import './App.css';
+import EventDetailPage from './pages/EventDetailPage';
 
 function App() {
   return (
@@ -74,6 +74,7 @@ function App() {
           <Route path="/devices" element={<DeviceIntegrationPage />} />
           <Route path="/devices/add" element={<AddDevicePage />} />
           <Route path="/challenge/:id/register" element={<ChallengeRegistrationPage />} />
+          <Route path="/event/:id" element={<EventDetailPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNavigation />

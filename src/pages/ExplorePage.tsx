@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -232,6 +231,10 @@ const ExplorePage = () => {
     applyFilters();
   }, [searchQuery]);
 
+  const handleEventClick = (eventId: string) => {
+    navigate(`/event/${eventId}`);
+  };
+
   const difficultyColors = {
     "beginner": "bg-green-100 text-green-800",
     "intermediate": "bg-yellow-100 text-yellow-800",
@@ -280,7 +283,11 @@ const ExplorePage = () => {
         {events.length > 0 ? (
           <div className="space-y-4">
             {events.map(event => (
-              <Card key={event.id} className="overflow-hidden">
+              <Card 
+                key={event.id} 
+                className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+                onClick={() => handleEventClick(event.id)}
+              >
                 <div className="border-l-4 border-forest">
                   <CardContent className="p-4">
                     <div className="flex justify-between">
