@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -31,6 +32,7 @@ import CompareActivitiesPage from './pages/CompareActivitiesPage';
 import DeviceIntegrationPage from './pages/DeviceIntegrationPage';
 import AddDevicePage from './pages/AddDevicePage';
 import UserProfilePage from './pages/UserProfilePage';
+import ChallengeRegistrationPage from './pages/ChallengeRegistrationPage';
 import NotFound from './pages/NotFound';
 import Index from './pages/Index';
 import './App.css';
