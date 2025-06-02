@@ -1,5 +1,7 @@
+
 import React from "react";
 import { Clock, Check } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export type MessageStatus = "sending" | "sent" | "delivered" | "seen";
 export type MessageType = "text" | "image" | "activity" | "route";
@@ -27,6 +29,8 @@ const Message: React.FC<MessageProps> = ({
   attachmentType,
   attachmentUrl
 }) => {
+  const navigate = useNavigate();
+
   const renderStatus = () => {
     switch (status) {
       case "sending":
@@ -52,6 +56,12 @@ const Message: React.FC<MessageProps> = ({
     }
   };
 
+  const handleActivityClick = () => {
+    // Pour cet exemple, on navigue vers l'activité avec l'ID 1
+    // Dans une vraie application, l'ID de l'activité serait dans attachmentUrl ou un autre prop
+    navigate('/activity/1');
+  };
+
   const renderAttachment = () => {
     if (!attachmentType || !attachmentUrl) return null;
 
@@ -68,7 +78,10 @@ const Message: React.FC<MessageProps> = ({
         );
       case "activity":
         return (
-          <div className="message-attachment mb-2 p-3 bg-muted/50">
+          <div 
+            className="message-attachment mb-2 p-3 bg-muted/50 cursor-pointer hover:bg-muted/70 transition-colors rounded-lg"
+            onClick={handleActivityClick}
+          >
             <div className="text-sm font-medium">Activity Summary</div>
             <p className="text-xs text-muted-foreground">Morning Run with Rex • 5.2 km</p>
           </div>
