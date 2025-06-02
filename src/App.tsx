@@ -43,6 +43,7 @@ import HelpSupportPage from './pages/HelpSupportPage';
 import TrackingStartGuide from './pages/TrackingStartGuide';
 import DogProfileManagementGuide from './pages/DogProfileManagementGuide';
 import PremiumFeaturesGuide from './pages/PremiumFeaturesGuide';
+import SyncTroubleshootingGuide from './pages/SyncTroubleshootingGuide';
 import './App.css';
 import EventDetailPage from './pages/EventDetailPage';
 import EventRegistrationPage from './pages/EventRegistrationPage';
@@ -98,6 +99,7 @@ function App() {
             <Route path="/tracking-guide" element={<TrackingStartGuide />} />
             <Route path="/dog-management-guide" element={<DogProfileManagementGuide />} />
             <Route path="/premium-features-guide" element={<PremiumFeaturesGuide />} />
+            <Route path="/sync-troubleshooting" element={<SyncTroubleshootingGuide />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BottomNavigation />

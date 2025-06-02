@@ -68,6 +68,7 @@ const HelpSupportPage = () => {
             icon={<FileText className="h-5 w-5" />}
             title="Problèmes de synchronisation"
             description="Résoudre les problèmes de synchronisation des données"
+            onClick={() => navigate("/sync-troubleshooting")}
           />
         </div>
 
