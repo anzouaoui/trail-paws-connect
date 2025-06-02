@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, Save, X } from "lucide-react";
+import { ArrowLeft, Save, X, Crown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -94,6 +93,9 @@ const EditActivityPage = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   
+  // Simulate premium user status - in real app this would come from auth context
+  const isPremiumUser = false; // Change to true to test premium features
+  
   // Find the activity based on ID
   const activity = mockActivities.find(a => a.id === id);
 
@@ -143,6 +145,30 @@ const EditActivityPage = () => {
     navigate(`/activity/${id}`);
   };
 
+  const handleExportGpx = () => {
+    if (!isPremiumUser) {
+      toast({
+        title: "Fonctionnalité Premium",
+        description: "L'export GPX est réservé aux abonnés Premium. Passez à Premium pour accéder à cette fonctionnalité.",
+        variant: "destructive",
+      });
+      // Optionally redirect to subscription page
+      setTimeout(() => {
+        navigate("/subscription");
+      }, 2000);
+      return;
+    }
+
+    // Premium user - proceed with export
+    toast({
+      title: "Export en cours",
+      description: "Le fichier GPX va être généré et téléchargé.",
+    });
+    
+    // Here you would implement the actual GPX export logic
+    console.log("Exporting GPX file for activity:", id);
+  };
+
   return (
     <div className="pb-24">
       {/* Header */}
@@ -166,6 +192,21 @@ const EditActivityPage = () => {
             >
               <X className="h-4 w-4 mr-1" />
               Annuler
+            </Button>
+            <Button 
+              variant="outline"
+              size="sm"
+              onClick={handleExportGpx}
+              disabled={isLoading}
+              className={!isPremiumUser ? "relative" : ""}
+            >
+              {!isPremiumUser && (
+                <Crown className="h-4 w-4 mr-1 text-yellow-500" />
+              )}
+              GPX
+              {!isPremiumUser && (
+                <span className="text-xs text-yellow-600 ml-1">Premium</span>
+              )}
             </Button>
             <Button 
               size="sm"

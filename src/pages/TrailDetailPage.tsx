@@ -1,14 +1,18 @@
-
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, MapPin, Clock, TrendingUp, Star, Camera } from "lucide-react";
+import { ArrowLeft, MapPin, Clock, TrendingUp, Star, Camera, Crown } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 const TrailDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { toast } = useToast();
+
+  // Simulate premium user status - in real app this would come from auth context
+  const isPremiumUser = false; // Change to true to test premium features
 
   // Sample trail data - normally this would come from an API
   const trail = {
@@ -37,6 +41,38 @@ const TrailDetailPage = () => {
       "Éviter les week-ends en été",
       "Prévoir de l'eau pour le chien"
     ]
+  };
+
+  const handleGpxDownload = () => {
+    if (!isPremiumUser) {
+      toast({
+        title: "Fonctionnalité Premium",
+        description: "Le téléchargement GPX est réservé aux abonnés Premium. Passez à Premium pour accéder à cette fonctionnalité.",
+        variant: "destructive",
+      });
+      // Optionally redirect to subscription page
+      setTimeout(() => {
+        navigate("/subscription");
+      }, 2000);
+      return;
+    }
+
+    // Premium user - proceed with download
+    toast({
+      title: "Téléchargement en cours",
+      description: "Le fichier GPX va être téléchargé.",
+    });
+    
+    // Here you would implement the actual GPX download logic
+    console.log("Downloading GPX file for trail:", id);
+  };
+
+  const handleViewOnMap = () => {
+    // This feature remains free for all users
+    toast({
+      title: "Redirection vers la carte",
+      description: "Ouverture de la vue carte...",
+    });
   };
 
   const difficultyColors = {
@@ -199,11 +235,21 @@ const TrailDetailPage = () => {
             Commencer ce parcours
           </Button>
           <div className="grid grid-cols-2 gap-3">
-            <Button variant="outline">
+            <Button variant="outline" onClick={handleViewOnMap}>
               Voir sur la carte
             </Button>
-            <Button variant="outline">
+            <Button 
+              variant="outline" 
+              onClick={handleGpxDownload}
+              className={!isPremiumUser ? "relative" : ""}
+            >
+              {!isPremiumUser && (
+                <Crown className="h-4 w-4 mr-2 text-yellow-500" />
+              )}
               Télécharger GPX
+              {!isPremiumUser && (
+                <span className="text-xs text-yellow-600 ml-1">Premium</span>
+              )}
             </Button>
           </div>
         </div>
