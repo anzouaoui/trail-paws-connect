@@ -10,10 +10,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { UseFormReturn } from "react-hook-form";
+import { ActivityType } from "@/components/ActivityCard";
 
 interface ActivityFormData {
   title: string;
-  type: string;
+  type: ActivityType;
   distance: number;
   location: string;
   notes: string;
