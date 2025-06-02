@@ -141,6 +141,7 @@ const SettingsPage = () => {
             icon={<HelpCircle className="h-5 w-5" />}
             title="Aide et Support"
             description="Obtenez de l'aide et contactez le support"
+            onClick={() => navigate("/help-support")}
           />
         </div>
 
