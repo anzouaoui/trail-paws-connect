@@ -25,16 +25,16 @@ const LoginPage = () => {
       await login(email, password);
       
       toast({
-        title: "Login successful!",
-        description: "Welcome back to TrailPaws Connect!",
+        title: "Connexion réussie !",
+        description: "Bienvenue sur TrailPaws Connect !",
       });
       
       navigate("/home");
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Login failed",
-        description: "Please check your credentials and try again",
+        title: "Échec de la connexion",
+        description: "Veuillez vérifier vos identifiants et réessayer",
       });
     } finally {
       setIsLoading(false);
@@ -48,16 +48,16 @@ const LoginPage = () => {
       await socialLogin(provider);
       
       toast({
-        title: `${provider} login successful!`,
-        description: "Welcome to TrailPaws Connect!",
+        title: `Connexion ${provider} réussie !`,
+        description: "Bienvenue sur TrailPaws Connect !",
       });
       
       navigate("/home");
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Login failed",
-        description: `Could not login with ${provider}`,
+        title: "Échec de la connexion",
+        description: `Impossible de se connecter avec ${provider}`,
       });
     } finally {
       setIsLoading(false);
@@ -74,9 +74,9 @@ const LoginPage = () => {
           className="mx-auto w-full max-w-sm"
         >
           <div className="mb-8 text-center">
-            <h2 className="text-3xl font-bold text-forest">Welcome Back</h2>
+            <h2 className="text-3xl font-bold text-forest">Bon Retour</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Sign in to continue your adventure with your canine friend
+              Connectez-vous pour continuer votre aventure avec votre compagnon canin
             </p>
           </div>
 
@@ -88,7 +88,7 @@ const LoginPage = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="vous@exemple.com"
                   className="pl-10"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -99,9 +99,9 @@ const LoginPage = () => {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Mot de passe</Label>
                 <Button variant="link" size="sm" className="h-auto p-0 text-xs">
-                  Forgot password?
+                  Mot de passe oublié ?
                 </Button>
               </div>
               <div className="relative">
@@ -119,7 +119,7 @@ const LoginPage = () => {
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Signing in..." : "Sign in"}
+              {isLoading ? "Connexion en cours..." : "Se connecter"}
               <LogIn className="ml-2 h-4 w-4" />
             </Button>
           </form>
@@ -131,7 +131,7 @@ const LoginPage = () => {
               </div>
               <div className="relative flex justify-center text-xs">
                 <span className="bg-background px-2 text-muted-foreground">
-                  Or continue with
+                  Ou continuer avec
                 </span>
               </div>
             </div>
@@ -165,12 +165,12 @@ const LoginPage = () => {
           </div>
 
           <p className="mt-6 text-center text-sm">
-            Don't have an account?{" "}
+            Vous n'avez pas de compte ?{" "}
             <Link
               to="/signup"
               className="font-medium text-forest hover:underline"
             >
-              Sign up
+              S'inscrire
             </Link>
           </p>
         </motion.div>
