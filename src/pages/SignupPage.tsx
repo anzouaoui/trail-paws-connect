@@ -26,8 +26,8 @@ const SignupPage = () => {
     if (!acceptTerms) {
       toast({
         variant: "destructive",
-        title: "Terms not accepted",
-        description: "Please accept the terms and conditions to continue",
+        title: "Conditions non acceptées",
+        description: "Veuillez accepter les conditions d'utilisation pour continuer",
       });
       return;
     }
@@ -38,16 +38,16 @@ const SignupPage = () => {
       await signup(name, email, password);
       
       toast({
-        title: "Account created!",
-        description: "Welcome to DogRunner!",
+        title: "Compte créé !",
+        description: "Bienvenue sur TrailPaws Connect !",
       });
       
       navigate("/home");
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Signup failed",
-        description: "There was an error creating your account",
+        title: "Échec de l'inscription",
+        description: "Une erreur s'est produite lors de la création de votre compte",
       });
     } finally {
       setIsLoading(false);
@@ -61,16 +61,16 @@ const SignupPage = () => {
       await socialLogin(provider);
       
       toast({
-        title: `Signed up with ${provider}!`,
-        description: "Welcome to DogRunner!",
+        title: `Inscription via ${provider} réussie !`,
+        description: "Bienvenue sur TrailPaws Connect !",
       });
       
       navigate("/home");
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Signup failed",
-        description: `Could not signup with ${provider}`,
+        title: "Échec de l'inscription",
+        description: `Impossible de s'inscrire avec ${provider}`,
       });
     } finally {
       setIsLoading(false);
@@ -87,21 +87,21 @@ const SignupPage = () => {
           className="mx-auto w-full max-w-sm"
         >
           <div className="mb-8 text-center">
-            <h2 className="text-3xl font-bold text-forest">Create Account</h2>
+            <h2 className="text-3xl font-bold text-forest">Créer un Compte</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Join our community of dog sports enthusiasts
+              Rejoignez notre communauté de passionnés de sports canins
             </p>
           </div>
 
           <form onSubmit={handleSignup} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name">Nom complet</Label>
               <div className="relative">
                 <User className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                 <Input
                   id="name"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Jean Dupont"
                   className="pl-10"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -117,7 +117,7 @@ const SignupPage = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="vous@exemple.com"
                   className="pl-10"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -127,7 +127,7 @@ const SignupPage = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Mot de passe</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                 <Input
@@ -154,19 +154,19 @@ const SignupPage = () => {
                 htmlFor="terms"
                 className="text-sm text-muted-foreground cursor-pointer"
               >
-                I accept the{" "}
+                J'accepte les{" "}
                 <Link to="#" className="text-forest hover:underline">
-                  Terms of Service
+                  Conditions d'utilisation
                 </Link>{" "}
-                and{" "}
+                et la{" "}
                 <Link to="#" className="text-forest hover:underline">
-                  Privacy Policy
+                  Politique de confidentialité
                 </Link>
               </label>
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Creating account..." : "Create account"}
+              {isLoading ? "Création du compte..." : "Créer le compte"}
               <UserPlus className="ml-2 h-4 w-4" />
             </Button>
           </form>
@@ -178,7 +178,7 @@ const SignupPage = () => {
               </div>
               <div className="relative flex justify-center text-xs">
                 <span className="bg-background px-2 text-muted-foreground">
-                  Or continue with
+                  Ou continuer avec
                 </span>
               </div>
             </div>
@@ -212,12 +212,12 @@ const SignupPage = () => {
           </div>
 
           <p className="mt-6 text-center text-sm">
-            Already have an account?{" "}
+            Vous avez déjà un compte ?{" "}
             <Link
               to="/login"
               className="font-medium text-forest hover:underline"
             >
-              Sign in
+              Se connecter
             </Link>
           </p>
         </motion.div>
