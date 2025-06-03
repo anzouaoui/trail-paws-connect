@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Facebook, Mail, Lock, LogIn, ArrowRight, User } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { useAuth } from "@/hooks/useAuth";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +15,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { login, socialLogin } = useAuth();
+  const { login, socialLogin } = useFirebaseAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
