@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -17,8 +18,8 @@ const ExplorePage = () => {
   const initialEvents = [
     {
       id: "1",
-      title: "Weekend Canicross Meetup",
-      date: "May 25, 2025",
+      title: "Rencontre Canicross du Weekend",
+      date: "25 mai 2025",
       location: "Central Park",
       attendees: 14,
       distance: "5 km",
@@ -29,9 +30,9 @@ const ExplorePage = () => {
     },
     {
       id: "2",
-      title: "Mountain Trail Challenge",
-      date: "June 5, 2025",
-      location: "Blue Ridge Mountains",
+      title: "Défi Sentier de Montagne",
+      date: "5 juin 2025",
+      location: "Montagnes Blue Ridge",
       attendees: 27,
       distance: "12 km",
       type: "cani-hiking" as ActivityType,
@@ -41,9 +42,9 @@ const ExplorePage = () => {
     },
     {
       id: "3",
-      title: "Spring Bike Trail",
-      date: "May 30, 2025",
-      location: "Riverside Path",
+      title: "Sentier VTT de Printemps",
+      date: "30 mai 2025",
+      location: "Chemin Riverside",
       attendees: 8,
       distance: "15 km",
       type: "cani-MTB" as ActivityType,
@@ -53,9 +54,9 @@ const ExplorePage = () => {
     },
     {
       id: "4",
-      title: "Urban Park Run",
-      date: "May 26, 2025",
-      location: "Downtown Park",
+      title: "Course en Parc Urbain",
+      date: "26 mai 2025",
+      location: "Parc du Centre-ville",
       attendees: 22,
       distance: "3 km",
       type: "canicross" as ActivityType,
@@ -65,8 +66,8 @@ const ExplorePage = () => {
     },
     {
       id: "5",
-      title: "Mountain Biking Race",
-      date: "June 12, 2025",
+      title: "Course VTT de Montagne",
+      date: "12 juin 2025",
       location: "Forest Hills",
       attendees: 15,
       distance: "18 km",
@@ -81,7 +82,7 @@ const ExplorePage = () => {
   const initialTrails = [
     {
       id: "1",
-      name: "Woodland Path",
+      name: "Sentier de la Forêt",
       distance: "3.8 km",
       difficulty: "beginner",
       terrain: "flat",
@@ -90,7 +91,7 @@ const ExplorePage = () => {
     },
     {
       id: "2",
-      name: "Mountain View Trail",
+      name: "Sentier Vue sur Montagne",
       distance: "7.2 km",
       difficulty: "intermediate",
       terrain: "hilly",
@@ -99,7 +100,7 @@ const ExplorePage = () => {
     },
     {
       id: "3",
-      name: "River Valley Circuit",
+      name: "Circuit de la Vallée",
       distance: "12.5 km",
       difficulty: "advanced",
       terrain: "mixed",
@@ -108,7 +109,7 @@ const ExplorePage = () => {
     },
     {
       id: "4",
-      name: "Lakeside Loop",
+      name: "Boucle du Lac",
       distance: "4.5 km",
       difficulty: "beginner",
       terrain: "flat",
@@ -117,7 +118,7 @@ const ExplorePage = () => {
     },
     {
       id: "5",
-      name: "Alpine Challenge",
+      name: "Défi Alpin",
       distance: "9.8 km",
       difficulty: "expert",
       terrain: "steep",
@@ -268,11 +269,11 @@ const ExplorePage = () => {
   return (
     <>
       <div className="px-4 py-6 pb-24">
-        <h1 className="text-2xl font-bold mb-4">Explore</h1>
+        <h1 className="text-2xl font-bold mb-4">Explorer</h1>
         
         <div className="flex space-x-2 mb-4">
           <Input 
-            placeholder="Search events, trails, or users" 
+            placeholder="Rechercher événements, sentiers ou utilisateurs" 
             className="border-gray-300"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -292,9 +293,9 @@ const ExplorePage = () => {
         
         <section className="mb-8">
           <div className="flex justify-between items-center mb-3">
-            <h2 className="text-xl font-semibold">Upcoming Events</h2>
+            <h2 className="text-xl font-semibold">Événements à Venir</h2>
             <Button variant="link" className="text-forest">
-              View all
+              Voir tout
             </Button>
           </div>
           
@@ -328,18 +329,23 @@ const ExplorePage = () => {
                       
                       <div className="flex flex-wrap gap-2 mt-3">
                         <Badge className={difficultyColors[event.difficulty as keyof typeof difficultyColors]}>
-                          {event.difficulty}
+                          {event.difficulty === 'beginner' ? 'débutant' : 
+                           event.difficulty === 'intermediate' ? 'intermédiaire' :
+                           event.difficulty === 'advanced' ? 'avancé' : 'expert'}
                         </Badge>
-                        <Badge variant="outline">{event.eventType}</Badge>
+                        <Badge variant="outline">
+                          {event.eventType === 'meetup' ? 'rencontre' :
+                           event.eventType === 'competition' ? 'compétition' : 'entraînement'}
+                        </Badge>
                       </div>
                       
                       <div className="flex justify-between items-center mt-3">
                         <div className="flex items-center">
                           <Users className="h-4 w-4 mr-1 text-muted-foreground" />
-                          <span className="text-sm text-muted-foreground">{event.attendees} attending</span>
+                          <span className="text-sm text-muted-foreground">{event.attendees} participants</span>
                         </div>
                         <Button size="sm" className="bg-forest text-white">
-                          Join
+                          Rejoindre
                         </Button>
                       </div>
                     </CardContent>
@@ -349,16 +355,16 @@ const ExplorePage = () => {
             </div>
           ) : (
             <div className="text-center py-8 text-muted-foreground border border-dashed rounded-md">
-              <p>No events match your filters</p>
+              <p>Aucun événement ne correspond à vos filtres</p>
             </div>
           )}
         </section>
         
         <section>
           <div className="flex justify-between items-center mb-3">
-            <h2 className="text-xl font-semibold">Popular Trails</h2>
+            <h2 className="text-xl font-semibold">Sentiers Populaires</h2>
             <Button variant="link" className="text-forest" onClick={handleViewMap}>
-              View map
+              Voir la carte
             </Button>
           </div>
           
@@ -384,9 +390,15 @@ const ExplorePage = () => {
                     
                     <div className="flex flex-wrap space-x-2 mt-3">
                       <Badge className={difficultyColors[trail.difficulty as keyof typeof difficultyColors]}>
-                        {trail.difficulty}
+                        {trail.difficulty === 'beginner' ? 'débutant' : 
+                         trail.difficulty === 'intermediate' ? 'intermédiaire' :
+                         trail.difficulty === 'advanced' ? 'avancé' : 'expert'}
                       </Badge>
-                      <Badge variant="outline">{trail.terrain}</Badge>
+                      <Badge variant="outline">
+                        {trail.terrain === 'flat' ? 'plat' :
+                         trail.terrain === 'hilly' ? 'vallonné' :
+                         trail.terrain === 'mixed' ? 'mixte' : 'escarpé'}
+                      </Badge>
                       <Badge className={typeColors[trail.type]}>
                         {trail.type}
                       </Badge>
@@ -397,7 +409,7 @@ const ExplorePage = () => {
             </div>
           ) : (
             <div className="text-center py-8 text-muted-foreground border border-dashed rounded-md">
-              <p>No trails match your filters</p>
+              <p>Aucun sentier ne correspond à vos filtres</p>
             </div>
           )}
         </section>
