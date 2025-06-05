@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
 import { FirebaseAuthProvider } from '@/hooks/useFirebaseAuth';
 import BottomNavigation from './components/BottomNavigation';
@@ -55,67 +54,76 @@ import EmailSupportPage from './pages/EmailSupportPage';
 import PhoneSupportPage from './pages/PhoneSupportPage';
 import CommunityPage from './pages/CommunityPage';
 
+function AppContent() {
+  const location = useLocation();
+  const hideNavigation = ['/login', '/signup', '/'].includes(location.pathname);
+
+  return (
+    <div className="min-h-screen bg-background w-full">
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/track" element={<TrackPage />} />
+        <Route path="/stats" element={<StatsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/activity/:id" element={<ActivityDetailPage />} />
+        <Route path="/activity/:id/edit" element={<EditActivityPage />} />
+        <Route path="/activity/:id/rate" element={<ActivityRatingPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/onboarding" element={<OnboardingPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/privacy-security" element={<PrivacySecurityPage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/notification-settings" element={<NotificationSettingsPage />} />
+        <Route path="/messages" element={<MessagesPage />} />
+        <Route path="/chat/:id" element={<ChatDetailPage />} />
+        <Route path="/friend-requests" element={<FriendRequestsPage />} />
+        <Route path="/dogs" element={<DogProfilesPage />} />
+        <Route path="/dog-profile/new" element={<DogProfileFormPage />} />
+        <Route path="/dog-profile/:id/edit" element={<DogProfileFormPage />} />
+        <Route path="/dog-health/:id" element={<DogHealthRecordsPage />} />
+        <Route path="/health-records" element={<DogHealthRecordsPage />} />
+        <Route path="/health-alerts" element={<HealthAlertsPage />} />
+        <Route path="/runner-profile" element={<RunnerProfilePage />} />
+        <Route path="/post/:id" element={<PostDetailPage />} />
+        <Route path="/user-profile/:id" element={<UserProfilePage />} />
+        <Route path="/subscription" element={<SubscriptionPage />} />
+        <Route path="/analytics" element={<AdvancedAnalyticsPage />} />
+        <Route path="/compare" element={<CompareActivitiesPage />} />
+        <Route path="/devices" element={<DeviceIntegrationPage />} />
+        <Route path="/devices/add" element={<AddDevicePage />} />
+        <Route path="/challenge/:id" element={<ChallengeDetailPage />} />
+        <Route path="/challenge/:id/register" element={<ChallengeRegistrationPage />} />
+        <Route path="/event/:id" element={<EventDetailPage />} />
+        <Route path="/event/:id/register" element={<EventRegistrationPage />} />
+        <Route path="/trail/:id" element={<TrailDetailPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+        <Route path="/help-support" element={<HelpSupportPage />} />
+        <Route path="/live-chat" element={<LiveChatPage />} />
+        <Route path="/email-support" element={<EmailSupportPage />} />
+        <Route path="/tracking-guide" element={<TrackingStartGuide />} />
+        <Route path="/dog-management-guide" element={<DogProfileManagementGuide />} />
+        <Route path="/premium-features-guide" element={<PremiumFeaturesGuide />} />
+        <Route path="/sync-troubleshooting" element={<SyncTroubleshootingGuide />} />
+        <Route path="/training-tips" element={<TrainingTipsPage />} />
+        <Route path="/phone-support" element={<PhoneSupportPage />} />
+        <Route path="/community" element={<CommunityPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {!hideNavigation && <BottomNavigation />}
+      <Toaster />
+    </div>
+  );
+}
+
 function App() {
   return (
     <Router>
       <FirebaseAuthProvider>
-        <div className="min-h-screen bg-background w-full">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/explore" element={<ExplorePage />} />
-            <Route path="/track" element={<TrackPage />} />
-            <Route path="/stats" element={<StatsPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/activity/:id" element={<ActivityDetailPage />} />
-            <Route path="/activity/:id/edit" element={<EditActivityPage />} />
-            <Route path="/activity/:id/rate" element={<ActivityRatingPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/onboarding" element={<OnboardingPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/privacy-security" element={<PrivacySecurityPage />} />
-            <Route path="/notifications" element={<NotificationsPage />} />
-            <Route path="/notification-settings" element={<NotificationSettingsPage />} />
-            <Route path="/messages" element={<MessagesPage />} />
-            <Route path="/chat/:id" element={<ChatDetailPage />} />
-            <Route path="/friend-requests" element={<FriendRequestsPage />} />
-            <Route path="/dogs" element={<DogProfilesPage />} />
-            <Route path="/dog-profile/new" element={<DogProfileFormPage />} />
-            <Route path="/dog-profile/:id/edit" element={<DogProfileFormPage />} />
-            <Route path="/dog-health/:id" element={<DogHealthRecordsPage />} />
-            <Route path="/health-records" element={<DogHealthRecordsPage />} />
-            <Route path="/health-alerts" element={<HealthAlertsPage />} />
-            <Route path="/runner-profile" element={<RunnerProfilePage />} />
-            <Route path="/post/:id" element={<PostDetailPage />} />
-            <Route path="/user-profile/:id" element={<UserProfilePage />} />
-            <Route path="/subscription" element={<SubscriptionPage />} />
-            <Route path="/analytics" element={<AdvancedAnalyticsPage />} />
-            <Route path="/compare" element={<CompareActivitiesPage />} />
-            <Route path="/devices" element={<DeviceIntegrationPage />} />
-            <Route path="/devices/add" element={<AddDevicePage />} />
-            <Route path="/challenge/:id" element={<ChallengeDetailPage />} />
-            <Route path="/challenge/:id/register" element={<ChallengeRegistrationPage />} />
-            <Route path="/event/:id" element={<EventDetailPage />} />
-            <Route path="/event/:id/register" element={<EventRegistrationPage />} />
-            <Route path="/trail/:id" element={<TrailDetailPage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-            <Route path="/help-support" element={<HelpSupportPage />} />
-            <Route path="/live-chat" element={<LiveChatPage />} />
-            <Route path="/email-support" element={<EmailSupportPage />} />
-            <Route path="/tracking-guide" element={<TrackingStartGuide />} />
-            <Route path="/dog-management-guide" element={<DogProfileManagementGuide />} />
-            <Route path="/premium-features-guide" element={<PremiumFeaturesGuide />} />
-            <Route path="/sync-troubleshooting" element={<SyncTroubleshootingGuide />} />
-            <Route path="/training-tips" element={<TrainingTipsPage />} />
-            <Route path="/phone-support" element={<PhoneSupportPage />} />
-            <Route path="/community" element={<CommunityPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <BottomNavigation />
-          <Toaster />
-        </div>
+        <AppContent />
       </FirebaseAuthProvider>
     </Router>
   );
