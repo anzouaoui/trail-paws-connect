@@ -11,10 +11,10 @@ const BottomNavigation = () => {
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-sm py-2 px-4 z-10">
       <div className="grid grid-cols-5 items-center justify-items-center">
         <Link 
-          to="/home" 
-          className={`nav-link ${currentPath === "/home" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
+          to="/explore" 
+          className={`nav-link ${currentPath === "/explore" ? "text-primary font-medium" : "text-muted-foreground"} flex flex-col items-center`}
         >
-          <Home className={`h-5 w-5 ${currentPath === "/home" ? "text-primary" : ""}`} />
+          <Home className={`h-5 w-5 ${currentPath === "/explore" ? "text-primary" : ""}`} />
           <span className="text-xs mt-1">Accueil</span>
         </Link>
         

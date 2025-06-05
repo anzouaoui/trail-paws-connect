@@ -1,9 +1,9 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
 import { FirebaseAuthProvider } from '@/hooks/useFirebaseAuth';
 import BottomNavigation from './components/BottomNavigation';
-import HomePage from './pages/HomePage';
 import ExplorePage from './pages/ExplorePage';
 import TrackPage from './pages/TrackPage';
 import StatsPage from './pages/StatsPage';
@@ -35,7 +35,6 @@ import UserProfilePage from './pages/UserProfilePage';
 import ChallengeRegistrationPage from './pages/ChallengeRegistrationPage';
 import ChallengeDetailPage from './pages/ChallengeDetailPage';
 import NotFound from './pages/NotFound';
-import Index from './pages/Index';
 import PrivacySecurityPage from './pages/PrivacySecurityPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
@@ -61,8 +60,7 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-background w-full">
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<OnboardingPage />} />
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/track" element={<TrackPage />} />
         <Route path="/stats" element={<StatsPage />} />
