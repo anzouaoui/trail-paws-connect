@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
+import { dogService } from "@/services/dogService";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const breeds = [
   { value: "berger_allemand", label: "Berger Allemand" },
@@ -80,10 +82,55 @@ const AddDogPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Vous devez être connecté pour ajouter un chien",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // TODO: Sauvegarder les données dans Firebase
+      let photoURL = formData.photoURL;
+
+      // Si une nouvelle photo a été sélectionnée (format data:image)
+      if (photoURL && photoURL.startsWith('data:image')) {
+        const storage = getStorage();
+        const photoRef = ref(storage, `users/${user.uid}/dogs/${formData.name}.jpg`);
+        
+        // Convertir le Data URL en Blob
+        const response = await fetch(photoURL);
+        const blob = await response.blob();
+        
+        // Upload sur Firebase Storage
+        await uploadBytes(photoRef, blob);
+        photoURL = await getDownloadURL(photoRef);
+      }
+
+      // Nettoyer et valider les données avant l'envoi
+      const cleanedData = {
+        photoURL: photoURL || null,
+        name: formData.name.trim(),
+        breed: formData.breed,
+        otherBreed: formData.breed === 'autre' ? formData.otherBreed.trim() : null,
+        sex: formData.sex as 'male' | 'female',
+        birthDate: formData.birthDate,
+        weight: Number(formData.weight),
+        height: Number(formData.height),
+        restingHeartRate: Number(formData.restingHeartRate),
+        achievements: formData.achievements.trim() || null,
+        healthInfo: formData.healthInfo.trim() || null,
+        microchip: formData.microchip.trim() || null,
+      };
+
+      console.log('Données du chien à sauvegarder:', cleanedData);
+
+      // Créer le chien dans la sous-collection de l'utilisateur
+      await dogService.createDog(user.uid, cleanedData);
+
       toast({
         title: "Chien ajouté avec succès",
         description: "Vous pouvez maintenant commencer vos activités !",

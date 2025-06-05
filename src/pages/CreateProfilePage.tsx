@@ -9,7 +9,6 @@ import {
   Heart,
   Weight,
   Dog,
-
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,14 +23,19 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
+import { userService } from "@/services/userService";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const activities = [
+type Activity = 'canicross' | 'canirandonee' | 'canivtt';
+type Gender = 'male' | 'female' | 'other';
+
+const activities: Array<{ value: Activity; label: string }> = [
   { value: "canicross", label: "Canicross" },
   { value: "canirandonee", label: "Canirandonnée" },
   { value: "canivtt", label: "Cani VTT" },
 ];
 
-const genders = [
+const genders: Array<{ value: Gender; label: string }> = [
   { value: "male", label: "Homme" },
   { value: "female", label: "Femme" },
   { value: "other", label: "Autre" },
@@ -48,10 +52,10 @@ const CreateProfilePage = () => {
     firstName: "",
     lastName: "",
     location: "",
-    mainActivity: "",
+    mainActivity: "canicross" as Activity,
     bio: "",
     birthDate: "",
-    gender: "",
+    gender: "male" as Gender,
     weight: "",
     restingHeartRate: "",
   });
@@ -60,7 +64,6 @@ const CreateProfilePage = () => {
   const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      // TODO: Implémenter le téléchargement de la photo
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData({ ...formData, photoURL: reader.result as string });
@@ -71,15 +74,67 @@ const CreateProfilePage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Vous devez être connecté pour créer un profil",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // TODO: Sauvegarder les données dans Firebase
-      toast({
-        title: "Profil créé avec succès",
-        description: "Bienvenue sur Trail Dog !",
-      });
-      navigate("/add-dog"); // Redirection vers la page d'ajout de chien
+      let photoURL = formData.photoURL;
+
+      try {
+        // Si une nouvelle photo a été sélectionnée (format data:image)
+        if (photoURL && photoURL.startsWith('data:image')) {
+          const storage = getStorage();
+          const photoRef = ref(storage, `users/${user.uid}/profile.jpg`);
+          
+          // Convertir le Data URL en Blob
+          const response = await fetch(photoURL);
+          const blob = await response.blob();
+          
+          // Upload sur Firebase Storage
+          await uploadBytes(photoRef, blob);
+          photoURL = await getDownloadURL(photoRef);
+        }
+
+        console.log('Données du formulaire:', {
+          ...formData,
+          userId: user.uid,
+          email: user.email
+        });
+
+        // Créer le profil utilisateur dans Firestore
+        await userService.createUser(user.uid, {
+          photoURL,
+          firstName: formData.firstName.trim(),
+          lastName: formData.lastName.trim(),
+          location: formData.location.trim(),
+          mainActivity: formData.mainActivity,
+          bio: formData.bio.trim(),
+          birthDate: formData.birthDate,
+          gender: formData.gender,
+          weight: Number(formData.weight),
+          restingHeartRate: Number(formData.restingHeartRate),
+          email: user.email || '',
+        });
+
+        console.log('Profil utilisateur créé avec succès');
+        
+        toast({
+          title: "Profil créé avec succès",
+          description: "Ajoutons maintenant votre chien !",
+        });
+        navigate("/add-dog");
+      } catch (error) {
+        console.error('Erreur lors de la création du profil:', error);
+        throw error;
+      }
     } catch (error: any) {
       toast({
         variant: "destructive",
@@ -101,7 +156,7 @@ const CreateProfilePage = () => {
         <div className="text-center">
           <h1 className="text-2xl font-bold">Créez votre profil</h1>
           <p className="text-muted-foreground mt-2">
-            Remplissez vos informations pour commencer
+            Renseignez vos informations pour commencer
           </p>
         </div>
 
@@ -109,7 +164,7 @@ const CreateProfilePage = () => {
           {/* Photo de profil */}
           <div className="flex flex-col items-center space-y-4">
             <div
-              className="w-32 h-32 rounded-full bg-muted flex items-center justify-center overflow-hidden relative"
+              className="w-32 h-32 rounded-full bg-muted flex items-center justify-center overflow-hidden relative cursor-pointer"
               onClick={() => fileInputRef.current?.click()}
             >
               {formData.photoURL ? (
@@ -134,11 +189,11 @@ const CreateProfilePage = () => {
               variant="outline"
               onClick={() => fileInputRef.current?.click()}
             >
-              Changer la photo
+              Ajouter une photo
             </Button>
           </div>
 
-          {/* Informations personnelles */}
+          {/* Informations de base */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="firstName">Prénom</Label>
@@ -171,43 +226,43 @@ const CreateProfilePage = () => {
                 />
               </div>
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="location">Ville / Région</Label>
-            <div className="relative">
-              <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="location"
-                value={formData.location}
-                onChange={(e) =>
-                  setFormData({ ...formData, location: e.target.value })
-                }
-                className="pl-9"
-                required
-              />
+            <div className="space-y-2">
+              <Label htmlFor="location">Ville/Région</Label>
+              <div className="relative">
+                <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="location"
+                  value={formData.location}
+                  onChange={(e) =>
+                    setFormData({ ...formData, location: e.target.value })
+                  }
+                  className="pl-9"
+                  required
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="mainActivity">Activité principale</Label>
-            <Select
-              value={formData.mainActivity}
-              onValueChange={(value) =>
-                setFormData({ ...formData, mainActivity: value })
-              }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Sélectionnez votre activité principale" />
-              </SelectTrigger>
-              <SelectContent>
-                {activities.map((activity) => (
-                  <SelectItem key={activity.value} value={activity.value}>
-                    {activity.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <div className="space-y-2">
+              <Label htmlFor="mainActivity">Activité principale</Label>
+              <Select
+                value={formData.mainActivity}
+                onValueChange={(value: Activity) =>
+                  setFormData({ ...formData, mainActivity: value })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Sélectionnez votre activité" />
+                </SelectTrigger>
+                <SelectContent>
+                  {activities.map((activity) => (
+                    <SelectItem key={activity.value} value={activity.value}>
+                      {activity.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -217,7 +272,6 @@ const CreateProfilePage = () => {
               value={formData.bio}
               onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
               placeholder="Parlez-nous un peu de vous..."
-              className="min-h-[100px]"
             />
           </div>
 
@@ -243,7 +297,7 @@ const CreateProfilePage = () => {
               <Label htmlFor="gender">Sexe</Label>
               <Select
                 value={formData.gender}
-                onValueChange={(value) =>
+                onValueChange={(value: Gender) =>
                   setFormData({ ...formData, gender: value })
                 }
               >
@@ -259,9 +313,7 @@ const CreateProfilePage = () => {
                 </SelectContent>
               </Select>
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="weight">Poids (kg)</Label>
               <div className="relative">
