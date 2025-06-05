@@ -1,9 +1,11 @@
 
 import React from 'react';
 import { FirebaseAuthProvider } from '@/contexts/FirebaseAuthContext';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
+import { useOnboarding } from '@/hooks/useOnboarding';
 import BottomNavigation from './components/BottomNavigation';
 import HomePage from './pages/HomePage';
 import CreateProfilePage from './pages/CreateProfilePage';
@@ -59,6 +61,22 @@ import CommunityPage from './pages/CommunityPage';
 
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user } = useFirebaseAuth();
+  const { hasCompletedOnboarding } = useOnboarding();
+
+  useEffect(() => {
+    // Si l'utilisateur est connecté et a complété l'onboarding, rediriger vers la page d'accueil
+    if (user && hasCompletedOnboarding && location.pathname === '/') {
+      navigate('/home');
+    }
+    // Si l'utilisateur n'a pas complété l'onboarding et n'est pas sur la page d'onboarding,
+    // rediriger vers l'onboarding
+    else if (!hasCompletedOnboarding && location.pathname !== '/') {
+      navigate('/');
+    }
+  }, [user, hasCompletedOnboarding, location.pathname, navigate]);
+
   const hideNavigation = ['/', '/login', '/signup', '/onboarding', '/create-profile', '/add-dog'].includes(location.pathname);
 
   return (
