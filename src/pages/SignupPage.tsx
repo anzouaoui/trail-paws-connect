@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Facebook, Mail, Lock, User, ArrowRight, UserPlus } from "lucide-react";
+import { Facebook, Mail, Lock, User, UserPlus } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 
@@ -41,13 +41,11 @@ const SignupPage = () => {
         title: "Compte créé !",
         description: "Bienvenue sur TrailPaws Connect !",
       });
-      
-      navigate("/home");
-    } catch (error) {
+    } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Échec de l'inscription",
-        description: "Une erreur s'est produite lors de la création de votre compte",
+        description: error.message,
       });
     } finally {
       setIsLoading(false);
@@ -64,13 +62,11 @@ const SignupPage = () => {
         title: `Inscription via ${provider} réussie !`,
         description: "Bienvenue sur TrailPaws Connect !",
       });
-      
-      navigate("/home");
-    } catch (error) {
+    } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Échec de l'inscription",
-        description: `Impossible de s'inscrire avec ${provider}`,
+        description: error.message,
       });
     } finally {
       setIsLoading(false);
@@ -155,11 +151,11 @@ const SignupPage = () => {
                 className="text-sm text-muted-foreground cursor-pointer"
               >
                 J'accepte les{" "}
-                <Link to="#" className="text-forest hover:underline">
+                <Link to="/terms-of-service" className="text-forest hover:underline">
                   Conditions d'utilisation
                 </Link>{" "}
                 et la{" "}
-                <Link to="#" className="text-forest hover:underline">
+                <Link to="/privacy-policy" className="text-forest hover:underline">
                   Politique de confidentialité
                 </Link>
               </label>

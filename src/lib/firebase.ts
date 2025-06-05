@@ -5,12 +5,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", // Remplacez par votre vraie clé API
-  authDomain: "traildog-1e3c9.firebaseapp.com",
-  projectId: "traildog-1e3c9",
-  storageBucket: "traildog-1e3c9.appspot.com",
-  messagingSenderId: "123456789", // Remplacez par votre ID d'expéditeur
-  appId: "1:123456789:web:XXXXXXXXXXXXXXXX" // Remplacez par votre ID d'application
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "demo-api-key",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "traildog-demo.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "traildog-demo",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "traildog-demo.appspot.com",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "123456789",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:123456789:web:demo"
 };
 
 // Initialize Firebase
