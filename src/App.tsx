@@ -55,7 +55,7 @@ import CommunityPage from './pages/CommunityPage';
 
 function AppContent() {
   const location = useLocation();
-  const hideNavigation = ['/login', '/signup', '/'].includes(location.pathname);
+  const hideNavigation = ['/login', '/signup', '/', '/onboarding'].includes(location.pathname);
 
   return (
     <div className="min-h-screen bg-background w-full">
