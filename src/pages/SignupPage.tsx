@@ -55,9 +55,9 @@ const SignupPage = () => {
       await signup(name.trim(), email.trim(), password);
       toast({
         title: "Compte créé avec succès",
-        description: "Bienvenue sur Trail Dog !",
+        description: "Configurons votre profil !",
       });
-      navigate("/login");
+      navigate("/create-profile");
     } catch (error: any) {
       toast({
         variant: "destructive",
