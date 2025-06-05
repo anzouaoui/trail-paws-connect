@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
@@ -58,7 +59,7 @@ function App() {
   return (
     <Router>
       <FirebaseAuthProvider>
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-background w-full">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/home" element={<HomePage />} />
