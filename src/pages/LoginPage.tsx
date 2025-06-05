@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Facebook, Mail, Lock, LogIn, ArrowRight, User } from "lucide-react";
+import { Facebook, Mail, Lock, LogIn } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 
@@ -28,13 +28,11 @@ const LoginPage = () => {
         title: "Connexion réussie !",
         description: "Bienvenue sur TrailPaws Connect !",
       });
-      
-      navigate("/home");
-    } catch (error) {
+    } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Échec de la connexion",
-        description: "Veuillez vérifier vos identifiants et réessayer",
+        description: error.message,
       });
     } finally {
       setIsLoading(false);
@@ -51,13 +49,11 @@ const LoginPage = () => {
         title: `Connexion ${provider} réussie !`,
         description: "Bienvenue sur TrailPaws Connect !",
       });
-      
-      navigate("/home");
-    } catch (error) {
+    } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Échec de la connexion",
-        description: `Impossible de se connecter avec ${provider}`,
+        description: error.message,
       });
     } finally {
       setIsLoading(false);
