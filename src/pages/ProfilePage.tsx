@@ -1,6 +1,10 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
+import { userService } from "@/services/userService";
+import { User } from "@/types/user";
+import { useToast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -11,6 +15,45 @@ import ActivityCard from "@/components/ActivityCard";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+  const { user: authUser } = useFirebaseAuth();
+  const { toast } = useToast();
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadUserProfile = async () => {
+      if (!authUser?.uid) return;
+
+      try {
+        console.log('Chargement du profil pour:', authUser.uid);
+        const userData = await userService.getUserById(authUser.uid);
+        console.log('Données du profil:', userData);
+        
+        if (userData) {
+          setUser(userData);
+        } else {
+          console.log('Profil non trouvé, redirection vers create-profile');
+          toast({
+            variant: "destructive",
+            title: "Profil manquant",
+            description: "Veuillez créer votre profil",
+          });
+          navigate('/create-profile', { replace: true });
+        }
+      } catch (error: any) {
+        console.error('Erreur lors du chargement du profil:', error);
+        toast({
+          variant: "destructive",
+          title: "Erreur",
+          description: error.message,
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadUserProfile();
+  }, [authUser, navigate, toast]);
   
   // Sample activities
   const userActivities = [
@@ -55,8 +98,10 @@ const ProfilePage = () => {
         <div className="absolute top-20 left-0 right-0 px-4">
           <div className="flex justify-between">
             <Avatar className="h-24 w-24 border-4 border-white">
-              <AvatarImage src="" alt="Utilisateur" />
-              <AvatarFallback className="bg-forest text-white text-xl">JD</AvatarFallback>
+              <AvatarImage src={user?.photoURL || ''} alt={user?.firstName || 'Utilisateur'} />
+              <AvatarFallback className="bg-forest text-white text-xl">
+                {user ? `${user.firstName[0]}${user.lastName[0]}` : '?'}
+              </AvatarFallback>
             </Avatar>
             <div className="flex space-x-2">
               <Button 
@@ -86,12 +131,11 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className="mt-2">
-            <h1 className="text-2xl font-bold">Jean Dupont</h1>
-            <p className="text-muted-foreground">Passionné de sentiers et amoureux des chiens</p>
+            <h1 className="text-2xl font-bold">{user ? `${user.firstName} ${user.lastName}` : 'Chargement...'}</h1>
+            <p className="text-muted-foreground">{user?.bio || 'Aucune bio'}</p>
             <div className="flex space-x-2 mt-2">
-              <Badge variant="outline">Niveau 15</Badge>
-              <Badge className="bg-forest text-white">canicross</Badge>
-              <Badge className="bg-sky text-white">cani-rando</Badge>
+              <Badge variant="outline">{user?.location || 'Localisation non définie'}</Badge>
+              <Badge className="bg-forest text-white">{user?.mainActivity || 'Activité non définie'}</Badge>
             </div>
           </div>
         </div>

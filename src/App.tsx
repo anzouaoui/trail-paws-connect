@@ -58,6 +58,7 @@ import TrailDetailPage from './pages/TrailDetailPage';
 import EmailSupportPage from './pages/EmailSupportPage';
 import PhoneSupportPage from './pages/PhoneSupportPage';
 import CommunityPage from './pages/CommunityPage';
+import PrivateRoute from './components/PrivateRoute';
 
 function AppContent() {
   const location = useLocation();
@@ -66,30 +67,38 @@ function AppContent() {
   const { hasCompletedOnboarding } = useOnboarding();
 
   useEffect(() => {
-    // Si l'utilisateur est connecté et a complété l'onboarding, rediriger vers la page d'accueil
-    if (user && hasCompletedOnboarding && location.pathname === '/') {
-      navigate('/home');
-    }
-    // Si l'utilisateur n'a pas complété l'onboarding et n'est pas sur la page d'onboarding,
-    // rediriger vers l'onboarding
-    else if (!hasCompletedOnboarding && location.pathname !== '/') {
-      navigate('/');
+    const publicPaths = ['/', '/login', '/signup'];
+    const initialPath = '/';
+    
+    // Ne rediriger que si on est sur une page publique ou la page initiale
+    if (publicPaths.includes(location.pathname) || location.pathname === initialPath) {
+      if (user) {
+        // L'utilisateur est connecté
+        if (!hasCompletedOnboarding) {
+          navigate('/create-profile');
+        } else {
+          navigate('/home');
+        }
+      } else if (!publicPaths.includes(location.pathname)) {
+        // L'utilisateur n'est pas connecté et essaie d'accéder à une page privée
+        navigate('/login');
+      }
     }
   }, [user, hasCompletedOnboarding, location.pathname, navigate]);
 
-  const hideNavigation = ['/', '/login', '/signup', '/onboarding', '/create-profile', '/add-dog'].includes(location.pathname);
+  const hideNavigation = ['/', '/login', '/signup', '/create-profile', '/add-dog'].includes(location.pathname);
 
   return (
     <div className="min-h-screen bg-background w-full">
       <Routes>
         <Route path="/" element={<OnboardingPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/create-profile" element={<CreateProfilePage />} />
-        <Route path="/add-dog" element={<AddDogPage />} />
+        <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
+        <Route path="/create-profile" element={<PrivateRoute><CreateProfilePage /></PrivateRoute>} />
+        <Route path="/add-dog" element={<PrivateRoute><AddDogPage /></PrivateRoute>} />
         <Route path="/explore" element={<ExplorePage />} />
-        <Route path="/track" element={<TrackPage />} />
-        <Route path="/stats" element={<StatsPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/track" element={<PrivateRoute><TrackPage /></PrivateRoute>} />
+        <Route path="/stats" element={<PrivateRoute><StatsPage /></PrivateRoute>} />
+        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
         <Route path="/activity/:id" element={<ActivityDetailPage />} />
         <Route path="/activity/:id/edit" element={<EditActivityPage />} />
         <Route path="/activity/:id/rate" element={<ActivityRatingPage />} />
