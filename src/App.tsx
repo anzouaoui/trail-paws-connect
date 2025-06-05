@@ -58,6 +58,7 @@ import TrailDetailPage from './pages/TrailDetailPage';
 import EmailSupportPage from './pages/EmailSupportPage';
 import PhoneSupportPage from './pages/PhoneSupportPage';
 import CommunityPage from './pages/CommunityPage';
+import EditProfilePage from './pages/EditProfilePage';
 import PrivateRoute from './components/PrivateRoute';
 
 function AppContent() {
@@ -99,6 +100,7 @@ function AppContent() {
         <Route path="/track" element={<PrivateRoute><TrackPage /></PrivateRoute>} />
         <Route path="/stats" element={<PrivateRoute><StatsPage /></PrivateRoute>} />
         <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+        <Route path="/edit-profile" element={<PrivateRoute><EditProfilePage /></PrivateRoute>} />
         <Route path="/activity/:id" element={<ActivityDetailPage />} />
         <Route path="/activity/:id/edit" element={<EditActivityPage />} />
         <Route path="/activity/:id/rate" element={<ActivityRatingPage />} />

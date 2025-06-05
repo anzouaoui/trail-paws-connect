@@ -44,6 +44,19 @@ export const userService = {
   /**
    * Récupère un utilisateur par son ID
    */
+  async updateUser(userId: string, userData: Partial<User>): Promise<void> {
+    try {
+      const userRef = doc(db, 'users', userId);
+      await updateDoc(userRef, {
+        ...userData,
+        updatedAt: new Date().toISOString()
+      });
+    } catch (error: any) {
+      console.error('Erreur lors de la mise à jour du profil:', error);
+      throw new Error(error.message);
+    }
+  },
+
   async getUserById(userId: string): Promise<User | null> {
     const userRef = doc(db, USERS_COLLECTION, userId);
     const userDoc = await getDoc(userRef);

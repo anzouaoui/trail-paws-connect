@@ -1,15 +1,18 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 import { userService } from "@/services/userService";
+import { dogService } from "@/services/dogService";
+import type { Dog } from "@/types/dog";
 import { User } from "@/types/user";
 import { useToast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Settings, Trophy, Medal, PawPrint, Edit, Dog, BarChart2 } from "lucide-react";
+import { Settings, Trophy, Medal, PawPrint, Edit, BarChart2 } from "lucide-react";
+import { Dog as DogIcon } from "lucide-react";
 import DogProfileCard from "@/components/DogProfileCard";
 import ActivityCard from "@/components/ActivityCard";
 
@@ -19,6 +22,21 @@ const ProfilePage = () => {
   const { toast } = useToast();
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [userDogs, setUserDogs] = useState<Dog[]>([]);
+
+  const loadUserDogs = useCallback(async (userId: string) => {
+    try {
+      const dogs = await dogService.getUserDogs(userId);
+      setUserDogs(dogs);
+    } catch (error: any) {
+      console.error('Erreur lors du chargement des chiens:', error);
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Impossible de charger les chiens",
+      });
+    }
+  }, [toast]);
 
   useEffect(() => {
     const loadUserProfile = async () => {
@@ -31,6 +49,7 @@ const ProfilePage = () => {
         
         if (userData) {
           setUser(userData);
+          await loadUserDogs(authUser.uid);
         } else {
           console.log('Profil non trouvé, redirection vers create-profile');
           toast({
@@ -96,7 +115,7 @@ const ProfilePage = () => {
       <div className="relative">
         <div className="h-32 bg-gradient-to-r from-forest to-forest-dark"></div>
         <div className="absolute top-20 left-0 right-0 px-4">
-          <div className="flex justify-between">
+          <div className="flex items-center justify-between mb-6">
             <Avatar className="h-24 w-24 border-4 border-white">
               <AvatarImage src={user?.photoURL || ''} alt={user?.firstName || 'Utilisateur'} />
               <AvatarFallback className="bg-forest text-white text-xl">
@@ -116,7 +135,7 @@ const ProfilePage = () => {
                 variant="outline" 
                 size="icon" 
                 className="bg-white h-10 w-10"
-                onClick={() => navigate("/runner-profile")}
+                onClick={() => navigate("/edit-profile")}
               >
                 <Edit className="h-5 w-5 text-forest" />
               </Button>
@@ -135,7 +154,7 @@ const ProfilePage = () => {
             <p className="text-muted-foreground">{user?.bio || 'Aucune bio'}</p>
             <div className="flex space-x-2 mt-2">
               <Badge variant="outline">{user?.location || 'Localisation non définie'}</Badge>
-              <Badge className="bg-forest text-white">{user?.mainActivity || 'Activité non définie'}</Badge>
+              <Badge className="bg-forest text-white"></Badge>
             </div>
           </div>
         </div>
@@ -168,20 +187,27 @@ const ProfilePage = () => {
           
           <TabsContent value="dogs" className="mt-4">
             <div className="space-y-4">
-              <DogProfileCard 
-                name="Max"
-                breed="Border Collie"
-                age={3}
-                weight="18 kg"
-                sportPreference="Canicross"
-                level="intermediate"
-              />
+              {userDogs.length > 0 ? (
+                userDogs.map(dog => (
+                  <DogProfileCard 
+                    key={dog.id}
+                    name={dog.name}
+                    breed={dog.breed}
+                    birthDate={dog.birthDate}
+                    weight={dog.weight}
+                  />
+                ))
+              ) : (
+                <div className="text-center py-8 text-muted-foreground">
+                  Aucun chien ajouté
+                </div>
+              )}
               
               <Button 
                 onClick={() => navigate("/dogs")} 
                 className="w-full mt-4 flex items-center justify-center bg-forest text-white"
               >
-                <Dog className="mr-2 h-4 w-4" />
+                <DogIcon className="mr-2 h-4 w-4" />
                 Gérer mes chiens
               </Button>
             </div>
