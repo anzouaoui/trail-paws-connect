@@ -3,12 +3,12 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "VOTRE_API_KEY",
-  authDomain: "votre-projet.firebaseapp.com",
-  projectId: "votre-projet",
-  storageBucket: "votre-projet.appspot.com",
-  messagingSenderId: "votre-messaging-sender-id",
-  appId: "votre-app-id"
+  apiKey: "AIzaSyBx2FdXW7XfKZuLLTQA4_qbl-_muswG6GE",
+  authDomain: "traildog-1e3c9.firebaseapp.com",
+  projectId: "traildog-1e3c9",
+  storageBucket: "traildog-1e3c9.firebasestorage.app",
+  messagingSenderId: "155891952495",
+  appId: "1:155891952495:web:f4b93c0aed4a3a5efe169a"
 };
 
 // Initialize Firebase

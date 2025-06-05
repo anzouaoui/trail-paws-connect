@@ -1,8 +1,9 @@
 
 import React from 'react';
+import { FirebaseAuthProvider } from '@/contexts/FirebaseAuthContext';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
-import { FirebaseAuthProvider } from '@/hooks/useFirebaseAuth';
+import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
 import BottomNavigation from './components/BottomNavigation';
 import ExplorePage from './pages/ExplorePage';
 import TrackPage from './pages/TrackPage';
