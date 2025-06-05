@@ -16,24 +16,24 @@ const ProfilePage = () => {
   const userActivities = [
     {
       id: "1",
-      title: "Morning Run with Max",
+      title: "Course matinale avec Max",
       type: "canicross" as const,
       date: "2025-05-21",
       duration: "45:32",
       distance: "5.7 km",
-      location: "Central Park Trail",
+      location: "Sentier du Parc Central",
       dogName: "Max",
       dogImage: undefined,
       likes: 14
     },
     {
       id: "2",
-      title: "Hill Training",
+      title: "Entraînement en côte",
       type: "cani-hiking" as const,
       date: "2025-05-19",
       duration: "1:12:05",
       distance: "7.3 km",
-      location: "Mountain View Path",
+      location: "Sentier de la Vue Montagne",
       dogName: "Bella",
       dogImage: undefined,
       likes: 23
@@ -42,9 +42,9 @@ const ProfilePage = () => {
 
   // Sample achievements
   const achievements = [
-    { id: "1", title: "Early Bird", description: "Complete 5 activities before 8 AM", icon: <PawPrint className="h-6 w-6" />, progress: 100 },
-    { id: "2", title: "Trail Blazer", description: "Complete 10 different trails", icon: <Trophy className="h-6 w-6" />, progress: 70 },
-    { id: "3", title: "Marathon Ready", description: "Run 42km in a month", icon: <Medal className="h-6 w-6" />, progress: 50 }
+    { id: "1", title: "Lève-tôt", description: "Terminer 5 activités avant 8h du matin", icon: <PawPrint className="h-6 w-6" />, progress: 100 },
+    { id: "2", title: "Explorateur", description: "Terminer 10 sentiers différents", icon: <Trophy className="h-6 w-6" />, progress: 70 },
+    { id: "3", title: "Prêt pour le marathon", description: "Courir 42km en un mois", icon: <Medal className="h-6 w-6" />, progress: 50 }
   ];
 
   return (
@@ -55,7 +55,7 @@ const ProfilePage = () => {
         <div className="absolute top-20 left-0 right-0 px-4">
           <div className="flex justify-between">
             <Avatar className="h-24 w-24 border-4 border-white">
-              <AvatarImage src="" alt="User" />
+              <AvatarImage src="" alt="Utilisateur" />
               <AvatarFallback className="bg-forest text-white text-xl">JD</AvatarFallback>
             </Avatar>
             <div className="flex space-x-2">
@@ -86,12 +86,12 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className="mt-2">
-            <h1 className="text-2xl font-bold">John Doe</h1>
-            <p className="text-muted-foreground">Trail enthusiast & dog lover</p>
+            <h1 className="text-2xl font-bold">Jean Dupont</h1>
+            <p className="text-muted-foreground">Passionné de sentiers et amoureux des chiens</p>
             <div className="flex space-x-2 mt-2">
-              <Badge variant="outline">Level 15</Badge>
+              <Badge variant="outline">Niveau 15</Badge>
               <Badge className="bg-forest text-white">canicross</Badge>
-              <Badge className="bg-sky text-white">cani-hiking</Badge>
+              <Badge className="bg-sky text-white">cani-rando</Badge>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ const ProfilePage = () => {
       {/* Stats summary */}
       <div className="mt-32 px-4 grid grid-cols-3 gap-3">
         <div className="stats-card">
-          <span className="text-xs text-muted-foreground">Activities</span>
+          <span className="text-xs text-muted-foreground">Activités</span>
           <span className="text-lg font-semibold">42</span>
         </div>
         <div className="stats-card">
@@ -108,7 +108,7 @@ const ProfilePage = () => {
           <span className="text-lg font-semibold">187 km</span>
         </div>
         <div className="stats-card">
-          <span className="text-xs text-muted-foreground">Hours</span>
+          <span className="text-xs text-muted-foreground">Heures</span>
           <span className="text-lg font-semibold">24.5</span>
         </div>
       </div>
@@ -117,8 +117,8 @@ const ProfilePage = () => {
       <div className="mt-6 px-4">
         <Tabs defaultValue="dogs" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="dogs">Dogs</TabsTrigger>
-            <TabsTrigger value="activities">Activities</TabsTrigger>
+            <TabsTrigger value="dogs">Chiens</TabsTrigger>
+            <TabsTrigger value="activities">Activités</TabsTrigger>
             <TabsTrigger value="achievements">Badges</TabsTrigger>
           </TabsList>
           
@@ -138,7 +138,7 @@ const ProfilePage = () => {
                 className="w-full mt-4 flex items-center justify-center bg-forest text-white"
               >
                 <Dog className="mr-2 h-4 w-4" />
-                Manage Dogs
+                Gérer mes chiens
               </Button>
             </div>
           </TabsContent>
