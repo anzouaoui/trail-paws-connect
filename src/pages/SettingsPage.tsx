@@ -24,8 +24,13 @@ const SettingsPage = () => {
   const navigate = useNavigate();
   const { logout } = useFirebaseAuth();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.error('Erreur lors de la déconnexion:', error);
+    }
   };
 
   return (
