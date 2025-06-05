@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { Toaster } from "@/components/ui/toaster";
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
 import BottomNavigation from './components/BottomNavigation';
+import HomePage from './pages/HomePage';
 import ExplorePage from './pages/ExplorePage';
 import TrackPage from './pages/TrackPage';
 import StatsPage from './pages/StatsPage';
@@ -56,12 +57,13 @@ import CommunityPage from './pages/CommunityPage';
 
 function AppContent() {
   const location = useLocation();
-  const hideNavigation = ['/login', '/signup', '/', '/onboarding'].includes(location.pathname);
+  const hideNavigation = ['/login', '/signup', '/onboarding'].includes(location.pathname);
 
   return (
     <div className="min-h-screen bg-background w-full">
       <Routes>
         <Route path="/" element={<OnboardingPage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/track" element={<TrackPage />} />
         <Route path="/stats" element={<StatsPage />} />
