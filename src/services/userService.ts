@@ -1,3 +1,4 @@
+
 import { db } from '@/config/firebase.config';
 import { User } from '@/types/user';
 import {
@@ -33,18 +34,6 @@ export const userService = {
    * Met à jour un utilisateur existant
    */
   async updateUser(userId: string, userData: Partial<User>): Promise<void> {
-    const userRef = doc(db, USERS_COLLECTION, userId);
-    
-    await updateDoc(userRef, {
-      ...userData,
-      updatedAt: serverTimestamp(),
-    });
-  },
-
-  /**
-   * Récupère un utilisateur par son ID
-   */
-  async updateUser(userId: string, userData: Partial<User>): Promise<void> {
     try {
       const userRef = doc(db, 'users', userId);
       await updateDoc(userRef, {
@@ -57,6 +46,9 @@ export const userService = {
     }
   },
 
+  /**
+   * Récupère un utilisateur par son ID
+   */
   async getUserById(userId: string): Promise<User | null> {
     const userRef = doc(db, USERS_COLLECTION, userId);
     const userDoc = await getDoc(userRef);
