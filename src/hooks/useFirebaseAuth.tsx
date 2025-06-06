@@ -13,7 +13,7 @@ import {
   updateProfile
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '@/lib/firebase';
+import { auth, db } from '@/config/firebase.config';
 
 interface AuthContextType {
   user: User | null;
@@ -34,6 +34,7 @@ export const FirebaseAuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('Auth state changed:', user ? 'User logged in' : 'User logged out');
       setUser(user);
       setLoading(false);
     });
@@ -44,7 +45,7 @@ export const FirebaseAuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (email: string, password: string) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/explore");
+      navigate("/home");
     } catch (error: any) {
       console.error("Login error:", error);
       throw new Error(getAuthErrorMessage(error.code));
@@ -69,7 +70,7 @@ export const FirebaseAuthProvider = ({ children }: { children: ReactNode }) => {
       const result = await signInWithPopup(auth, authProvider);
       // Save user profile in Firestore
       await saveUserProfile(result.user);
-      navigate("/explore");
+      navigate("/home");
     } catch (error: any) {
       console.error("Social login error:", error);
       throw new Error(getAuthErrorMessage(error.code));
@@ -88,7 +89,7 @@ export const FirebaseAuthProvider = ({ children }: { children: ReactNode }) => {
       // Save user profile in Firestore
       await saveUserProfile(userCredential.user, name);
       
-      navigate("/explore");
+      navigate("/create-profile");
     } catch (error: any) {
       console.error("Signup error:", error);
       throw new Error(getAuthErrorMessage(error.code));
