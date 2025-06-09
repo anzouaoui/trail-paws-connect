@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import SettingsSection from "@/components/SettingsSection";
 import { Switch } from "@/components/ui/switch";
-import { useFirebaseAuth } from "@/contexts/FirebaseAuthContext";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 
 const SettingsPage = () => {
   const navigate = useNavigate();

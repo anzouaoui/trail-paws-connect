@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFirebaseAuth } from "@/contexts/FirebaseAuthContext";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 import { userService } from "@/services/userService";
 import { dogService } from "@/services/dogService";
 import type { Dog } from "@/types/dog";

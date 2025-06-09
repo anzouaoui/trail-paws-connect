@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useOnboarding } from "@/hooks/useOnboarding";
-import { useFirebaseAuth } from "@/contexts/FirebaseAuthContext";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 import OnboardingSlide from "@/components/OnboardingSlide";
 
 const slides = [

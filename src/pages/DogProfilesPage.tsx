@@ -13,9 +13,9 @@ const mockDogs = [
     id: "1",
     name: "Max",
     breed: "Border Collie",
-    birthDate: "2021-03-15",
-    weight: 18,
-    photoURL: undefined,
+    age: 3,
+    weight: "18 kg",
+    imageSrc: undefined,
     sportPreference: "Canicross",
     level: "intermediate" as const
   },
@@ -23,9 +23,9 @@ const mockDogs = [
     id: "2",
     name: "Bella",
     breed: "Golden Retriever",
-    birthDate: "2022-06-20",
-    weight: 25,
-    photoURL: undefined,
+    age: 2,
+    weight: "25 kg",
+    imageSrc: undefined,
     sportPreference: "Randonnée canine",
     level: "beginner" as const
   }

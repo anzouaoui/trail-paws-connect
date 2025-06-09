@@ -1,3 +1,4 @@
+
 import { 
   collection, 
   doc, 
@@ -11,7 +12,7 @@ import {
   orderBy, 
   limit 
 } from 'firebase/firestore';
-import { db } from '@/config/firebase.config';
+import { db } from '@/lib/firebase';
 
 // Types pour les collections principales
 export interface UserProfile {

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -7,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Facebook, Mail, Lock, LogIn } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { useFirebaseAuth } from "@/contexts/FirebaseAuthContext";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");

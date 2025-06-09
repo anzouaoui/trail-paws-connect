@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useFirebaseAuth } from '@/contexts/FirebaseAuthContext';
+import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
 import { Loader2 } from 'lucide-react';
 
 interface PrivateRouteProps {
