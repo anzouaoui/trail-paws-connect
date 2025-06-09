@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
+import { useFirebaseAuth } from "@/contexts/FirebaseAuthContext";
 import { userService } from "@/services/userService";
 import { User } from "@/types/user";
 import { useToast } from "@/components/ui/use-toast";

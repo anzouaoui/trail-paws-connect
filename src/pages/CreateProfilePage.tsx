@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -22,7 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
-import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
+import { useFirebaseAuth } from "@/contexts/FirebaseAuthContext";
 import { userService } from "@/services/userService";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
