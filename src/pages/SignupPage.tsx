@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -7,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Facebook, Mail, Lock, User, UserPlus } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
+import { useFirebaseAuth } from "@/contexts/FirebaseAuthContext";
 
 const SignupPage = () => {
   const [name, setName] = useState("");

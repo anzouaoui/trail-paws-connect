@@ -1,10 +1,8 @@
-
 import React from 'react';
-import { FirebaseAuthProvider } from '@/contexts/FirebaseAuthContext';
+import { FirebaseAuthProvider, useFirebaseAuth } from '@/contexts/FirebaseAuthContext';
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Toaster } from "@/components/ui/toaster";
-import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
 import { useOnboarding } from '@/hooks/useOnboarding';
 import BottomNavigation from './components/BottomNavigation';
 import HomePage from './pages/HomePage';
