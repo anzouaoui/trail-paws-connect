@@ -7,11 +7,12 @@ import { useNavigate } from "react-router-dom";
 import ChallengeCard from "@/components/ChallengeCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import FriendsFeed from "@/components/FriendsFeed";
 
 const HomePage = () => {
   const navigate = useNavigate();
   
-  // Données d'exemple des 5 dernières activités
+  // Données d'exemple des 3 dernières activités (réduites pour faire place au fil d'actualité)
   const recentActivities = [
     {
       id: "1",
@@ -51,32 +52,6 @@ const HomePage = () => {
       dogImage: undefined,
       likes: 22,
       rating: 3.5
-    },
-    {
-      id: "4",
-      title: "Jogging du Weekend",
-      type: "canicross" as const,
-      date: "2025-05-30",
-      duration: "28:15",
-      distance: "3.8 km",
-      location: "Circuit du Lac",
-      dogName: "Luna",
-      dogImage: undefined,
-      likes: 12,
-      rating: 2.5
-    },
-    {
-      id: "5",
-      title: "Randonnée Découverte",
-      type: "cani-hiking" as const,
-      date: "2025-05-28",
-      duration: "52:40",
-      distance: "6.7 km",
-      location: "Vallée des Pins",
-      dogName: "Max",
-      dogImage: undefined,
-      likes: 18,
-      rating: 4.0
     }
   ];
 
@@ -90,7 +65,7 @@ const HomePage = () => {
     rarity: "Bronze"
   };
 
-  // Défis disponibles
+  // Défis disponibles (réduits à 2 pour faire place au fil d'actualité)
   const [challenges] = useState([
     {
       id: "1",
@@ -129,25 +104,6 @@ const HomePage = () => {
       activityType: "cani-MTB",
       organizer: "VTT Nature & Chiens",
       isRegistered: true
-    },
-    {
-      id: "3",
-      title: "Initiation Cani-Rando",
-      description: "Découvrez la randonnée avec votre chien",
-      startDate: "18 juin 2025",
-      endDate: "25 juin 2025",
-      registrationDeadline: "16 juin 2025",
-      price: 0,
-      currency: "€",
-      maxParticipants: 60,
-      currentParticipants: 35,
-      location: "Forêt de Fontainebleau",
-      difficulty: "débutant" as const,
-      requiredEquipment: ["Harnais basique", "Laisse 2m"],
-      rewards: ["Badge découverte", "Guide randonnée"],
-      activityType: "cani-hiking",
-      organizer: "Rando Canine IDF",
-      isRegistered: false
     }
   ]);
 
@@ -201,10 +157,15 @@ const HomePage = () => {
         </CardContent>
       </Card>
 
+      {/* Fil d'Actualité des Amis */}
+      <section>
+        <FriendsFeed />
+      </section>
+
       {/* Dernières Activités */}
       <section>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold">Dernières Activités</h2>
+          <h2 className="text-xl font-semibold">Mes Dernières Activités</h2>
           <Button variant="outline" size="sm" onClick={handleViewAllActivities}>
             Voir tout
           </Button>
