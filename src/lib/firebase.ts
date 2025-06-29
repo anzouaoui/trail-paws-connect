@@ -3,14 +3,15 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import Constants from 'expo-constants';
 
 const firebaseConfig = {
-  apiKey: process.env.VITE_FIREBASE_API_KEY || "demo-api-key",
-  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN || "traildog-demo.firebaseapp.com",
-  projectId: process.env.VITE_FIREBASE_PROJECT_ID || "traildog-demo",
-  storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET || "traildog-demo.appspot.com",
-  messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "123456789",
-  appId: process.env.VITE_FIREBASE_APP_ID || "1:123456789:web:demo"
+  apiKey: Constants.expoConfig?.extra?.firebaseApiKey || process.env.EXPO_PUBLIC_FIREBASE_API_KEY || "demo-api-key",
+  authDomain: Constants.expoConfig?.extra?.firebaseAuthDomain || process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN || "traildog-demo.firebaseapp.com",
+  projectId: Constants.expoConfig?.extra?.firebaseProjectId || process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID || "traildog-demo",
+  storageBucket: Constants.expoConfig?.extra?.firebaseStorageBucket || process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET || "traildog-demo.appspot.com",
+  messagingSenderId: Constants.expoConfig?.extra?.firebaseMessagingSenderId || process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "123456789",
+  appId: Constants.expoConfig?.extra?.firebaseAppId || process.env.EXPO_PUBLIC_FIREBASE_APP_ID || "1:123456789:web:demo"
 };
 
 // Initialize Firebase
