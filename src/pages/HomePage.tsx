@@ -12,7 +12,7 @@ import FriendsFeed from "@/components/FriendsFeed";
 const HomePage = () => {
   const navigate = useNavigate();
   
-  // Données d'exemple des 3 dernières activités (réduites pour faire place au fil d'actualité)
+  // Données d'exemple des 3 dernières activités
   const recentActivities = [
     {
       id: "1",
@@ -65,7 +65,7 @@ const HomePage = () => {
     rarity: "Bronze"
   };
 
-  // Défis disponibles (réduits à 2 pour faire place au fil d'actualité)
+  // Défis disponibles
   const [challenges] = useState([
     {
       id: "1",
@@ -162,7 +162,7 @@ const HomePage = () => {
         <FriendsFeed />
       </section>
 
-      {/* Dernières Activités */}
+      {/* Mes Dernières Activités */}
       <section>
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Mes Dernières Activités</h2>
