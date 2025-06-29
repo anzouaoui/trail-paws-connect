@@ -1,7 +1,8 @@
+
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "@/config/firebase.config";
+import { storage } from "@/lib/firebase";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
