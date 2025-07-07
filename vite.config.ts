@@ -33,4 +33,10 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    exclude: ['react-native']
+  },
+  define: {
+    global: 'globalThis',
+  }
 }));
