@@ -1,8 +1,9 @@
+
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { 
   ArrowLeft, Edit, Trash2, Share, Clock, MapPin, 
-  Flame, HeartPulse, BarChart3, Trophy, ArrowUpRight
+  Flame, HeartPulse, BarChart3, Trophy, ArrowUpRight, Instagram
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import DogAvatar from "@/components/DogAvatar";
@@ -157,6 +164,47 @@ const ActivityDetailPage = () => {
     }
   };
 
+  const handleInstagramStory = () => {
+    // Create a shareable text for Instagram story
+    const shareText = `🏃‍♂️ ${activity.title}\n📍 ${activity.location}\n⏱️ ${activity.duration} | 📏 ${activity.distance}\n🐕 Avec ${activity.dogName}\n#Canicross #TrailPawsConnect`;
+    
+    // Try to open Instagram app with story sharing
+    const instagramUrl = `instagram://story-camera`;
+    
+    // Check if Instagram app is available
+    const link = document.createElement('a');
+    link.href = instagramUrl;
+    
+    // Fallback: copy text to clipboard for manual sharing
+    navigator.clipboard.writeText(shareText).then(() => {
+      toast({
+        title: "Texte copié !",
+        description: "Le texte a été copié dans le presse-papier. Vous pouvez maintenant le coller dans votre story Instagram.",
+      });
+    }).catch(() => {
+      toast({
+        title: "Instagram Story",
+        description: "Ouvrez Instagram et créez une story avec vos statistiques d'activité !",
+      });
+    });
+  };
+
+  const handleFacebookStory = () => {
+    // Create a shareable text for Facebook story
+    const shareText = `🏃‍♂️ ${activity.title}\n📍 ${activity.location}\n⏱️ ${activity.duration} | 📏 ${activity.distance}\n🐕 Avec ${activity.dogName}\n#Canicross #TrailPawsConnect`;
+    
+    // Try Facebook sharing
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(shareText)}`;
+    
+    // Open Facebook sharing in new window
+    window.open(facebookUrl, '_blank', 'width=600,height=400');
+    
+    toast({
+      title: "Facebook Story",
+      description: "Partagez votre activité sur Facebook !",
+    });
+  };
+
   const activityColors = {
     "canicross": "bg-forest text-white",
     "cani-hiking": "bg-earth text-white",
@@ -212,13 +260,32 @@ const ActivityDetailPage = () => {
               </AlertDialogContent>
             </AlertDialog>
             
-            <Button 
-              variant="ghost" 
-              size="icon"
-              onClick={handleShare}
-            >
-              <Share className="h-5 w-5 text-sky" />
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                >
+                  <Share className="h-5 w-5 text-sky" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={handleInstagramStory}>
+                  <Instagram className="h-4 w-4 mr-2" />
+                  Story Instagram
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleFacebookStory}>
+                  <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  Story Facebook
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleShare}>
+                  <Share className="h-4 w-4 mr-2" />
+                  Partager
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
