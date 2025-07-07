@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => ({
     outDir: 'dist',
     sourcemap: true,
     rollupOptions: {
+      external: ['react-native'],
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
@@ -31,6 +32,8 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      // Completely ignore react-native
+      "react-native": false,
     },
   },
   optimizeDeps: {
