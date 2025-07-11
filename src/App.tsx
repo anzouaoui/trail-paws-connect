@@ -1,15 +1,10 @@
 
 import React from 'react';
-import { FirebaseAuthProvider } from '@/contexts/FirebaseAuthContext';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster";
-import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
-import { useOnboarding } from '@/hooks/useOnboarding';
+import { FirebaseAuthProvider } from '@/hooks/useFirebaseAuth';
 import BottomNavigation from './components/BottomNavigation';
 import HomePage from './pages/HomePage';
-import CreateProfilePage from './pages/CreateProfilePage';
-import AddDogPage from './pages/AddDogPage';
 import ExplorePage from './pages/ExplorePage';
 import TrackPage from './pages/TrackPage';
 import StatsPage from './pages/StatsPage';
@@ -58,49 +53,20 @@ import TrailDetailPage from './pages/TrailDetailPage';
 import EmailSupportPage from './pages/EmailSupportPage';
 import PhoneSupportPage from './pages/PhoneSupportPage';
 import CommunityPage from './pages/CommunityPage';
-import EditProfilePage from './pages/EditProfilePage';
-import PrivateRoute from './components/PrivateRoute';
 
 function AppContent() {
   const location = useLocation();
-  const navigate = useNavigate();
-  const { user } = useFirebaseAuth();
-  const { hasCompletedOnboarding } = useOnboarding();
-
-  useEffect(() => {
-    const publicPaths = ['/', '/login', '/signup'];
-    const initialPath = '/';
-    
-    // Ne rediriger que si on est sur une page publique ou la page initiale
-    if (publicPaths.includes(location.pathname) || location.pathname === initialPath) {
-      if (user) {
-        // L'utilisateur est connecté
-        if (!hasCompletedOnboarding) {
-          navigate('/create-profile');
-        } else {
-          navigate('/home');
-        }
-      } else if (!publicPaths.includes(location.pathname)) {
-        // L'utilisateur n'est pas connecté et essaie d'accéder à une page privée
-        navigate('/login');
-      }
-    }
-  }, [user, hasCompletedOnboarding, location.pathname, navigate]);
-
-  const hideNavigation = ['/', '/login', '/signup', '/create-profile', '/add-dog'].includes(location.pathname);
+  const hideNavigation = ['/login', '/signup', '/onboarding'].includes(location.pathname);
 
   return (
     <div className="min-h-screen bg-background w-full">
       <Routes>
         <Route path="/" element={<OnboardingPage />} />
-        <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
-        <Route path="/create-profile" element={<PrivateRoute><CreateProfilePage /></PrivateRoute>} />
-        <Route path="/add-dog" element={<PrivateRoute><AddDogPage /></PrivateRoute>} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/explore" element={<ExplorePage />} />
-        <Route path="/track" element={<PrivateRoute><TrackPage /></PrivateRoute>} />
-        <Route path="/stats" element={<PrivateRoute><StatsPage /></PrivateRoute>} />
-        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-        <Route path="/edit-profile" element={<PrivateRoute><EditProfilePage /></PrivateRoute>} />
+        <Route path="/track" element={<TrackPage />} />
+        <Route path="/stats" element={<StatsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/activity/:id" element={<ActivityDetailPage />} />
         <Route path="/activity/:id/edit" element={<EditActivityPage />} />
         <Route path="/activity/:id/rate" element={<ActivityRatingPage />} />

@@ -2,8 +2,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useOnboarding } from "@/hooks/useOnboarding";
-import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 import OnboardingSlide from "@/components/OnboardingSlide";
 
 const slides = [
@@ -30,8 +28,6 @@ const slides = [
 const OnboardingPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
-  const { completeOnboarding } = useOnboarding();
-  const { user } = useFirebaseAuth();
 
   const handleNext = () => {
     if (currentSlide < slides.length - 1) {
@@ -43,13 +39,9 @@ const OnboardingPage = () => {
     navigate("/login");
   };
 
-  const handleGetStarted = () => {
-    completeOnboarding();
-    navigate("/signup");
-  };
-
   const handleComplete = () => {
-    completeOnboarding();
+    // Dans une vraie app, on sauvegarderait que l'utilisateur a terminé l'onboarding
+    localStorage.setItem("onboardingCompleted", "true");
     navigate("/signup");
   };
 
